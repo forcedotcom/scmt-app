@@ -23,7 +23,7 @@
         <name>ApexClass</name>
     </types>
     <types>
-        <members>DeskMigrationAll</members>
+        <members>DeskMigrationWizard</members>
         <name>ApexPage</name>
     </types>
     <types>
