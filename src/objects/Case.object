@@ -201,4 +201,9 @@
             </valueSetDefinition>
         </valueSet>
     </fields>
+    <recordTypes>
+        <active>true</active>
+        <label>SCMT</label>
+        <fullName>SCMT</fullName>
+    </recordTypes>
 </CustomObject>
