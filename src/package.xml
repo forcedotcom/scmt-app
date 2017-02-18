@@ -33,6 +33,10 @@
         <name>ApexTrigger</name>
     </types>
     <types>
+        <members>Case.SCMT</members>
+        <name>BusinessProcess</name>
+    </types>
+    <types>
         <members>https_scmt_beta_herokuapp_com</members>
         <name>CorsWhitelistOrigin</name>
     </types>
@@ -97,6 +101,12 @@
     <types>
         <members>SCMT_Audit</members>
         <name>PermissionSet</name>
+    </types>
+    <types>
+        <members>Account.SCMT</members>
+        <members>Contact.SCMT</members>
+        <members>Case.SCMT</members>
+        <name>RecordType</name>
     </types>
     <types>
         <members>JSCalendar</members>

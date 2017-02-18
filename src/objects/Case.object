@@ -7,6 +7,14 @@
   -->
 
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <businessProcesses>
+        <fullName>SCMT</fullName>
+        <isActive>true</isActive>
+        <values>
+            <fullName>New</fullName>
+            <default>true</default>
+        </values>
+    </businessProcesses>
     <fields>
         <fullName>DeskActiveDate__c</fullName>
         <deprecated>false</deprecated>
@@ -204,6 +212,7 @@
     <recordTypes>
         <active>true</active>
         <label>SCMT</label>
+        <businessProcess>SCMT</businessProcess>
         <fullName>SCMT</fullName>
     </recordTypes>
 </CustomObject>
