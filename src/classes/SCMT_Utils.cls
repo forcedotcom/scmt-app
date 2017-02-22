@@ -17,11 +17,11 @@ public class SCMT_Utils
             for (SObject so : Trigger.new)
             {
                 // check if the 'DeskId' is set, if so this is a case migrated from Desk.com
-                if (so.get('SCMT__DeskId__c') != null)
+                if (so.get('DeskId__c') != null)
                 {
                     // get the Desk Created/Updated At values into Datetime variables
-                    Datetime deskCreatedAt = (Datetime) so.get('SCMT__DeskCreatedAt__c');
-                    Datetime deskUpdatedAt = (Datetime) so.get('SCMT__DeskUpdatedAt__c');
+                    Datetime deskCreatedAt = (Datetime) so.get('DeskCreatedAt__c');
+                    Datetime deskUpdatedAt = (Datetime) so.get('DeskUpdatedAt__c');
 
                     System.debug('CreatedDate: [' + so.get('CreatedDate') + '] => [' + deskCreatedAt + ']\n' +
                         'LastModifiedDate: [' + so.get('LastModifiedDate') + '] => [' +

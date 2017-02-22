@@ -28,7 +28,7 @@ global with sharing class DeskMigrationWizardController
     private Integer newTopicsAndBrandsCount;
     private List<List<String>> migrationGroups;
     public String herokuServerURL { get; set;}
-    public SCMT__Desk_Migration__c deskMigration { get; set; }
+    public Desk_Migration__c deskMigration { get; set; }
     public Date startDate { get; set; } // start date used for migrating data
     public Time startTime { get; set; } //start time used for migrating data
     public Id startRecordId { get; set; } //record Id used for migrating data
@@ -48,20 +48,20 @@ global with sharing class DeskMigrationWizardController
     public List<SelectOption> yearOptions { get; set;}
 
     public DeskMigrationWizardController() {
-        Map<ID,SCMT__Desk_Config__mdt> desk2SCSettings = new Map<ID,SCMT__Desk_Config__mdt>([SELECT ID, Label, SCMT__URL__c FROM SCMT__Desk_Config__mdt]);
-        List<SCMT__Desk_Config__mdt> desk2SCSettingValues =  desk2SCSettings.values();
+        Map<ID,Desk_Config__mdt> desk2SCSettings = new Map<ID,Desk_Config__mdt>([SELECT ID, Label, URL__c FROM Desk_Config__mdt]);
+        List<Desk_Config__mdt> desk2SCSettingValues =  desk2SCSettings.values();
         if(desk2SCSettingValues.size() == 1)
         {
             // default prod server for package
-            herokuServerURL = desk2SCSettingValues[0].SCMT__URL__c;
+            herokuServerURL = desk2SCSettingValues[0].URL__c;
         }
         else{
             // if there are more than one a test server is being used and it should be labeled as such
-            for(SCMT__Desk_Config__mdt s : desk2SCSettingValues)
+            for(Desk_Config__mdt s : desk2SCSettingValues)
             {
                 if(s.Label == 'test')
                 {
-                    herokuServerURL = s.SCMT__URL__c;
+                    herokuServerURL = s.URL__c;
                 }
             }
         }
@@ -348,10 +348,10 @@ global with sharing class DeskMigrationWizardController
     @RemoteAction
     global static Id createMigrationStatusRemote()
     {
-        SCMT__Desk_Migration__c deskMigration = new SCMT__Desk_Migration__c();
+        Desk_Migration__c deskMigration = new Desk_Migration__c();
         //deskMigration.StartDate__c = Datetime.now();
         
-        if(Schema.sObjectType.SCMT__Desk_Migration__c.isCreateable() && Schema.sObjectType.SCMT__Desk_Migration__c.fields.Status__c.isCreateable())
+        if(Schema.sObjectType.Desk_Migration__c.isCreateable() && Schema.sObjectType.Desk_Migration__c.fields.Status__c.isCreateable())
         {
             deskMigration.Status__c = 'New';
             Database.SaveResult sr = Database.insert(deskMigration, true);

@@ -23,7 +23,7 @@
         <name>ApexClass</name>
     </types>
     <types>
-        <members>DeskMigrationAll</members>
+        <members>DeskMigrationWizard</members>
         <name>ApexPage</name>
     </types>
     <types>
@@ -31,6 +31,10 @@
         <members>SCMT_AuditFieldsCase</members>
         <members>SCMT_AuditFieldsContact</members>
         <name>ApexTrigger</name>
+    </types>
+    <types>
+        <members>Case.SCMT</members>
+        <name>BusinessProcess</name>
     </types>
     <types>
         <members>https_scmt_beta_herokuapp_com</members>
@@ -97,6 +101,12 @@
     <types>
         <members>SCMT_Audit</members>
         <name>PermissionSet</name>
+    </types>
+    <types>
+        <members>Account.SCMT</members>
+        <members>Contact.SCMT</members>
+        <members>Case.SCMT</members>
+        <name>RecordType</name>
     </types>
     <types>
         <members>JSCalendar</members>
