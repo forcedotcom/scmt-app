@@ -9,3 +9,6 @@ Referenced Packages
 .idea
 IlluminatedCloud
 *.iml
+
+### Salesforce DX
+.sfdx
