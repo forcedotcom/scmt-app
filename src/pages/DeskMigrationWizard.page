@@ -526,6 +526,7 @@
                                                             Migrate All Data
                                                         </span>
                                                 </label>
+                                                <!--
                                                 <br/>
                                                 <label class="slds-checkbox" for="migrateAll" style="margin-bottom:10px">
                                                         <input name="checkbox" type="radio" id="migrateRecordIdCheckbox2" onclick="enableIB1(this.id);"/>
@@ -542,6 +543,7 @@
                                                       </div>
                                                      </div>
                                                 </div>
+                                                -->
                                                 <br/>
                                                 <label class="slds-checkbox" for="migrateAll" style="margin-bottom:10px">
                                                         <input name="checkbox" type="radio" id="migrateStartDateTimeCheckbox2" onclick="enableIB2(this.id);" />
