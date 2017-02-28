@@ -130,7 +130,13 @@
         }
 
         .slds .slds-icon-text-good { fill: #4bca81; }
-        
+
+        .slds-datepicker table.datepicker__month td {
+            padding: 0;
+        }
+
+
+
         
     </style>
     <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
