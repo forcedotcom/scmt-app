@@ -48,6 +48,7 @@
         <members>Account.DeskCreatedAt__c</members>
         <members>Account.DeskId__c</members>
         <members>Account.DeskUpdatedAt__c</members>
+        <members>Account.Domains__c</members>
         <members>Case.DeskActiveDate__c</members>
         <members>Case.DeskAssignedGroup__c</members>
         <members>Case.DeskChangedDate__c</members>
@@ -70,6 +71,7 @@
         <members>Contact.HomeAddress__c</members>
         <members>Contact.Language__c</members>
         <members>Contact.WorkAddress__c</members>
+        <members>Contact.Background__c</members>
         <members>User.DeskId__c</members>
         <name>CustomField</name>
     </types>
