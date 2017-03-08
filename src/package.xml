@@ -48,6 +48,7 @@
         <members>Account.DeskCreatedAt__c</members>
         <members>Account.DeskId__c</members>
         <members>Account.DeskUpdatedAt__c</members>
+        <members>Account.Domains__c</members>
         <members>Case.DeskActiveDate__c</members>
         <members>Case.DeskAssignedGroup__c</members>
         <members>Case.DeskChangedDate__c</members>

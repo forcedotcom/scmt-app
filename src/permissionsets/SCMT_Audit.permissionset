@@ -100,6 +100,10 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Account.Domains__c</field>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Case.DeskActiveDate__c</field>
     </fieldPermissions>
     <fieldPermissions>
