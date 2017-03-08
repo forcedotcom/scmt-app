@@ -38,6 +38,18 @@
         <trackFeedHistory>false</trackFeedHistory>
         <type>DateTime</type>
     </fields>
+    <fields>
+        <fullName>Domains__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Contains the domains of this record from Desk.com for historical purposes.</description>
+        <externalId>false</externalId>
+        <label>Domains</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <recordTypes>
         <active>true</active>
         <label>SCMT</label>
