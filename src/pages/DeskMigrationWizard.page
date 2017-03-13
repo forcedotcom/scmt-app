@@ -111,13 +111,13 @@
             width:16px !important;
             height:16px !important;
         }
-        
+
         .slds-form-element__radio
         {
             padding-left:10px;
-            
+
         }
-        
+
         .datacol
         {
             colspan:4;
@@ -137,115 +137,115 @@
 
 
 
-        
+
     </style>
     <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-        <head>
-            <title>
-                Desk Migration Wizard
-            </title>
-            <apex:stylesheet value="{!URLFOR($Resource.SLDS0122, 'assets/styles/salesforce-lightning-design-system-vf.css')}" />
-        </head>
-        <body>
-            <!-- REQUIRED SLDS WRAPPER -->
-            <div class="slds">
-                <!-- MASTHEAD -->
+    <head>
+        <title>
+            Desk Migration Wizard
+        </title>
+        <apex:stylesheet value="{!URLFOR($Resource.SLDS0122, 'assets/styles/salesforce-lightning-design-system-vf.css')}" />
+    </head>
+    <body>
+    <!-- REQUIRED SLDS WRAPPER -->
+    <div class="slds">
+        <!-- MASTHEAD -->
+        <section class="migration-section">
+            <p class="slds-text-heading--label slds-m-bottom--large">
+                Desk to Service Cloud Migration App
+            </p>
+        </section>
+        <!-- / MASTHEAD -->
+        <!-- PRIMARY CONTENT WRAPPER -->
+        <div class="myapp">
+            <apex:pageMessages id="jserror"></apex:pageMessages>
+            <apex:form >
+                <apex:actionFunction name="clearMessages" action="{!clearMessages}" rerender="migration-modal__error"></apex:actionFunction>
+                <apex:actionFunction name="showMessage" action="{!showMessage}" rerender="migration-modal__error" oncomplete="popErrorMessage">
+                    <apex:param name="errorLevel" assignTo="{!errorLevel}" value=""></apex:param>
+                    <apex:param name="messageName" assignTo="{!messageName}" value=""></apex:param>
+                    <apex:param name="messageDetail" assignTo="{!messageDetail}" value=""></apex:param>
+                </apex:actionFunction>
+                <apex:actionFunction name="refreshJSON" action="{!refreshJSON}" rerender="jsvar,jsonGroupsTable,jsonCustomFieldsTable"></apex:actionFunction>
+                <apex:actionFunction name="fetchMigrationGroups" action="{!getMigrationGroups}" reRender="migrationGroupsTable"></apex:actionFunction>
+
+
+
+                <!-- SECTION - BADGE COMPONENTS -->
+                <!--
+                    <section aria-labelledby="badges">
+                        <div>
+                            <span class="slds-badge">
+                                Badge
+                            </span>
+                            <span class="slds-badge slds-theme--inverse">
+                                Badge
+                            </span>
+                        </div>
+                    </section>
+                -->
                 <section class="migration-section">
-                    <p class="slds-text-heading--label slds-m-bottom--large">
-                        Desk to Service Cloud Migration App
-                    </p>
+                    <div class="migration-section-dynamic-step-welcome">
+                        <h1 class="slds-text-heading--large slds-m-right--small slds-truncate slds-align-middle">
+                            Welcome to the Desk Migration Wizard!
+                        </h1>
+                        <p>
+                            The Desk To Service Cloud Migration App provides a seamless migration path from Desk to Service Cloud. The app makes it easy to move foundational Desk data and metadata into Service Cloud, so that you can focus on improving your customer’s support experience! The wizard will take you through the migration process, step by step and will provide you access to additional support information and resources.
+                        </p>
+                        <br></br>
+
+
+                    </div>
                 </section>
-                <!-- / MASTHEAD -->
-                <!-- PRIMARY CONTENT WRAPPER -->
-                <div class="myapp">
-                    <apex:pageMessages id="jserror"></apex:pageMessages>
-                    <apex:form >
-                        <apex:actionFunction name="clearMessages" action="{!clearMessages}" rerender="migration-modal__error"></apex:actionFunction>
-                        <apex:actionFunction name="showMessage" action="{!showMessage}" rerender="migration-modal__error" oncomplete="popErrorMessage">
-                          <apex:param name="errorLevel" assignTo="{!errorLevel}" value=""></apex:param>
-                          <apex:param name="messageName" assignTo="{!messageName}" value=""></apex:param>
-                          <apex:param name="messageDetail" assignTo="{!messageDetail}" value=""></apex:param>
-                        </apex:actionFunction>
-                        <apex:actionFunction name="refreshJSON" action="{!refreshJSON}" rerender="jsvar,jsonGroupsTable,jsonCustomFieldsTable"></apex:actionFunction>
-                        <apex:actionFunction name="fetchMigrationGroups" action="{!getMigrationGroups}" reRender="migrationGroupsTable"></apex:actionFunction>
-                        
-                        
-                        
-                        <!-- SECTION - BADGE COMPONENTS -->
-                        <!--
-                            <section aria-labelledby="badges">
-                                <div>
-                                    <span class="slds-badge">
-                                        Badge
-                                    </span>
-                                    <span class="slds-badge slds-theme--inverse">
-                                        Badge
-                                    </span>
-                                </div>
-                            </section>
-                        -->
-                        <section class="migration-section">
-                            <div class="migration-section-dynamic-step-welcome">
-                                <h1 class="slds-text-heading--large slds-m-right--small slds-truncate slds-align-middle">
-                                    Welcome to the Desk Migration Wizard!
-                                </h1>
-                                <p>
-                                    The Desk To Service Cloud Migration App provides a seamless migration path from Desk to Service Cloud. The app makes it easy to move foundational Desk data and metadata into Service Cloud, so that you can focus on improving your customer’s support experience! The wizard will take you through the migration process, step by step and will provide you access to additional support information and resources.
-                                </p>
-                                <br></br>
-
-
-                            </div>
-                        </section>
-                        <!-- / SECTION - BADGE COMPONENTS -->
-                        <section class="migration-section">
-                            <div class="migration-section-band">
-                                <h2 class="slds-text-heading--medium slds-m-right--small slds-truncate slds-align-middle" style="margin-bottom:10px">
-                                    Migration Progress
-                                </h2>
-                                <div>
-                                    <ul class="slds-list--horizontal slds-has-cards--space has-selection">
-                                        <li class="slds-list__item step-1"  onclick="showStep1()" type='button'>
-                                            <div class="slds-tile slds-tile--board">
-                                                <p class="slds-tile__title slds-truncate">
-                                                    <a href="#">
-                                                        Step 1
-                                                    </a>
-                                                </p>
-                                                <div class="slds-tile__detail">
-                                                    <p class="slds-text-heading--medium">
-                                                        Pre Flight Check
-                                                    </p>
-                                                    <!-- <span class="slds-icon__container">
+                <!-- / SECTION - BADGE COMPONENTS -->
+                <section class="migration-section">
+                    <div class="migration-section-band">
+                        <h2 class="slds-text-heading--medium slds-m-right--small slds-truncate slds-align-middle" style="margin-bottom:10px">
+                            Migration Progress
+                        </h2>
+                        <div>
+                            <ul class="slds-list--horizontal slds-has-cards--space has-selection">
+                                <li class="slds-list__item step-1"  onclick="showStep1()" type='button'>
+                                    <div class="slds-tile slds-tile--board">
+                                        <p class="slds-tile__title slds-truncate">
+                                            <a href="#">
+                                                Step 1
+                                            </a>
+                                        </p>
+                                        <div class="slds-tile__detail">
+                                            <p class="slds-text-heading--medium">
+                                                Pre Flight Check
+                                            </p>
+                                            <!-- <span class="slds-icon__container">
                                                         <svg aria-hidden="true" class="slds-icon icon__svg slds-icon-action-approval">
                                                             <use xlink:href="{!URLFOR($Resource.SLDS0122,'/assets/icons/action-sprite/svg/symbols.svg#approval')}">
                                                             </use>
                                                         </svg>
                                                     </span> -->
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="slds-list__item step-2" onclick="showStep2()" type='button'>
-                                            <div class="slds-tile slds-tile--board">
-                                                <p class="slds-tile__title slds-truncate">
-                                                    <a href="#">
-                                                        Step 2
-                                                    </a>
-                                                </p>
-                                                <div class="slds-tile__detail">
-                                                    <p class="slds-text-heading--medium">
-                                                        Connect to Desk
-                                                    </p>
-                                                    <!-- <span class="slds-icon__container">
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="slds-list__item step-2" onclick="showStep2()" type='button'>
+                                    <div class="slds-tile slds-tile--board">
+                                        <p class="slds-tile__title slds-truncate">
+                                            <a href="#">
+                                                Step 2
+                                            </a>
+                                        </p>
+                                        <div class="slds-tile__detail">
+                                            <p class="slds-text-heading--medium">
+                                                Connect to Desk
+                                            </p>
+                                            <!-- <span class="slds-icon__container">
                                                         <svg aria-hidden="true" class="slds-icon icon__svg slds-icon-action-close">
                                                             <use xlink:href="{!URLFOR($Resource.SLDS0122,'/assets/icons/action-sprite/svg/symbols.svg#close')}">
                                                             </use>
                                                         </svg>
                                                     </span> -->
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <!--<li class="slds-list__item step-3" onclick="showStep3()" type='button'>
+                                        </div>
+                                    </div>
+                                </li>
+                                <!--<li class="slds-list__item step-3" onclick="showStep3()" type='button'>
                                             <div class="slds-tile slds-tile--board">
                                                 <p class="slds-tile__title slds-truncate">
                                                     <a href="#">
@@ -261,278 +261,278 @@
                                                             <use xlink:href="{!URLFOR($Resource.SLDS0122,'/assets/icons/action-sprite/svg/symbols.svg#close')}">
                                                             </use>
                                                         </svg>
-                                                    </span> 
+                                                    </span>
                                                 </div>
                                             </div>
                                         </li>-->
-                                        <li class="slds-list__item step-4" onclick="showStep4()" type='button'>
-                                            <div class="slds-tile slds-tile--board">
-                                                <p class="slds-tile__title slds-truncate">
-                                                    <a href="#">
-                                                        Step 3
-                                                    </a>
-                                                </p>
-                                                <div class="slds-tile__detail">
-                                                    <p class="slds-text-heading--medium">
-                                                        Select Data Set
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <!--<li class="slds-list__item step-5" onclick="showStep5()" type='button'>
-                                            <div class="slds-tile slds-tile--board">
-                                                <p class="slds-tile__title slds-truncate">
-                                                    <a href="#">
-                                                        Step 5
-                                                    </a>
-                                                </p>
-                                                <div class="slds-tile__detail">
-                                                    <p class="slds-text-heading--medium">
-                                                        Migrate
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </li>-->
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="migration-welcome">
-                                <hr/>
-                                <button class="slds-button slds-button--neutral" onclick="showStep1();return false;" type="button" style="float:right;">Get Started</button>
-                            </div>
+                                <li class="slds-list__item step-4" onclick="showStep4()" type='button'>
+                                    <div class="slds-tile slds-tile--board">
+                                        <p class="slds-tile__title slds-truncate">
+                                            <a href="#">
+                                                Step 3
+                                            </a>
+                                        </p>
+                                        <div class="slds-tile__detail">
+                                            <p class="slds-text-heading--medium">
+                                                Select Data Set
+                                            </p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <!--<li class="slds-list__item step-5" onclick="showStep5()" type='button'>
+                                    <div class="slds-tile slds-tile--board">
+                                        <p class="slds-tile__title slds-truncate">
+                                            <a href="#">
+                                                Step 5
+                                            </a>
+                                        </p>
+                                        <div class="slds-tile__detail">
+                                            <p class="slds-text-heading--medium">
+                                                Migrate
+                                            </p>
+                                        </div>
+                                    </div>
+                                </li>-->
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="migration-welcome">
+                        <hr/>
+                        <button class="slds-button slds-button--neutral" onclick="showStep1();return false;" type="button" style="float:right;">Get Started</button>
+                    </div>
 
-                        </section>
-                        <section class="migration-section">
-                            <div class="step-detail-container, migration-section-dynamic-step-1">
-                                  <h3 class="slds-text-heading--medium slds-m-right--small slds-truncate slds-align-middle">
-                                        Step 1: Pre-Flight Check
-                                    </h3>
+                </section>
+                <section class="migration-section">
+                    <div class="step-detail-container, migration-section-dynamic-step-1">
+                        <h3 class="slds-text-heading--medium slds-m-right--small slds-truncate slds-align-middle">
+                            Step 1: Pre-Flight Check
+                        </h3>
 
-                                    <p>
-                                        Before we get into the nitty gritty, the Pre-Flight Check ensures that you are prepared for the migration.
-                                    </p>
-                                    <br></br>
-                                    <p>
-                                        You now have an opportunity to re-imagine your processes. Think about how your company interacts with the data through your processes, and move only the data set that provides value. We also recommend that you review your Desk data and metadata beforehand, to ensure that you limit any incorrect, incomplete, improperly formatted, duplicated or outdated information.
-                                    </p>
-                                    <br></br>
-                                <h3 class="slds-text-heading--medium slds-m-right--small slds-truncate slds-align-middle">
-                                    License Permissions and Feature Enablement
-                                </h3>
+                        <p>
+                            Before we get into the nitty gritty, the Pre-Flight Check ensures that you are prepared for the migration.
+                        </p>
+                        <br></br>
+                        <p>
+                            You now have an opportunity to re-imagine your processes. Think about how your company interacts with the data through your processes, and move only the data set that provides value. We also recommend that you review your Desk data and metadata beforehand, to ensure that you limit any incorrect, incomplete, improperly formatted, duplicated or outdated information.
+                        </p>
+                        <br></br>
+                        <h3 class="slds-text-heading--medium slds-m-right--small slds-truncate slds-align-middle">
+                            License Permissions and Feature Enablement
+                        </h3>
 
-                                <apex:repeat value="{!PreFlightChecks}" var="pfc">
-                                  <div class="slds-form-element">
+                        <apex:repeat value="{!PreFlightChecks}" var="pfc">
+                            <div class="slds-form-element">
                                     <span class="slds-icon_container">
                                       <svg aria-hidden="true" class="slds-icon slds-icon--x-small {!pfc.CssClass}">
                                         <use xlink:href="{!URLFOR($Resource.SLDS0122, '/assets/icons/utility-sprite/svg/symbols.svg#' + pfc.Icon)}"></use>
                                       </svg>
                                       <span class="slds-assistive-text">{!pfc.Name}</span>
                                     </span>
-                                    <span class="slds-form-element__label">{!pfc.Name}<apex:outputText rendered="{!NOT(pfc.Required)}"> (Optional)</apex:outputText></span>
-                                  </div>
-                                </apex:repeat>
-
-                                <div class="migration-page-block">
-                                    <h3 class="slds-text-heading--medium slds-m-right--small slds-truncate slds-align-middle">
-                                        What happens if you don't have the above enabled?
-                                    </h3>
-                                    <p>
-                                        If your user record does not have the above permissions, the migration process will be limited to objects that you have access to - but will not be prevented. For example, if you do not have 'Knowledge' enabled, articles and topics will not be included in the migration. A list of all the data and metadata moved will be available for review within the associated data migration record.
-                                    </p>
-                                </div>
-                              
-                                <hr/>
-                                        <button class="slds-button slds-button--neutral" onclick="showStep2();return false;" type="button" style="float:right;margin-left:20px;">Next</button>
-                                        <button class="slds-button slds-button--neutral" onclick="showWelcome();return false;" type="button" style="float:right;">Previous</button>
-
+                                <span class="slds-form-element__label">{!pfc.Name}<apex:outputText rendered="{!NOT(pfc.Required)}"> (Optional)</apex:outputText></span>
                             </div>
-                            <!--------------------------------SECTION 1-------------------------------->
-                            <!--------------------------------SECTION 2-------------------------------->
-                            <div class="step-detail-container, migration-section-dynamic-step-2">
-                                <h3 class="slds-text-heading--medium slds-m-right--small slds-truncate slds-align-middle">
-                                    Step 2: Connect to Desk
-                                </h3>
-                                    <p>Great! Now that you're fully prepped, let's connect to your Desk Environment. In order to provide authenticated access to Desk, please input your Desk Authentication Tokens below. You can find instructions for generating tokens in the
-                                    <em>
-                                        Authentication Tokens
-                                    </em>
-                                    section of the&nbsp;
-                                    <apex:outputLink target="_blank" value="https://support.desk.com/customer/portal/articles/2050103--embedding-the-mobile-sdk">
-                                        Embedding the Mobile SDK
-                                    </apex:outputLink>
-                                    article or
-                                    <em>
-                                        Figure 5: Desk.com Settings screen
-                                    </em>
-                                    section of the&nbsp;
-                                    <apex:outputLink target="_blank" value="https://www.hipmob.com/documentation/integrations/desk">
-                                        Hipmob - Desk.com Integration
-                                    </apex:outputLink>
-                                    article.
-                                    </p>
-                                <div  class="migration-page-block migration-page-block-2 slds-form--horizontal">
-                                    <form class="slds-form--inline">
-                                        <div class="slds-form-element">
-                                            <label class="slds-form-element__label" for="name">Desk URL</label>
-                                            <div class="slds-form-element__control">
-                                              <input id="DeskUrl" class="slds-input" type="text" placeholder="" />
-                                            </div>
-                                        </div>
-                                        <div class="slds-form-element">
-                                            <label class="slds-form-element__label" for="name">OAuth Consumer Key</label>
-                                            <div class="slds-form-element__control">
-                                              <input id="OauthConsumerKey" class="slds-input" type="text" placeholder="" />
-                                            </div>
-                                        </div>
-                                        <div class="slds-form-element">
-                                            <label class="slds-form-element__label" for="name">OAuth Consumer Secret </label>
-                                            <div class="slds-form-element__control">
-                                              <input id="OauthConsumerSecret" class="slds-input" type="text" placeholder="" />
-                                            </div>
-                                        </div>
-                                        <div class="slds-form-element">
-                                            <label class="slds-form-element__label" for="name">OAuth Access Token</label>
-                                            <div class="slds-form-element__control">
-                                              <input id="OauthAccessToken" class="slds-input" type="text" placeholder="" />
-                                            </div>
-                                        </div>
-                                        <div class="slds-form-element">
-                                            <label class="slds-form-element__label" for="name">OAuth Access Token Secret</label>
-                                            <div class="slds-form-element__control">
-                                              <input id="OauthAccessTokenSecret" class="slds-input" type="text" placeholder="" />
-                                            </div>
-                                        </div>
+                        </apex:repeat>
 
-                                        <button class="slds-button slds-button--brand slds-float--right slds-m-top--medium slds-m-bottom--medium" onclick="connectToDeskAndMigrateMetadataRemote(event);return false;" type="button">Validate Desk Access/Migrate Metadata</button>
+                        <div class="migration-page-block">
+                            <h3 class="slds-text-heading--medium slds-m-right--small slds-truncate slds-align-middle">
+                                What happens if you don't have the above enabled?
+                            </h3>
+                            <p>
+                                If your user record does not have the above permissions, the migration process will be limited to objects that you have access to - but will not be prevented. For example, if you do not have 'Knowledge' enabled, articles and topics will not be included in the migration. A list of all the data and metadata moved will be available for review within the associated data migration record.
+                            </p>
+                        </div>
 
-                                       <apex:inputHidden id="jsonData" value="{!jsonData}"></apex:inputHidden>
-                                        <input id="newCustomFieldsJSON" type="hidden" name="newCustomFieldsJSON" value="{!newCustomFieldsJSON}" />
-                                        <div class="access-spinner slds-spinner--small slds-float--right" style="margin-top: 20px; margin-right:10px;visibility: hidden;">
-                                          <img src="{!URLFOR($Resource.SLDS0122, '/assets/images/spinners/slds_spinner.gif')}" alt="Loading..." />
-                                        </div>
-                                    </form>
+                        <hr/>
+                        <button class="slds-button slds-button--neutral" onclick="showStep2();return false;" type="button" style="float:right;margin-left:20px;">Next</button>
+                        <button class="slds-button slds-button--neutral" onclick="showWelcome();return false;" type="button" style="float:right;">Previous</button>
+
+                    </div>
+                    <!--------------------------------SECTION 1-------------------------------->
+                    <!--------------------------------SECTION 2-------------------------------->
+                    <div class="step-detail-container, migration-section-dynamic-step-2">
+                        <h3 class="slds-text-heading--medium slds-m-right--small slds-truncate slds-align-middle">
+                            Step 2: Connect to Desk
+                        </h3>
+                        <p>Great! Now that you're fully prepped, let's connect to your Desk Environment. In order to provide authenticated access to Desk, please input your Desk Authentication Tokens below. You can find instructions for generating tokens in the
+                            <em>
+                                Authentication Tokens
+                            </em>
+                            section of the&nbsp;
+                            <apex:outputLink target="_blank" value="https://support.desk.com/customer/portal/articles/2050103--embedding-the-mobile-sdk">
+                                Embedding the Mobile SDK
+                            </apex:outputLink>
+                            article or
+                            <em>
+                                Figure 5: Desk.com Settings screen
+                            </em>
+                            section of the&nbsp;
+                            <apex:outputLink target="_blank" value="https://www.hipmob.com/documentation/integrations/desk">
+                                Hipmob - Desk.com Integration
+                            </apex:outputLink>
+                            article.
+                        </p>
+                        <div  class="migration-page-block migration-page-block-2 slds-form--horizontal">
+                            <form class="slds-form--inline">
+                                <div class="slds-form-element">
+                                    <label class="slds-form-element__label" for="name">Desk URL</label>
+                                    <div class="slds-form-element__control">
+                                        <input id="DeskUrl" class="slds-input" type="text" placeholder="" />
+                                    </div>
                                 </div>
-                                <hr/>
-                                <button class="slds-button slds-button--neutral slds-float--right" onclick="showStep4();return false;" type="button">Next</button>
-                                <button class="slds-button slds-button--neutral slds-float--right slds-m-right--medium" onclick="showStep1();return false;" type="button">Previous</button>
-                            </div>
-                            
-                            <!--------------------------------SECTION 2-------------------------------->
-                            <!--------------------------------SECTION 3-------------------------------->
-                            
-                            <!--------------------------------SECTION 3-------------------------------->
-                            <!--------------------------------SECTION 4-------------------------------->
-                             <div class="step-detail-container, migration-section-dynamic-step-4">
-                                <h3 class="slds-text-heading--medium slds-m-right--small slds-truncate slds-align-middle">
-                                    Step 3: Review Desk.com Data Set.<br/> 
-                                </h3>
-                                <br></br>
-                                <p>
-                                    Please note that Metadata should be migrated before data.<br/>
-                                    Also, data from the below mentioned objects should be migrated in the same order as specified here.
-                                </p>
-                                <div  class="migration-page-block migration-page-block-3">
-                                    <table class="slds-table slds-table--bordered" width="500px">
-                                      <thead>
-                                        <tr class="slds-text-heading--label">
+                                <div class="slds-form-element">
+                                    <label class="slds-form-element__label" for="name">OAuth Consumer Key</label>
+                                    <div class="slds-form-element__control">
+                                        <input id="OauthConsumerKey" class="slds-input" type="text" placeholder="" />
+                                    </div>
+                                </div>
+                                <div class="slds-form-element">
+                                    <label class="slds-form-element__label" for="name">OAuth Consumer Secret </label>
+                                    <div class="slds-form-element__control">
+                                        <input id="OauthConsumerSecret" class="slds-input" type="text" placeholder="" />
+                                    </div>
+                                </div>
+                                <div class="slds-form-element">
+                                    <label class="slds-form-element__label" for="name">OAuth Access Token</label>
+                                    <div class="slds-form-element__control">
+                                        <input id="OauthAccessToken" class="slds-input" type="text" placeholder="" />
+                                    </div>
+                                </div>
+                                <div class="slds-form-element">
+                                    <label class="slds-form-element__label" for="name">OAuth Access Token Secret</label>
+                                    <div class="slds-form-element__control">
+                                        <input id="OauthAccessTokenSecret" class="slds-input" type="text" placeholder="" />
+                                    </div>
+                                </div>
 
-                                          <th scope="col" width="10rem">
-                                            <span class="slds-truncate">Order</span>
-                                          </th>
-                                          <th scope="col" width="10rem">
-                                            <span class="slds-truncate">Select</span>
-                                          </th>  
-                                          <th scope="col" width="10rem">
-                                            <span class="slds-truncate">Desk</span>
-                                          </th>
-                                          <th scope="col" width="10rem">
-                                            <span class="slds-truncate">Salesforce</span>
-                                          </th>
-                                          <th scope="col" width="10rem">
-                                          </th>
-                                        </tr>
-                                      </thead>
-                                      
-                                      <tbody>
-                                        <tr class="slds-hint-parent">
-                                          <td data-label="account" width="10rem"><a href="#" class="slds-truncate">1</a></td>
-                                          <td>
-                                            <label class="slds-checkbox" for="select-row1">
-                                              <input name="select-row1" type="radio" id="migrationObjectRadioBtn1" onclick="appendTSEnableCbx();disableMigrationSection(this.id);" />
-                                            </label>
-                                          </td>
-                                          <td data-label="account" width="10rem"><a href="#" class="slds-truncate">Users</a></td>
-                                          <td data-label="account" width="10rem"><a href="#" class="slds-truncate">Users</a></td>
-                                          <td>
+                                <button class="slds-button slds-button--brand slds-float--right slds-m-top--medium slds-m-bottom--medium" onclick="connectToDeskAndMigrateMetadataRemote(event);return false;" type="button">Validate Desk Access/Migrate Metadata</button>
 
-                                            
-                                            
-                                                
-                                                <div class="slds-form-element" hidden="true" id="dataMigrationComponent1">
-                                                    <label class="slds-form-element__label" for="select-01">Select a profile</label>
-                                                    <div class="slds-form-element__control">
-                                                      <div class="slds-select_container">
-                                                        <select id="targetProfilePicklist" class="slds-select" onchange="selectTargetProfile();">
-                                                          <apex:repeat value="{!targetProfiles}" var="p">
-                                                          <option value="{!p.value}">{!p.label}</option>
-                                                          </apex:repeat>
-                                                        </select>
-                                                      </div>
-                                                    </div>
-                                                    <br/>
-                                                    <div class="slds-form-element">
-                                                        <div class="slds-form-element__control">
-                                                          <label class="slds-checkbox">
-                                                            <input type="checkbox" name="options" id="appendTimestamp"/>
-                                                            <br/>
-                                                            <span class="slds-checkbox--faux"></span>
-                                                            <span class="slds-form-element__label">Append Timestamp to Username and Email</span>
-                                                          </label>
-                                                        </div>
-                                                    </div>
-                                                    <br/>
-                                                    <apex:commandButton styleClass="slds-button slds-button--brand slds-m-top--medium" reRender="jsvar" onComplete="startDataMigrationRemote();" value="Start Migration " id="theButton1" style="margin-left:27px"/>
-                                                  </div>           
-                                                
-                                           
-                                          </td>
-                                        </tr>
-                                        <tr class="slds-hint-parent">
-                                          <td data-label="account" width="10rem"><a href="#" class="slds-truncate">2</a></td>
-                                          <td>
-                                            <label class="slds-checkbox" for="select-row9">
-                                              <input name="select-row1" type="radio" id="migrationObjectRadioBtn9" onclick="disableMigrationSection(this.id);" />
-                                            </label>
-                                          </td>
-                                          <td data-label="groupmembers" width="10rem"><a href="#" class="slds-truncate">Group Members</a></td>
-                                          <td data-label="groupmembers" width="10rem"><a href="#" class="slds-truncate">Group Members</a></td>
-                                          <td>
-                                                <div hidden="true" id="dataMigrationComponent9">
-                                                    <apex:commandButton styleClass="slds-button slds-button--brand slds-m-top--medium" reRender="jsvar" onComplete="startDataMigrationRemote();" value="Start Migration " id="theButton9" style="margin-left:27px"/>
+                                <apex:inputHidden id="jsonData" value="{!jsonData}"></apex:inputHidden>
+                                <input id="newCustomFieldsJSON" type="hidden" name="newCustomFieldsJSON" value="{!newCustomFieldsJSON}" />
+                                <div class="access-spinner slds-spinner--small slds-float--right" style="margin-top: 20px; margin-right:10px;visibility: hidden;">
+                                    <img src="{!URLFOR($Resource.SLDS0122, '/assets/images/spinners/slds_spinner.gif')}" alt="Loading..." />
+                                </div>
+                            </form>
+                        </div>
+                        <hr/>
+                        <button class="slds-button slds-button--neutral slds-float--right" onclick="showStep4();return false;" type="button">Next</button>
+                        <button class="slds-button slds-button--neutral slds-float--right slds-m-right--medium" onclick="showStep1();return false;" type="button">Previous</button>
+                    </div>
+
+                    <!--------------------------------SECTION 2-------------------------------->
+                    <!--------------------------------SECTION 3-------------------------------->
+
+                    <!--------------------------------SECTION 3-------------------------------->
+                    <!--------------------------------SECTION 4-------------------------------->
+                    <div class="step-detail-container, migration-section-dynamic-step-4">
+                        <h3 class="slds-text-heading--medium slds-m-right--small slds-truncate slds-align-middle">
+                            Step 3: Review Desk.com Data Set.<br/>
+                        </h3>
+                        <br></br>
+                        <p>
+                            Please note that Metadata should be migrated before data.<br/>
+                            Also, data from the below mentioned objects should be migrated in the same order as specified here.
+                        </p>
+                        <div  class="migration-page-block migration-page-block-3">
+                            <table class="slds-table slds-table--bordered" width="500px">
+                                <thead>
+                                <tr class="slds-text-heading--label">
+
+                                    <th scope="col" width="10rem">
+                                        <span class="slds-truncate">Order</span>
+                                    </th>
+                                    <th scope="col" width="10rem">
+                                        <span class="slds-truncate">Select</span>
+                                    </th>
+                                    <th scope="col" width="10rem">
+                                        <span class="slds-truncate">Desk</span>
+                                    </th>
+                                    <th scope="col" width="10rem">
+                                        <span class="slds-truncate">Salesforce</span>
+                                    </th>
+                                    <th scope="col" width="10rem">
+                                    </th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                <tr class="slds-hint-parent">
+                                    <td data-label="account" width="10rem"><a href="#" class="slds-truncate">1</a></td>
+                                    <td>
+                                        <label class="slds-checkbox" for="select-row1">
+                                            <input name="select-row1" type="radio" id="migrationObjectRadioBtn1" onclick="appendTSEnableCbx();disableMigrationSection(this.id);" />
+                                        </label>
+                                    </td>
+                                    <td data-label="account" width="10rem"><a href="#" class="slds-truncate">Users</a></td>
+                                    <td data-label="account" width="10rem"><a href="#" class="slds-truncate">Users</a></td>
+                                    <td>
+
+
+
+
+                                        <div class="slds-form-element" hidden="true" id="dataMigrationComponent1">
+                                            <label class="slds-form-element__label" for="select-01">Select a profile</label>
+                                            <div class="slds-form-element__control">
+                                                <div class="slds-select_container">
+                                                    <select id="targetProfilePicklist" class="slds-select" onchange="selectTargetProfile();">
+                                                        <apex:repeat value="{!targetProfiles}" var="p">
+                                                            <option value="{!p.value}">{!p.label}</option>
+                                                        </apex:repeat>
+                                                    </select>
                                                 </div>
-                                          </td>
-                                        </tr>
-                                        <tr class="slds-hint-parent">
-                                          <td data-label="account" width="10rem"><a href="#" class="slds-truncate">3</a></td>
-                                          <td> 
-                                              <label class="slds-checkbox" for="select-row1">
-                                                  <input name="select-row1" type="radio" id="migrationObjectRadioBtn2" onclick="disableMigrationSection(this.id);" />
-                                              </label>
-                                          </td>    
-                                          <td data-label="account" width="10rem"><a href="#" class="slds-truncate">Companies</a></td>
-                                          <td data-label="account" width="10rem"><a href="#" class="slds-truncate">Accounts</a></td>
-                                          <td class="slds-row-select" width="10rem">
-                                            
-                                            <div hidden="true" id="dataMigrationComponent2">
-                                            
+                                            </div>
+                                            <br/>
+                                            <div class="slds-form-element">
+                                                <div class="slds-form-element__control">
+                                                    <label class="slds-checkbox">
+                                                        <input type="checkbox" name="options" id="appendTimestamp"/>
+                                                        <br/>
+                                                        <span class="slds-checkbox--faux"></span>
+                                                        <span class="slds-form-element__label">Append Timestamp to Username and Email</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <br/>
+                                            <apex:commandButton styleClass="slds-button slds-button--brand slds-m-top--medium" reRender="jsvar" onComplete="startDataMigrationRemote();" value="Start Migration " id="theButton1" style="margin-left:27px"/>
+                                        </div>
 
-                                                    <label class="slds-checkbox" for="migrateAll" style="margin-bottom:20px">
-                                                        <input name="checkbox" type="radio" id="migrateAll2" checked="true" onclick="disableIBs(this.id);" />
-                                                        <span class="slds-form-element__radio">
+
+                                    </td>
+                                </tr>
+                                <tr class="slds-hint-parent">
+                                    <td data-label="account" width="10rem"><a href="#" class="slds-truncate">2</a></td>
+                                    <td>
+                                        <label class="slds-checkbox" for="select-row9">
+                                            <input name="select-row1" type="radio" id="migrationObjectRadioBtn9" onclick="disableMigrationSection(this.id);" />
+                                        </label>
+                                    </td>
+                                    <td data-label="groupmembers" width="10rem"><a href="#" class="slds-truncate">Group Members</a></td>
+                                    <td data-label="groupmembers" width="10rem"><a href="#" class="slds-truncate">Group Members</a></td>
+                                    <td>
+                                        <div hidden="true" id="dataMigrationComponent9">
+                                            <apex:commandButton styleClass="slds-button slds-button--brand slds-m-top--medium" reRender="jsvar" onComplete="startDataMigrationRemote();" value="Start Migration " id="theButton9" style="margin-left:27px"/>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="slds-hint-parent">
+                                    <td data-label="account" width="10rem"><a href="#" class="slds-truncate">3</a></td>
+                                    <td>
+                                        <label class="slds-checkbox" for="select-row1">
+                                            <input name="select-row1" type="radio" id="migrationObjectRadioBtn2" onclick="disableMigrationSection(this.id);" />
+                                        </label>
+                                    </td>
+                                    <td data-label="account" width="10rem"><a href="#" class="slds-truncate">Companies</a></td>
+                                    <td data-label="account" width="10rem"><a href="#" class="slds-truncate">Accounts</a></td>
+                                    <td class="slds-row-select" width="10rem">
+
+                                        <div hidden="true" id="dataMigrationComponent2">
+
+
+                                            <label class="slds-checkbox" for="migrateAll" style="margin-bottom:20px">
+                                                <input name="checkbox" type="radio" id="migrateAll2" checked="true" onclick="disableIBs(this.id);" />
+                                                <span class="slds-form-element__radio">
                                                             Migrate All Data
                                                         </span>
-                                                </label>
-                                                <!--
+                                            </label>
+                                            <!--
                                                 <br/>
                                                 <label class="slds-checkbox" for="migrateAll" style="margin-bottom:10px">
                                                         <input name="checkbox" type="radio" id="migrateRecordIdCheckbox2" onclick="enableIB1(this.id);"/>
@@ -541,7 +541,7 @@
                                                         </span>
                                                 </label>
                                                 <div class="slds">
-                                                     <div class="slds-form-element"> 
+                                                     <div class="slds-form-element">
                                                       <div class="slds-form-element__control" style="width:200px;">
                                                        <div class="slds-input-has-icon slds-input-has-icon--right">
                                                         <input id="startRecordIdInputField2" class="slds-input" type="text" placeholder="Enter a record Id" label="Record ID Label" disabled="true" size="20" style="margin-left:27px;height: 34px" value="{!startRecordId}"/>
@@ -550,476 +550,476 @@
                                                      </div>
                                                 </div>
                                                 -->
-                                                <br/>
-                                                <label class="slds-checkbox" for="migrateAll" style="margin-bottom:10px">
-                                                        <input name="checkbox" type="radio" id="migrateStartDateTimeCheckbox2" onclick="enableIB2(this.id);" />
-                                                        <span class="slds-form-element__radio">
+                                            <br/>
+                                            <label class="slds-checkbox" for="migrateAll" style="margin-bottom:10px">
+                                                <input name="checkbox" type="radio" id="migrateStartDateTimeCheckbox2" onclick="enableIB2(this.id);" />
+                                                <span class="slds-form-element__radio">
                                                             Migrate from a specified Date and Time (in UTC)
                                                         </span>
-                                                </label>
-                                                <table style="border-top: 1px solid #ffffff"><tr><td style="width: 50px;padding-right: 4px; padding-left: 0px">
+                                            </label>
+                                            <table style="border-top: 1px solid #ffffff"><tr><td style="width: 50px;padding-right: 4px; padding-left: 0px">
                                                 <div class="slds">
-                                                 <div class="slds-form-element"> 
-                                                  <div class="slds-form-element__control" style="width:200px;">
-                                                   <div class="slds-input-has-icon slds-input-has-icon--right">
-                                                    <svg aria-hidden="true" class="slds-input__icon slds-icon-text-default">
-                                                     <use xlink:href="{!URLFOR($Resource.SLDS0122, '/assets/icons/utility-sprite/svg/symbols.svg#event')}"></use>
-                                                    </svg> 
-                                                     <input id="startDateInputField2" class="slds-input" type="text" placeholder="Pick a Date" label="Date Picker Label" disabled="true" size="20" style="margin-left:27px"/>
-                                                   </div>
-                                                  </div>
-                                                 </div>
+                                                    <div class="slds-form-element">
+                                                        <div class="slds-form-element__control" style="width:200px;">
+                                                            <div class="slds-input-has-icon slds-input-has-icon--right">
+                                                                <svg aria-hidden="true" class="slds-input__icon slds-icon-text-default">
+                                                                    <use xlink:href="{!URLFOR($Resource.SLDS0122, '/assets/icons/utility-sprite/svg/symbols.svg#event')}"></use>
+                                                                </svg>
+                                                                <input id="startDateInputField2" class="slds-input" type="text" placeholder="Pick a Date" label="Date Picker Label" disabled="true" size="20" style="margin-left:27px"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div></td>
                                                 <!--<input class="slds-datepicker__filter slds-grid" id="startDateInputField" disabled="true" size="20" value="{!startDate}" onmouseover="initialiseCalendar(this, '{!$Component.startDateInputField}')" style="margin-left:27px" /></td>-->
                                                 <td>
                                                     <div class="slds">
-                                                     <div class="slds-form-element"> 
-                                                      <div class="slds-form-element__control" style="width:200px;">
-                                                       <div class="slds-input-has-icon slds-input-has-icon--right">
-                                                        <input id="startDateTimeInputField2" class="slds-input" type="time" placeholder="Pick a time" label="Time Picker Label" disabled="true" size="20" style="margin-left:27px;height: 34px"/>
-                                                       </div>
-                                                      </div>
-                                                     </div>
+                                                        <div class="slds-form-element">
+                                                            <div class="slds-form-element__control" style="width:200px;">
+                                                                <div class="slds-input-has-icon slds-input-has-icon--right">
+                                                                    <input id="startDateTimeInputField2" class="slds-input" type="time" placeholder="Pick a time" label="Time Picker Label" disabled="true" size="20" style="margin-left:27px;height: 34px"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </td></tr></table>
-                                                <br/>
-                                                <label class="slds-checkbox" for="migrateAll" style="margin-bottom:20px;margin-left:20px">
-                                                        <input name="checkbox" type="radio" hidden="true" />
-                                                        <span class="slds-form-element__radio">
+                                            <br/>
+                                            <label class="slds-checkbox" for="migrateAll" style="margin-bottom:20px;margin-left:20px">
+                                                <input name="checkbox" type="radio" hidden="true" />
+                                                <span class="slds-form-element__radio">
                                                             Select a record type
                                                         </span>
-                                                </label>
-                                                <div class="slds-form-element" style="margin-left:20px">
-                                                    <div class="slds-form-element__control">
-                                                      <div class="slds-select_container">
+                                            </label>
+                                            <div class="slds-form-element" style="margin-left:20px">
+                                                <div class="slds-form-element__control">
+                                                    <div class="slds-select_container">
                                                         <select id="accountRecordTypePicklist" class="slds-select">
-                                                          <apex:repeat value="{!accountRecordTypes}" var="p">
-                                                          <option value="{!p.value}">{!p.label}</option>
-                                                          </apex:repeat>
+                                                            <apex:repeat value="{!accountRecordTypes}" var="p">
+                                                                <option value="{!p.value}">{!p.label}</option>
+                                                            </apex:repeat>
                                                         </select>
-                                                      </div>
                                                     </div>
-                                                    <br/>
                                                 </div>
-                                                <apex:commandButton styleClass="slds-button slds-button--brand slds-m-top--medium" reRender="jsvar" onclick="startDataMigrationRemote();"  value="Start Migration " id="theButton2" style="margin-left:27px"/>
-
+                                                <br/>
                                             </div>
-                                          </td>
-                                        </tr>
-                                        
-                                        <tr class="slds-hint-parent">
-                                          <td data-label="account" width="10rem"><a href="#" class="slds-truncate">4</a></td>
-                                          <td> 
-                                              <label class="slds-checkbox" for="select-row1">
-                                                  <input name="select-row1" type="radio" id="migrationObjectRadioBtn3" onclick="disableMigrationSection(this.id);" />
-                                              </label>
-                                          </td>
-                                          <td data-label="account" width="10rem"><a href="#" class="slds-truncate">Customers</a></td>
-                                          <td data-label="account" width="10rem"><a href="#" class="slds-truncate">Contacts</a></td>
-                                          <td class="slds-row-select" width="10rem">
-                                            <div hidden="true" id="dataMigrationComponent3">
-                                                <label class="slds-checkbox" for="migrateAll" style="margin-bottom:20px">
-                                                        <input name="checkbox" type="radio" id="migrateAll3" checked="true" onclick="disableIBs(this.id);" />
-                                                        <span class="slds-form-element__radio">
+                                            <apex:commandButton styleClass="slds-button slds-button--brand slds-m-top--medium" reRender="jsvar" onclick="startDataMigrationRemote();"  value="Start Migration " id="theButton2" style="margin-left:27px"/>
+
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr class="slds-hint-parent">
+                                    <td data-label="account" width="10rem"><a href="#" class="slds-truncate">4</a></td>
+                                    <td>
+                                        <label class="slds-checkbox" for="select-row1">
+                                            <input name="select-row1" type="radio" id="migrationObjectRadioBtn3" onclick="disableMigrationSection(this.id);" />
+                                        </label>
+                                    </td>
+                                    <td data-label="account" width="10rem"><a href="#" class="slds-truncate">Customers</a></td>
+                                    <td data-label="account" width="10rem"><a href="#" class="slds-truncate">Contacts</a></td>
+                                    <td class="slds-row-select" width="10rem">
+                                        <div hidden="true" id="dataMigrationComponent3">
+                                            <label class="slds-checkbox" for="migrateAll" style="margin-bottom:20px">
+                                                <input name="checkbox" type="radio" id="migrateAll3" checked="true" onclick="disableIBs(this.id);" />
+                                                <span class="slds-form-element__radio">
                                                             Migrate All Data
                                                         </span>
-                                                </label>
-                                                <br/>
-                                                <label class="slds-checkbox" for="migrateAll" style="margin-bottom:10px">
-                                                        <input name="checkbox" type="radio" id="migrateRecordIdCheckbox3" onclick="enableIB1(this.id);"/>
-                                                        <span class="slds-form-element__radio" >
+                                            </label>
+                                            <br/>
+                                            <label class="slds-checkbox" for="migrateAll" style="margin-bottom:10px">
+                                                <input name="checkbox" type="radio" id="migrateRecordIdCheckbox3" onclick="enableIB1(this.id);"/>
+                                                <span class="slds-form-element__radio" >
                                                             Migrate from a specified Desk.com record ID
                                                         </span>
-                                                </label>
-                                                <div class="slds">
-                                                     <div class="slds-form-element"> 
-                                                      <div class="slds-form-element__control" style="width:200px;">
-                                                       <div class="slds-input-has-icon slds-input-has-icon--right">
-                                                        <input id="startRecordIdInputField3" class="slds-input" type="text" placeholder="Enter a record Id" label="Record ID Label" disabled="true" size="20" style="margin-left:27px;height: 34px" value="{!startRecordId}"/>
-                                                       </div>
-                                                      </div>
-                                                     </div>
+                                            </label>
+                                            <div class="slds">
+                                                <div class="slds-form-element">
+                                                    <div class="slds-form-element__control" style="width:200px;">
+                                                        <div class="slds-input-has-icon slds-input-has-icon--right">
+                                                            <input id="startRecordIdInputField3" class="slds-input" type="text" placeholder="Enter a record Id" label="Record ID Label" disabled="true" size="20" style="margin-left:27px;height: 34px" value="{!startRecordId}"/>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <br/>
-                                                <label class="slds-checkbox" for="migrateAll" style="margin-bottom:10px">
-                                                        <input name="checkbox" type="radio" id="migrateStartDateTimeCheckbox3" onclick="enableIB2(this.id);" />
-                                                        <span class="slds-form-element__radio">
+                                            </div>
+                                            <br/>
+                                            <label class="slds-checkbox" for="migrateAll" style="margin-bottom:10px">
+                                                <input name="checkbox" type="radio" id="migrateStartDateTimeCheckbox3" onclick="enableIB2(this.id);" />
+                                                <span class="slds-form-element__radio">
                                                             Migrate from a specified Date and Time (in UTC)
                                                         </span>
-                                                </label>
-                                                <table style="border-top: 1px solid #ffffff"><tr><td style="width: 50px;padding-right: 4px; padding-left: 0px">
+                                            </label>
+                                            <table style="border-top: 1px solid #ffffff"><tr><td style="width: 50px;padding-right: 4px; padding-left: 0px">
                                                 <div class="slds">
-                                                 <div class="slds-form-element"> 
-                                                  <div class="slds-form-element__control" style="width:200px;">
-                                                   <div class="slds-input-has-icon slds-input-has-icon--right">
-                                                    <svg aria-hidden="true" class="slds-input__icon slds-icon-text-default">
-                                                     <use xlink:href="{!URLFOR($Resource.SLDS0122, '/assets/icons/utility-sprite/svg/symbols.svg#event')}"></use>
-                                                    </svg> 
-                                                     <input id="startDateInputField3" class="slds-input" type="text" placeholder="Pick a Date" label="Date Picker Label" disabled="true" size="20" style="margin-left:27px"/>
-                                                   </div>
-                                                  </div>
-                                                 </div>
+                                                    <div class="slds-form-element">
+                                                        <div class="slds-form-element__control" style="width:200px;">
+                                                            <div class="slds-input-has-icon slds-input-has-icon--right">
+                                                                <svg aria-hidden="true" class="slds-input__icon slds-icon-text-default">
+                                                                    <use xlink:href="{!URLFOR($Resource.SLDS0122, '/assets/icons/utility-sprite/svg/symbols.svg#event')}"></use>
+                                                                </svg>
+                                                                <input id="startDateInputField3" class="slds-input" type="text" placeholder="Pick a Date" label="Date Picker Label" disabled="true" size="20" style="margin-left:27px"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div></td>
                                                 <!--<input class="slds-datepicker__filter slds-grid" id="startDateInputField" disabled="true" size="20" value="{!startDate}" onmouseover="initialiseCalendar(this, '{!$Component.startDateInputField}')" style="margin-left:27px" /></td>-->
                                                 <td>
                                                     <div class="slds">
-                                                     <div class="slds-form-element"> 
-                                                      <div class="slds-form-element__control" style="width:200px;">
-                                                       <div class="slds-input-has-icon slds-input-has-icon--right">
-                                                        <input id="startDateTimeInputField3" class="slds-input" type="time" placeholder="Pick a time" label="Time Picker Label" disabled="true" size="20" style="margin-left:27px;height: 34px"/>
-                                                       </div>
-                                                      </div>
-                                                     </div>
+                                                        <div class="slds-form-element">
+                                                            <div class="slds-form-element__control" style="width:200px;">
+                                                                <div class="slds-input-has-icon slds-input-has-icon--right">
+                                                                    <input id="startDateTimeInputField3" class="slds-input" type="time" placeholder="Pick a time" label="Time Picker Label" disabled="true" size="20" style="margin-left:27px;height: 34px"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </td></tr></table>
-                                                <br/>
-                                                <label class="slds-checkbox" for="migrateAll" style="margin-bottom:20px;margin-left:20px">
-                                                        <input name="checkbox" type="radio" hidden="true" />
-                                                        <span class="slds-form-element__radio">
+                                            <br/>
+                                            <label class="slds-checkbox" for="migrateAll" style="margin-bottom:20px;margin-left:20px">
+                                                <input name="checkbox" type="radio" hidden="true" />
+                                                <span class="slds-form-element__radio">
                                                             Select a record type
                                                         </span>
-                                                </label>
-                                                <div class="slds-form-element" style="margin-left:20px">
-                                                    <div class="slds-form-element__control">
-                                                      <div class="slds-select_container">
+                                            </label>
+                                            <div class="slds-form-element" style="margin-left:20px">
+                                                <div class="slds-form-element__control">
+                                                    <div class="slds-select_container">
                                                         <select id="contactRecordTypePicklist" class="slds-select">
-                                                          <apex:repeat value="{!contactRecordTypes}" var="p">
-                                                          <option value="{!p.value}">{!p.label}</option>
-                                                          </apex:repeat>
+                                                            <apex:repeat value="{!contactRecordTypes}" var="p">
+                                                                <option value="{!p.value}">{!p.label}</option>
+                                                            </apex:repeat>
                                                         </select>
-                                                      </div>
                                                     </div>
-                                                    <br/>
                                                 </div>
-                                                    <apex:commandButton styleClass="slds-button slds-button--brand slds-m-top--medium" reRender="jsvar" onComplete="startDataMigrationRemote();"  value="Start Migration " id="theButton3" style="margin-left:27px"/>
-                                                </div>
+                                                <br/>
+                                            </div>
+                                            <apex:commandButton styleClass="slds-button slds-button--brand slds-m-top--medium" reRender="jsvar" onComplete="startDataMigrationRemote();"  value="Start Migration " id="theButton3" style="margin-left:27px"/>
+                                        </div>
 
-                                                
 
 
-                                          </td>
-                                        </tr>
-                                        <tr class="slds-hint-parent">
-                                          <td data-label="account" width="10rem"><a href="#" class="slds-truncate">5</a></td>
-                                          <td>
-                                            <label class="slds-checkbox" for="select-row1">
-                                              <input name="select-row1" type="radio" id="migrationObjectRadioBtn4" onclick="disableMigrationSection(this.id);" />
-                                            </label>
-                                          </td>  
-                                          <td data-label="account" width="10rem"><a href="#" class="slds-truncate">Tickets</a></td>
-                                          <td data-label="account" width="10rem"><a href="#" class="slds-truncate">Cases</a></td>
-                                          <td class="slds-row-select" width="10rem">
-                                            <div hidden="true" id="dataMigrationComponent4">
-                                                <label class="slds-checkbox" for="migrateAll" style="margin-bottom:20px">
-                                                        <input name="checkbox" type="radio" id="migrateAll4" checked="true" onclick="disableIBs(this.id);" />
-                                                        <span class="slds-form-element__radio">
+
+                                    </td>
+                                </tr>
+                                <tr class="slds-hint-parent">
+                                    <td data-label="account" width="10rem"><a href="#" class="slds-truncate">5</a></td>
+                                    <td>
+                                        <label class="slds-checkbox" for="select-row1">
+                                            <input name="select-row1" type="radio" id="migrationObjectRadioBtn4" onclick="disableMigrationSection(this.id);" />
+                                        </label>
+                                    </td>
+                                    <td data-label="account" width="10rem"><a href="#" class="slds-truncate">Tickets</a></td>
+                                    <td data-label="account" width="10rem"><a href="#" class="slds-truncate">Cases</a></td>
+                                    <td class="slds-row-select" width="10rem">
+                                        <div hidden="true" id="dataMigrationComponent4">
+                                            <label class="slds-checkbox" for="migrateAll" style="margin-bottom:20px">
+                                                <input name="checkbox" type="radio" id="migrateAll4" checked="true" onclick="disableIBs(this.id);" />
+                                                <span class="slds-form-element__radio">
                                                             Migrate All Data
                                                         </span>
-                                                </label>
-                                                <br/>
-                                                <label class="slds-checkbox" for="migrateAll" style="margin-bottom:10px">
-                                                        <input name="checkbox" type="radio" id="migrateRecordIdCheckbox4" onclick="enableIB1(this.id);"/>
-                                                        <span class="slds-form-element__radio" >
+                                            </label>
+                                            <br/>
+                                            <label class="slds-checkbox" for="migrateAll" style="margin-bottom:10px">
+                                                <input name="checkbox" type="radio" id="migrateRecordIdCheckbox4" onclick="enableIB1(this.id);"/>
+                                                <span class="slds-form-element__radio" >
                                                             Migrate from a specified Desk.com record ID
                                                         </span>
-                                                </label>
-                                                <div class="slds">
-                                                     <div class="slds-form-element"> 
-                                                      <div class="slds-form-element__control" style="width:200px;">
-                                                       <div class="slds-input-has-icon slds-input-has-icon--right">
-                                                        <input id="startRecordIdInputField4" class="slds-input" type="text" placeholder="Enter a record Id" label="Record ID Label" disabled="true" size="20" style="margin-left:27px;height: 34px" value="{!startRecordId}"/>
-                                                       </div>
-                                                      </div>
-                                                     </div>
+                                            </label>
+                                            <div class="slds">
+                                                <div class="slds-form-element">
+                                                    <div class="slds-form-element__control" style="width:200px;">
+                                                        <div class="slds-input-has-icon slds-input-has-icon--right">
+                                                            <input id="startRecordIdInputField4" class="slds-input" type="text" placeholder="Enter a record Id" label="Record ID Label" disabled="true" size="20" style="margin-left:27px;height: 34px" value="{!startRecordId}"/>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <br/>
-                                                <label class="slds-checkbox" for="migrateAll" style="margin-bottom:10px">
-                                                        <input name="checkbox" type="radio" id="migrateStartDateTimeCheckbox4" onclick="enableIB2(this.id);" />
-                                                        <span class="slds-form-element__radio">
+                                            </div>
+                                            <br/>
+                                            <label class="slds-checkbox" for="migrateAll" style="margin-bottom:10px">
+                                                <input name="checkbox" type="radio" id="migrateStartDateTimeCheckbox4" onclick="enableIB2(this.id);" />
+                                                <span class="slds-form-element__radio">
                                                             Migrate from a specified Date and Time (in UTC)
                                                         </span>
-                                                </label>
-                                                <table style="border-top: 1px solid #ffffff"><tr><td style="width: 50px;padding-right: 4px; padding-left: 0px">
+                                            </label>
+                                            <table style="border-top: 1px solid #ffffff"><tr><td style="width: 50px;padding-right: 4px; padding-left: 0px">
                                                 <div class="slds">
-                                                 <div class="slds-form-element"> 
-                                                  <div class="slds-form-element__control" style="width:200px;">
-                                                   <div class="slds-input-has-icon slds-input-has-icon--right">
-                                                    <svg aria-hidden="true" class="slds-input__icon slds-icon-text-default">
-                                                     <use xlink:href="{!URLFOR($Resource.SLDS0122, '/assets/icons/utility-sprite/svg/symbols.svg#event')}"></use>
-                                                    </svg> 
-                                                     <input id="startDateInputField4" class="slds-input" type="text" placeholder="Pick a Date" label="Date Picker Label" disabled="true" size="20" style="margin-left:27px"/>
-                                                   </div>
-                                                  </div>
-                                                 </div>
+                                                    <div class="slds-form-element">
+                                                        <div class="slds-form-element__control" style="width:200px;">
+                                                            <div class="slds-input-has-icon slds-input-has-icon--right">
+                                                                <svg aria-hidden="true" class="slds-input__icon slds-icon-text-default">
+                                                                    <use xlink:href="{!URLFOR($Resource.SLDS0122, '/assets/icons/utility-sprite/svg/symbols.svg#event')}"></use>
+                                                                </svg>
+                                                                <input id="startDateInputField4" class="slds-input" type="text" placeholder="Pick a Date" label="Date Picker Label" disabled="true" size="20" style="margin-left:27px"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div></td>
                                                 <!--<input class="slds-datepicker__filter slds-grid" id="startDateInputField" disabled="true" size="20" value="{!startDate}" onmouseover="initialiseCalendar(this, '{!$Component.startDateInputField}')" style="margin-left:27px" /></td>-->
                                                 <td>
                                                     <div class="slds">
-                                                     <div class="slds-form-element"> 
-                                                      <div class="slds-form-element__control" style="width:200px;">
-                                                       <div class="slds-input-has-icon slds-input-has-icon--right">
-                                                        <input id="startDateTimeInputField4" class="slds-input" type="time" placeholder="Pick a time" label="Time Picker Label" disabled="true" size="20" style="margin-left:27px;height: 34px"/>
-                                                       </div>
-                                                      </div>
-                                                     </div>
+                                                        <div class="slds-form-element">
+                                                            <div class="slds-form-element__control" style="width:200px;">
+                                                                <div class="slds-input-has-icon slds-input-has-icon--right">
+                                                                    <input id="startDateTimeInputField4" class="slds-input" type="time" placeholder="Pick a time" label="Time Picker Label" disabled="true" size="20" style="margin-left:27px;height: 34px"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </td></tr></table>
-                                                <br/>
-                                                <label class="slds-checkbox" for="migrateAll" style="margin-bottom:20px;margin-left:20px">
-                                                        <input name="checkbox" type="radio" hidden="true" />
-                                                        <span class="slds-form-element__radio">
+                                            <br/>
+                                            <label class="slds-checkbox" for="migrateAll" style="margin-bottom:20px;margin-left:20px">
+                                                <input name="checkbox" type="radio" hidden="true" />
+                                                <span class="slds-form-element__radio">
                                                             Select a record type
                                                         </span>
-                                                </label>
-                                                <div class="slds-form-element" style="margin-left:20px">
-                                                    <div class="slds-form-element__control">
-                                                      <div class="slds-select_container">
-                                                        <select id="caseRecordTypePicklist" class="slds-select">
-                                                          <apex:repeat value="{!caseRecordTypes}" var="p">
-                                                          <option value="{!p.value}">{!p.label}</option>
-                                                          </apex:repeat>
-                                                        </select>
-                                                      </div>
-                                                    </div>
-                                                    <br/>
-                                                </div>
-
-                                                <apex:commandButton styleClass="slds-button slds-button--brand slds-m-top--medium" reRender="jsvar" onComplete="startDataMigrationRemote();"  value="Start Migration " id="theButton4" style="margin-left:27px"/>
-
-                                                </div>
-
-
-
-                                          </td>
-                                        </tr>
-                                        <tr class="slds-hint-parent">
-                                          <td data-label="account" width="10rem"><a href="#" class="slds-truncate">6</a></td>
-                                          <td>
-                                            <label class="slds-checkbox" for="select-row1">
-                                              <input name="select-row1" type="radio" id="migrationObjectRadioBtn5" onclick="disableMigrationSection(this.id);" />
                                             </label>
-                                          </td>  
-                                          <td data-label="account" width="10rem"><a href="#" class="slds-truncate">Notes</a></td>
-                                          <td data-label="account" width="10rem"><a href="#" class="slds-truncate">Case Comments</a></td>
-                                          <td class="slds-row-select" width="10rem">
-                                            <div hidden="true" id="dataMigrationComponent5">
-                                                <label class="slds-checkbox" for="migrateAll" style="margin-bottom:20px">
-                                                        <input name="checkbox" type="radio" id="migrateAll5" checked="true" onclick="disableIBs(this.id);" />
-                                                        <span class="slds-form-element__radio">
+                                            <div class="slds-form-element" style="margin-left:20px">
+                                                <div class="slds-form-element__control">
+                                                    <div class="slds-select_container">
+                                                        <select id="caseRecordTypePicklist" class="slds-select">
+                                                            <apex:repeat value="{!caseRecordTypes}" var="p">
+                                                                <option value="{!p.value}">{!p.label}</option>
+                                                            </apex:repeat>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <br/>
+                                            </div>
+
+                                            <apex:commandButton styleClass="slds-button slds-button--brand slds-m-top--medium" reRender="jsvar" onComplete="startDataMigrationRemote();"  value="Start Migration " id="theButton4" style="margin-left:27px"/>
+
+                                        </div>
+
+
+
+                                    </td>
+                                </tr>
+                                <tr class="slds-hint-parent">
+                                    <td data-label="account" width="10rem"><a href="#" class="slds-truncate">6</a></td>
+                                    <td>
+                                        <label class="slds-checkbox" for="select-row1">
+                                            <input name="select-row1" type="radio" id="migrationObjectRadioBtn5" onclick="disableMigrationSection(this.id);" />
+                                        </label>
+                                    </td>
+                                    <td data-label="account" width="10rem"><a href="#" class="slds-truncate">Notes</a></td>
+                                    <td data-label="account" width="10rem"><a href="#" class="slds-truncate">Case Comments</a></td>
+                                    <td class="slds-row-select" width="10rem">
+                                        <div hidden="true" id="dataMigrationComponent5">
+                                            <label class="slds-checkbox" for="migrateAll" style="margin-bottom:20px">
+                                                <input name="checkbox" type="radio" id="migrateAll5" checked="true" onclick="disableIBs(this.id);" />
+                                                <span class="slds-form-element__radio">
                                                             Migrate All Data
                                                         </span>
-                                                </label>
-                                                <br/>
-                                                <label class="slds-checkbox" for="migrateAll" style="margin-bottom:10px">
-                                                        <input name="checkbox" type="radio" id="migrateRecordIdCheckbox5" onclick="enableIB1(this.id);"/>
-                                                        <span class="slds-form-element__radio" >
+                                            </label>
+                                            <br/>
+                                            <label class="slds-checkbox" for="migrateAll" style="margin-bottom:10px">
+                                                <input name="checkbox" type="radio" id="migrateRecordIdCheckbox5" onclick="enableIB1(this.id);"/>
+                                                <span class="slds-form-element__radio" >
                                                             Migrate from a specified Desk.com page number
                                                         </span>
-                                                </label>
-                                                <div class="slds">
-                                                     <div class="slds-form-element"> 
-                                                      <div class="slds-form-element__control" style="width:200px;">
-                                                       <div class="slds-input-has-icon slds-input-has-icon--right">
-                                                        <input id="startRecordIdInputField5" class="slds-input" type="text" placeholder="Enter a page number" label="Page Number Label" disabled="true" size="20" style="margin-left:27px;height: 34px" value="{!startRecordId}"/>
-                                                       </div>
-                                                      </div>
-                                                     </div>
-                                                </div>
-                                                <br/>
-                                                <apex:commandButton styleClass="slds-button slds-button--brand slds-m-top--medium" reRender="jsvar" onComplete="startDataMigrationRemote();"  value="Start Migration " id="theButton5" style="margin-left:27px"/>
-                                                </div>
-                                          </td>
-                                        </tr>
-                                        <tr class="slds-hint-parent">
-                                          <td data-label="account" width="10rem"><a href="#" class="slds-truncate">7</a></td>
-                                          <td>
-                                            <label class="slds-checkbox" for="select-row1">
-                                              <input name="select-row1" type="radio" id="migrationObjectRadioBtn6" onclick="disableMigrationSection(this.id);" />
                                             </label>
-                                          </td>
-                                          <td data-label="account" width="10rem"><a href="#" class="slds-truncate">Interactions</a></td>
-                                          <td data-label="account" width="10rem"><a href="#" class="slds-truncate">Case Comments and Email Messages</a></td>
-                                          <td class="slds-row-select" width="10rem">
-                                            <div hidden="true" id="dataMigrationComponent6">
-                                                <label class="slds-checkbox" for="migrateAll" style="margin-bottom:20px">
-                                                        <input name="checkbox" type="radio" id="migrateAll6" checked="true" onclick="disableIBs(this.id);" />
-                                                        <span class="slds-form-element__radio">
+                                            <div class="slds">
+                                                <div class="slds-form-element">
+                                                    <div class="slds-form-element__control" style="width:200px;">
+                                                        <div class="slds-input-has-icon slds-input-has-icon--right">
+                                                            <input id="startRecordIdInputField5" class="slds-input" type="text" placeholder="Enter a page number" label="Page Number Label" disabled="true" size="20" style="margin-left:27px;height: 34px" value="{!startRecordId}"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br/>
+                                            <apex:commandButton styleClass="slds-button slds-button--brand slds-m-top--medium" reRender="jsvar" onComplete="startDataMigrationRemote();"  value="Start Migration " id="theButton5" style="margin-left:27px"/>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="slds-hint-parent">
+                                    <td data-label="account" width="10rem"><a href="#" class="slds-truncate">7</a></td>
+                                    <td>
+                                        <label class="slds-checkbox" for="select-row1">
+                                            <input name="select-row1" type="radio" id="migrationObjectRadioBtn6" onclick="disableMigrationSection(this.id);" />
+                                        </label>
+                                    </td>
+                                    <td data-label="account" width="10rem"><a href="#" class="slds-truncate">Interactions</a></td>
+                                    <td data-label="account" width="10rem"><a href="#" class="slds-truncate">Case Comments and Email Messages</a></td>
+                                    <td class="slds-row-select" width="10rem">
+                                        <div hidden="true" id="dataMigrationComponent6">
+                                            <label class="slds-checkbox" for="migrateAll" style="margin-bottom:20px">
+                                                <input name="checkbox" type="radio" id="migrateAll6" checked="true" onclick="disableIBs(this.id);" />
+                                                <span class="slds-form-element__radio">
                                                             Migrate All Data
                                                         </span>
-                                                </label>
-                                                <br/>
-                                                <label class="slds-checkbox" for="migrateAll" style="margin-bottom:10px">
-                                                        <input name="checkbox" type="radio" id="migrateRecordIdCheckbox6" onclick="enableIB1(this.id);"/>
-                                                        <span class="slds-form-element__radio" >
+                                            </label>
+                                            <br/>
+                                            <label class="slds-checkbox" for="migrateAll" style="margin-bottom:10px">
+                                                <input name="checkbox" type="radio" id="migrateRecordIdCheckbox6" onclick="enableIB1(this.id);"/>
+                                                <span class="slds-form-element__radio" >
                                                             Migrate from a specified Desk.com record ID
                                                         </span>
-                                                </label>
-                                                <div class="slds">
-                                                     <div class="slds-form-element"> 
-                                                      <div class="slds-form-element__control" style="width:200px;">
-                                                       <div class="slds-input-has-icon slds-input-has-icon--right">
-                                                        <input id="startRecordIdInputField6" class="slds-input" type="text" placeholder="Enter a record Id" label="Record ID Label" disabled="true" size="20" style="margin-left:27px;height: 34px" value="{!startRecordId}"/>
-                                                       </div>
-                                                      </div>
-                                                     </div>
-                                                </div>
-                                                <br/>
-                                                <apex:commandButton styleClass="slds-button slds-button--brand slds-m-top--medium" reRender="jsvar" onComplete="startDataMigrationRemote();" value="Start Migration " id="theButton6" style="margin-left:27px"/>
-
-                                                </div>
-                                          </td>
-                                        </tr>
-                                        <tr class="slds-hint-parent">
-                                          <td data-label="account" width="10rem"><a href="#" class="slds-truncate">8</a></td>
-                                          <td>
-                                            <label class="slds-checkbox" for="select-row1">
-                                              <input name="select-row1" type="radio" id="migrationObjectRadioBtn7" onclick="disableMigrationSection(this.id);" />
                                             </label>
-                                          </td>
-                                          <td data-label="account" width="10rem"><a href="#" class="slds-truncate">Attachments</a></td>
-                                          <td data-label="account" width="10rem"><a href="#" class="slds-truncate">Attachments</a></td>
-                                          <td>
-                                                <div hidden="true" id="dataMigrationComponent7">
-                                                    <apex:commandButton styleClass="slds-button slds-button--brand slds-m-top--medium" reRender="jsvar" onComplete="startDataMigrationRemote();" value="Start Migration " id="theButton7" style="margin-left:27px"/>
+                                            <div class="slds">
+                                                <div class="slds-form-element">
+                                                    <div class="slds-form-element__control" style="width:200px;">
+                                                        <div class="slds-input-has-icon slds-input-has-icon--right">
+                                                            <input id="startRecordIdInputField6" class="slds-input" type="text" placeholder="Enter a record Id" label="Record ID Label" disabled="true" size="20" style="margin-left:27px;height: 34px" value="{!startRecordId}"/>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                          </td>
-                                        </tr>
-                                        <tr class="slds-hint-parent">
-                                          <td data-label="account" width="10rem"><a href="#" class="slds-truncate">9</a></td>
-                                          <td>
-                                            <label class="slds-checkbox" for="select-row1">
-                                              <input name="select-row1" type="radio" id="migrationObjectRadioBtn8" onclick="disableMigrationSection(this.id);" />
-                                            </label>
-                                          </td>
-                                          <td data-label="articles" width="10rem"><a href="#" class="slds-truncate">Articles</a></td>
-                                          <td data-label="articles" width="10rem"><a href="#" class="slds-truncate">Articles</a></td>
-                                          <td>
-                                                <div hidden="true" id="dataMigrationComponent8">
-                                                    <apex:commandButton styleClass="slds-button slds-button--brand slds-m-top--medium" reRender="jsvar" onComplete="startDataMigrationRemote();" value="Start Migration " id="theButton8" style="margin-left:27px"/>
-                                                </div>
-                                          </td>
-                                        </tr>
-                                      </tbody>
-                                    </table>
-                                </div>
-                                <hr/>
-                                <!--<form action="https://na30.salesforce.com/a00/o">
-                                    <button class="slds-button slds-button--neutral slds-float--right slds-m-right--medium" onclick="window.location.href='/a00/o'" type="button">Finish</button>
-                                </form>-->
-                                <button class="slds-button slds-button--neutral slds-float--right slds-m-right--medium" onclick="showStep2();return false;" type="button">Previous</button>
+                                            </div>
+                                            <br/>
+                                            <apex:commandButton styleClass="slds-button slds-button--brand slds-m-top--medium" reRender="jsvar" onComplete="startDataMigrationRemote();" value="Start Migration " id="theButton6" style="margin-left:27px"/>
 
-                                
-                            </div>
-                            <!--------------------------------SECTION 4-------------------------------->
-                            <!--------------------------------SECTION 5-------------------------------->
-                            
-                        </section>
-       
-                        <apex:outputPanel id="migration-modal__error">
-                            <div class="migration-modal__error">
-                              <div aria-hidden="false" role="dialog" class="slds-modal slds-modal--large slds-fade-in-open">
-                                <div class="slds-modal__container">
-                                  <div class="slds-modal__header">
-                                    <div class="slds-notify-container">
-                                      <div class="slds-notify slds-notify--toast slds-theme--error" role="alert">
-                                        <span class="slds-assistive-text">Error</span>
-                                        <button class="slds-button slds-button--icon-inverse slds-notify__close">
-                                          <svg aria-hidden="true" class="slds-button__icon slds-button__icon--large">
-                                            <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
-                                          </svg>
-                                          <span class="slds-assistive-text">Close</span>
-                                        </button>
-                                        <div class="notify__content slds-grid">
-                                          <svg aria-hidden="true" class="slds-icon slds-icon--small slds-m-right--small slds-col slds-no-flex">
-                                            <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#warning"></use>
-                                          </svg>
-                                          <div class="slds-col slds-align-left">
-                                            <h2 class="slds-text-heading--small">Error: </h2>
-                                            <p id = "errorMessage"></p>
-                                            <!--<h2 class="slds-text-heading--small">Success! <br/>Desk Access Validated. <br/>Groups and Custom Fields created.</h2>-->
-                                          </div>
                                         </div>
-                                      </div>
+                                    </td>
+                                </tr>
+                                <tr class="slds-hint-parent">
+                                    <td data-label="account" width="10rem"><a href="#" class="slds-truncate">8</a></td>
+                                    <td>
+                                        <label class="slds-checkbox" for="select-row1">
+                                            <input name="select-row1" type="radio" id="migrationObjectRadioBtn7" onclick="disableMigrationSection(this.id);" />
+                                        </label>
+                                    </td>
+                                    <td data-label="account" width="10rem"><a href="#" class="slds-truncate">Attachments</a></td>
+                                    <td data-label="account" width="10rem"><a href="#" class="slds-truncate">Attachments</a></td>
+                                    <td>
+                                        <div hidden="true" id="dataMigrationComponent7">
+                                            <apex:commandButton styleClass="slds-button slds-button--brand slds-m-top--medium" reRender="jsvar" onComplete="startDataMigrationRemote();" value="Start Migration " id="theButton7" style="margin-left:27px"/>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="slds-hint-parent">
+                                    <td data-label="account" width="10rem"><a href="#" class="slds-truncate">9</a></td>
+                                    <td>
+                                        <label class="slds-checkbox" for="select-row1">
+                                            <input name="select-row1" type="radio" id="migrationObjectRadioBtn8" onclick="disableMigrationSection(this.id);" />
+                                        </label>
+                                    </td>
+                                    <td data-label="articles" width="10rem"><a href="#" class="slds-truncate">Articles</a></td>
+                                    <td data-label="articles" width="10rem"><a href="#" class="slds-truncate">Articles</a></td>
+                                    <td>
+                                        <div hidden="true" id="dataMigrationComponent8">
+                                            <apex:commandButton styleClass="slds-button slds-button--brand slds-m-top--medium" reRender="jsvar" onComplete="startDataMigrationRemote();" value="Start Migration " id="theButton8" style="margin-left:27px"/>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <hr/>
+                        <!--<form action="https://na30.salesforce.com/a00/o">
+                            <button class="slds-button slds-button--neutral slds-float--right slds-m-right--medium" onclick="window.location.href='/a00/o'" type="button">Finish</button>
+                        </form>-->
+                        <button class="slds-button slds-button--neutral slds-float--right slds-m-right--medium" onclick="showStep2();return false;" type="button">Previous</button>
+
+
+                    </div>
+                    <!--------------------------------SECTION 4-------------------------------->
+                    <!--------------------------------SECTION 5-------------------------------->
+
+                </section>
+
+                <apex:outputPanel id="migration-modal__error">
+                    <div class="migration-modal__error">
+                        <div aria-hidden="false" role="dialog" class="slds-modal slds-modal--large slds-fade-in-open">
+                            <div class="slds-modal__container">
+                                <div class="slds-modal__header">
+                                    <div class="slds-notify-container">
+                                        <div class="slds-notify slds-notify--toast slds-theme--error" role="alert">
+                                            <span class="slds-assistive-text">Error</span>
+                                            <button class="slds-button slds-button--icon-inverse slds-notify__close">
+                                                <svg aria-hidden="true" class="slds-button__icon slds-button__icon--large">
+                                                    <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+                                                </svg>
+                                                <span class="slds-assistive-text">Close</span>
+                                            </button>
+                                            <div class="notify__content slds-grid">
+                                                <svg aria-hidden="true" class="slds-icon slds-icon--small slds-m-right--small slds-col slds-no-flex">
+                                                    <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#warning"></use>
+                                                </svg>
+                                                <div class="slds-col slds-align-left">
+                                                    <h2 class="slds-text-heading--small">Error: </h2>
+                                                    <p id = "errorMessage"></p>
+                                                    <!--<h2 class="slds-text-heading--small">Success! <br/>Desk Access Validated. <br/>Groups and Custom Fields created.</h2>-->
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <h2 class="slds-text-heading--medium">Modal Header</h2>
                                     <button class="slds-button slds-button--icon-inverse slds-modal__close">
-                                      <svg aria-hidden="true" class="slds-button__icon slds-button__icon--large">
-                                        <use xlink:href="/assets/icons/action-sprite/svg/symbols.svg#close"></use>
-                                      </svg>
-                                      <span class="slds-assistive-text">Close</span>
+                                        <svg aria-hidden="true" class="slds-button__icon slds-button__icon--large">
+                                            <use xlink:href="/assets/icons/action-sprite/svg/symbols.svg#close"></use>
+                                        </svg>
+                                        <span class="slds-assistive-text">Close</span>
                                     </button>
-                                  </div>
-                                  <div class="slds-modal__content ">
+                                </div>
+                                <div class="slds-modal__content ">
 
-                                  </div>
-                                  <div class="slds-modal__footer">
+                                </div>
+                                <div class="slds-modal__footer">
                                     <div class="slds-x-small-buttons--horizontal">
-                                      <button class="slds-button slds-button--neutral slds-button--neutral" onclick="closeModal();">Close</button>
+                                        <button class="slds-button slds-button--neutral slds-button--neutral" onclick="closeModal();">Close</button>
                                     </div>
-                                  </div>
                                 </div>
-                              </div>
-                              <div class="slds-backdrop slds-backdrop--open"></div>
                             </div>
-                        </apex:outputPanel>
-                        <apex:outputPanel id="migration-modal__migrating__panel">
-                            <div class="migration-modal__migrating">
-                              <div aria-hidden="false" role="dialog" class="slds-modal slds-modal--large slds-fade-in-open">
-                                <div class="slds-modal__container">
-                                  <div class="slds-modal__header">
+                        </div>
+                        <div class="slds-backdrop slds-backdrop--open"></div>
+                    </div>
+                </apex:outputPanel>
+                <apex:outputPanel id="migration-modal__migrating__panel">
+                    <div class="migration-modal__migrating">
+                        <div aria-hidden="false" role="dialog" class="slds-modal slds-modal--large slds-fade-in-open">
+                            <div class="slds-modal__container">
+                                <div class="slds-modal__header">
                                     <div class="slds-notify-container">
-                                      <div class="slds-notify slds-notify--toast slds-theme--success" role="alert">
-                                        <span class="slds-assistive-text">Error</span>
-                                        <button class="slds-button slds-button--icon-inverse slds-notify__close">
-                                          <svg aria-hidden="true" class="slds-button__icon slds-button__icon--large">
-                                            <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
-                                          </svg>
-                                          <span class="slds-assistive-text">Close</span>
-                                        </button>
-                                        <div class="notify__content slds-grid">
-                                          <svg aria-hidden="true" class="slds-icon slds-icon--small slds-m-right--small slds-col slds-no-flex">
-                                            <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#warning"></use>
-                                          </svg>
-                                          <div class="slds-col slds-align-left">
-                                          
-                                            <h2 class="slds-text-heading--small">Migration in progress. </h2>
-                                          </div>
+                                        <div class="slds-notify slds-notify--toast slds-theme--success" role="alert">
+                                            <span class="slds-assistive-text">Error</span>
+                                            <button class="slds-button slds-button--icon-inverse slds-notify__close">
+                                                <svg aria-hidden="true" class="slds-button__icon slds-button__icon--large">
+                                                    <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+                                                </svg>
+                                                <span class="slds-assistive-text">Close</span>
+                                            </button>
+                                            <div class="notify__content slds-grid">
+                                                <svg aria-hidden="true" class="slds-icon slds-icon--small slds-m-right--small slds-col slds-no-flex">
+                                                    <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#warning"></use>
+                                                </svg>
+                                                <div class="slds-col slds-align-left">
+
+                                                    <h2 class="slds-text-heading--small">Migration in progress. </h2>
+                                                </div>
+                                            </div>
                                         </div>
-                                      </div>
                                     </div>
                                     <h2 class="slds-text-heading--medium">Modal Header</h2>
                                     <button class="slds-button slds-button--icon-inverse slds-modal__close">
-                                      <svg aria-hidden="true" class="slds-button__icon slds-button__icon--large">
-                                        <use xlink:href="/assets/icons/action-sprite/svg/symbols.svg#close"></use>
-                                      </svg>
-                                      <span class="slds-assistive-text">Close</span>
+                                        <svg aria-hidden="true" class="slds-button__icon slds-button__icon--large">
+                                            <use xlink:href="/assets/icons/action-sprite/svg/symbols.svg#close"></use>
+                                        </svg>
+                                        <span class="slds-assistive-text">Close</span>
                                     </button>
-                                  </div>
-                                  <div class="slds-modal__content ">
+                                </div>
+                                <div class="slds-modal__content ">
                                     <p id="successMessage"/>
-                                  </div>
-                                  <div class="slds-modal__footer">
-                                    <div class="slds-x-small-buttons--horizontal">
-                                      <button class="slds-button slds-button--neutral slds-button--neutral" onclick="closeModal();">Close</button>
-                                    </div>
-                                  </div>
                                 </div>
-                              </div>
-                              <div class="slds-backdrop slds-backdrop--open"></div>
+                                <div class="slds-modal__footer">
+                                    <div class="slds-x-small-buttons--horizontal">
+                                        <button class="slds-button slds-button--neutral slds-button--neutral" onclick="closeModal();">Close</button>
+                                    </div>
+                                </div>
                             </div>
-                        </apex:outputPanel>
-                    </apex:form>
-                </div>
-                <!-- / PRIMARY CONTENT WRAPPER -->
-            </div>
-            <!-- / REQUIRED SLDS WRAPPER -->
+                        </div>
+                        <div class="slds-backdrop slds-backdrop--open"></div>
+                    </div>
+                </apex:outputPanel>
+            </apex:form>
+        </div>
+        <!-- / PRIMARY CONTENT WRAPPER -->
+    </div>
+    <!-- / REQUIRED SLDS WRAPPER -->
 
-        </body>
+    </body>
     </html>
     <apex:outputPanel id="jsvar">
         <!-- {!MigrationCustomFields} -->
         <script type="text/javascript">
-        
+
         var deskMigrationId = "{!JSENCODE('{!deskMigration.Id}')}";
         var migrationCustomFields = "{!JSENCODE('{!MigrationCustomFields}')}";
         var getMigrationGroups = "{!JSENCODE('{!MigrationGroups}')}";
@@ -1042,20 +1042,20 @@
     <script type="text/javascript">
         var j$ = jQuery.noConflict();
         var assetsLoc = '{!URLFOR($Resource.SLDS0122)}';
-          
-        //ALJS Initialization   
-               
+
+        //ALJS Initialization
+
         j$.aljsInit({
           assetsLocation: assetsLoc,
           scoped: true
         });
-           
+
         j$(document).ready(function() {
-         
+
         //Initializing Datepicker with options To The SLDS Input on document ready.
- 
-            
-            
+
+
+
 
             //alert(document.getElementById("appendTimestamp").disabled);
 
@@ -1104,13 +1104,13 @@
         }
 
         function popErrorMessage(message)
-        {               
+        {
             j$("p#errorMessage").text(message);
             j$('.migration-modal__error').css("display", "block");
         }
 
         function popSuccessMessage(message)
-        {               
+        {
             j$("p#successMessage").text(message);
             j$('.migration-modal__migrating').css("display", "block");
         }
@@ -1175,7 +1175,7 @@
 
             // handler that is called when the request fails
             .fail(function(jqXHR, textStatus, errorThrown) {
-              popErrorMessage(jqXHR.responseJSON.message);                
+              popErrorMessage(jqXHR.responseJSON.message);
             })
 
             // handler called regardless of the success or failure of the call
@@ -1221,24 +1221,24 @@
               {
                 // save data to an input field on the form so it can be posted to the next page
                 jsonData = data;
-                
+
                 //alert(jsonData);
                 Visualforce.remoting.Manager.invokeAction(
                     '{!$RemoteAction.DeskMigrationWizardController.getCustomFieldsAndGroups}',
-                    JSON.stringify(data), 
+                    JSON.stringify(data),
                     function(result, event){
                         if (event.status) {
                             //alert(JSON.stringify(result));
                             //alert(JSON.stringify(result));
                             combinedMetadata = result;
                             migrateMetadata(e, combinedMetadata);
-                            
+
                         } else if (event.type === 'exception') {
-                            
+
                         } else {
-                            
+
                         }
-                    }, 
+                    },
                     {escape: true}
                 );
 
@@ -1289,7 +1289,7 @@
             }
 
           //alert('jsonNewCustomFields' + jsonNewCustomFields);
-          
+
           //var newCustomFields = $.parseJSON(jsonNewCustomFields);
           //alert('jsonNewCustomFields' + jsonNewCustomFields);
           jsonNewCustomFields.forEach(function(newCF)
@@ -1314,7 +1314,7 @@
             }
           });
           //alert('newDeskCustomFields' + newDeskCustomFields);
-          
+
           // build post data
           var postData = {
             deskUrl: j$('[id$=DeskUrl]').val(),
@@ -1350,14 +1350,14 @@
                 });
 
                 // show the error messages
-                popErrorMessage(errorMessages);                
+                popErrorMessage(errorMessages);
               }
               else
               {
                 // save data to an input field on the form so it can be posted to the next page
                 //alert('In else part of migrateMetadata');
                 console.log(data);
-                popSuccessMessage('Authentication Tokens validated! Groups and Custom Fields created!');                
+                popSuccessMessage('Authentication Tokens validated! Groups and Custom Fields created!');
                 // enable the next button
                 //disableNextButton(false);
 
@@ -1383,21 +1383,21 @@
             var deskMigrationId;
             Visualforce.remoting.Manager.invokeAction(
                     '{!$RemoteAction.DeskMigrationWizardController.getDeskMigrationId}',
-                    'test', 
+                    'test',
                     function(result, event){
                         if (event.status) {
                             //alert(JSON.stringify(result));
                             //alert('result fetched from getDeskMigrationId ' + result);
                             deskMigrationId = result;
                             startDataMigration(deskMigrationId);
-                        } else if (event.type === 'exception') {                            
+                        } else if (event.type === 'exception') {
                             popErrorMessage(event.message);
                             // showMessage('ERROR', event.message, event.where);
                             // j$('.migration-modal__error').css("display", "block");
                         } else {
                             //alert('in else condition for remote callout');
                         }
-                    }, 
+                    },
                     {escape: true}
             );
         }
@@ -1431,16 +1431,16 @@
             objectIndex = 4;
           }
           else if(migrateNotesRadioSelected == true){
-            objectIndex = 5;    
+            objectIndex = 5;
           }
           else if(migrateInteractionRadioSelected == true){
             objectIndex = 6;
           }
           else if(migrateAttachmentsRadioSelected == true){
-            objectIndex = 7; 
+            objectIndex = 7;
           }
           else if(migrateArticlesRadioSelected == true){
-            objectIndex = 8; 
+            objectIndex = 8;
           }
           else if(migrateGroupMembersRadioSelected == true){
             objectIndex = 9;
@@ -1452,10 +1452,10 @@
           var migrateStartRecordCbxId = 'migrateRecordIdCheckbox' + objectIndex;
           var migrateStartDateTimeCbxId =  'migrateStartDateTimeCheckbox' + objectIndex;
           //alert(migrateAllCbxId);
-          
+
           var migrateAllChecked = $("input:radio[id='" + migrateAllCbxId + "']").is(":checked");
           //alert(migrateAllChecked);
-          
+
           var migrateStartRecordIdChecked = $("input:radio[id='" + migrateStartRecordCbxId + "']").is(":checked");
           var migrateStartDateTimeChecked = $("input:radio[id='" + migrateStartDateTimeCbxId + "']").is(":checked");
           var selectedStartDate, selectedStartTime, selectedRecordId;
@@ -1483,7 +1483,7 @@
             selectedStartDate = selectedStartDate/1000;
             //alert('selectedStartDate ' + selectedStartDate);
             selectedRecordId = null;
-            
+
             //alert('start time ' + selectedStartTime);
           }
 
@@ -1550,9 +1550,6 @@
                 // handler for when the call completes successfully
                 .done(function(data, textStatus, jqXHR) {
                   // enable the next button
-
-
-                  // show a message indicating the authentication tokens have been validated and they can continue
                   popSuccessMessage("Data Migration In Progress");
                 })
 
@@ -1572,10 +1569,7 @@
                 var jqxhr = $.post("https://"+herokuServer+"/desk/MigrateAttachments", postData)
                 // handler for when the call completes successfully
                 .done(function(data, textStatus, jqXHR) {
-                  // enable the next button
-
-
-                  // show a message indicating the authentication tokens have been validated and they can continue
+                  popSuccessMessage("Data Migration In Progress");
 
                 })
 
@@ -1626,7 +1620,7 @@
             $('.slds-list__item.step-3').removeClass("slds-list__item-visited");
             $('.slds-list__item.step-4').removeClass("slds-list__item-visited");
             $('.slds-list__item.step-5').removeClass("slds-list__item-visited");
-            
+
             $('.slds-list__item.step-1').addClass("slds-list__item-visited");
         }
 
@@ -1644,10 +1638,10 @@
             $('.slds-list__item.step-3').removeClass("slds-list__item-visited");
             $('.slds-list__item.step-4').removeClass("slds-list__item-visited");
             $('.slds-list__item.step-5').removeClass("slds-list__item-visited");
-            
+
             $('.slds-list__item.step-2').addClass("slds-list__item-visited");
         }
-        
+
         function showStep3()
         {
             $('[class=migration-welcome]').css("display", "none");
@@ -1662,10 +1656,10 @@
             $('.slds-list__item.step-2').removeClass("slds-list__item-visited");
             $('.slds-list__item.step-4').removeClass("slds-list__item-visited");
             $('.slds-list__item.step-5').removeClass("slds-list__item-visited");
-            
+
             $('.slds-list__item.step-3').addClass("slds-list__item-visited");
         }
-        
+
         function showStep4()
         {
             $('[class=migration-welcome]').css("display", "none");
@@ -1680,7 +1674,7 @@
             $('.slds-list__item.step-2').removeClass("slds-list__item-visited");
             $('.slds-list__item.step-3').removeClass("slds-list__item-visited");
             $('.slds-list__item.step-5').removeClass("slds-list__item-visited");
-            
+
             $('.slds-list__item.step-4').addClass("slds-list__item-visited");
         }
 
@@ -1714,15 +1708,15 @@
  oDateFormat['Hours'];   //Example = 01
  oDateFormat['Minutes'];   //Example = 01
  oDateFormat['Seconds'];   //Example = 01
-  
+
  var sDateString;
-  
+
  // Use dd/mm/yyyy format
  sDateString = oDateFormat['Date'] +"/"+ oDateFormat['Month'] +"/"+ oDateFormat['FullYear'];
  return sDateString;
 }
-   
-     
+
+
 
 
       function enableIB1(id){
@@ -1737,8 +1731,8 @@
         document.getElementById('startRecordIdInputField'+idIndex).disabled = true;
         }
       return false;
-      } 
-      
+      }
+
       function enableIB2(id){
       var idLength = id.length;
       var idIndex = id.substring(idLength-1, idLength);
@@ -1762,39 +1756,39 @@
         document.getElementById('startDateInputField'+idIndex).disabled = true;
         document.getElementById('startDateTimeInputField'+idIndex).disabled = true;
       }
-      
+
       return false;
       }
 
       function disableMigrationSection(id){
        var idLength = id.length;
        var idIndex = id.substring(idLength-1, idLength);
-        
+
         for(i=1;i<10;i++){
 
           if(i==idIndex){
             if(document.getElementById('migrationObjectRadioBtn' + idIndex).checked == true){
-            //alert('insidechecked true ' + idIndex + ' ' + i);    
+            //alert('insidechecked true ' + idIndex + ' ' + i);
             document.getElementById('dataMigrationComponent'+idIndex).hidden = false;
             }
             else {
                 //alert('insidechecked false ' + idIndex + ' ' + i);
-                document.getElementById('dataMigrationComponent'+idIndex).hidden = true;   
-            }    
+                document.getElementById('dataMigrationComponent'+idIndex).hidden = true;
+            }
           }
           else
           {
             //alert('outside checked false ' + idIndex + ' ' + i);
             document.getElementById('dataMigrationComponent'+i).hidden = true;
           }
-           
+
         }
       }
 
       function selectTargetProfile(){
         var selectBox = document.getElementById("targetProfilePicklist");
         var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-        
+
       }
 
       function appendTSEnableCbx(){
@@ -1806,7 +1800,7 @@
             }
             else{
                 $("input[id='appendTimestamp']").removeAttr("disabled");
-                
+
             }
             return false;
       }
