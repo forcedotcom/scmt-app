@@ -1572,11 +1572,7 @@
                 var jqxhr = $.post("https://"+herokuServer+"/desk/MigrateAttachments", postData)
                 // handler for when the call completes successfully
                 .done(function(data, textStatus, jqXHR) {
-                  // enable the next button
-
-
-                  // show a message indicating the authentication tokens have been validated and they can continue
-
+                  popSuccessMessage('Data Migration In Progress');
                 })
 
                   // handler that is called when the request fails
