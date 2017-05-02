@@ -950,6 +950,7 @@ global with sharing class DeskMigrationWizardController
             if (dataMap.containsKey('choices'))
             {
                 List<Object> choicesObj = (List<Object>) dataMap.get('choices');
+                choicesObj = deDupe(choicesObj);
                 for (Object choiceObj : choicesObj)
                 {
                     other += String.valueOf(choiceObj) + ', ';
@@ -981,6 +982,20 @@ global with sharing class DeskMigrationWizardController
             this.Active= Active;
             this.Type = Type;
             this.Other = Other;
+        }
+        private List<Object> deDupe(List<Object> objects) {
+
+            Set<String> tags = new Set<String>();
+            List<Object> result = new List<Object>();
+
+            for(Object objs : objects) {
+                if(!tags.contains(String.valueOf(objs))) {
+                    result.add(objs);
+                    tags.add(String.valueOf(objs));
+                }
+            }
+
+            return result;
         }
     }
 
