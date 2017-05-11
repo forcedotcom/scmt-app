@@ -10,8 +10,32 @@
     <label>Beta</label>
     <protected>false</protected>
     <values>
+        <field>Active__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>ConsumerKey__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>ConsumerSecret__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Endpoint__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
         <field>Host__c</field>
         <value xsi:type="xsd:string">https://scmt-beta.herokuapp.com</value>
+    </values>
+    <values>
+        <field>TokenSecret__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Token__c</field>
+        <value xsi:nil="true"/>
     </values>
     <values>
         <field>URL__c</field>

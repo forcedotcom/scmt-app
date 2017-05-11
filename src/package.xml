@@ -14,16 +14,19 @@
   ~ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   -->
 
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
         <members>DeskMigrationWizardController</members>
         <members>SCMT_Utils</members>
         <members>SCMT_Utils_Test</members>
         <members>Test_DeskMigrationWizardController</members>
+        <members>MigrationWizardController</members>
         <name>ApexClass</name>
     </types>
     <types>
         <members>DeskMigrationWizard</members>
+        <members>SessionId</members>
         <name>ApexPage</name>
     </types>
     <types>
@@ -113,7 +116,16 @@
         <members>JSCalendar</members>
         <members>SLDS0122</members>
         <members>aljs</members>
+        <members>MigrationWizard</members>
         <name>StaticResource</name>
+    </types>
+    <types>
+        <members>MigrationWizard</members>
+        <members>progress</members>
+        <members>wizardStep</members>
+        <members>wizard</members>
+        <members>lookup</members>
+        <name>AuraDefinitionBundle</name>
     </types>
     <version>38.0</version>
 </Package>

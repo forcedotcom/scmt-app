@@ -1,0 +1,45 @@
+<!--
+  ~ Copyright (c) 2017, Salesforce.com, Inc.
+  ~ All rights reserved.
+  ~ Licensed under the BSD 3-Clause license.
+  ~ For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
+  -->
+
+<aura:component description="progress">
+    <aura:attribute name="items" type="List" description="A list of item configurations." />
+    <aura:attribute name="active" type="Integer" description="Currently active step." default="0" />
+    <aura:attribute name="class" type="String" description="Additional CSS class for the progress container." />
+    <aura:attribute name="theme" type="String" description="Theme to apply to the progress bar." default="default" />
+
+    <aura:attribute name="privateItems" type="List" access="private" />
+    <aura:attribute name="privateClass" type="String" access="private" default="" />
+    <aura:attribute name="privateProgress" type="Integer" access="private" default="0" />
+
+    <aura:handler name="init" action="{!c.init}" value="{!this}" />
+    <aura:handler name="change" action="{!c.handleActiveChange}" value="{!v.active}" />
+
+    <div class="{!v.privateClass}">
+        <ol class="slds-progress__list">
+            <aura:iteration items="{!v.privateItems}" var="item" indexVar="idx">
+                <li data-index="{!idx}" onclick="{!c.handleClick}" class="{!'slds-progress__item' + (item.isComplete ? ' slds-is-completed' : '') + (item.isError ? ' slds-has-error' : '') + (item.isActive ? ' slds-is-active' : '')}">
+                    <aura:if isTrue="{!item.isComplete}">
+                        <lightning:buttonIcon class="slds-button-icon slds-progress__marker slds-progress__marker--icon" iconName="utility:success" alternativeText="{!item.label}" />
+                        <aura:set attribute="else">
+                            <aura:if isTrue="{!item.isError}">
+                                <lightning:buttonIcon class="slds-button-icon slds-progress__marker slds-progress__marker--icon" iconName="utility:warning" alternativeText="{!item.label}" />
+                                <aura:set attribute="else">
+                                    <lightning:button variant="bare" class="slds-progress__marker" title="{!item.label}" />
+                                </aura:set>
+                            </aura:if>
+                        </aura:set>
+                    </aura:if>
+                </li>
+            </aura:iteration>
+        </ol>
+        <div class="slds-progress-bar">
+            <span class="slds-progress-bar__value" style="{!'width:' + v.privateProgress + '%;'}">
+                <span class="slds-assistive-text">{!'Progress: ' + v.privateProgress + '%'}</span>
+            </span>
+        </div>
+    </div>
+</aura:component>
