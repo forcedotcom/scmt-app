@@ -45,7 +45,7 @@
     createMetadata: function(cmp) {
         var data = {
             custom_fields: JSON.stringify(cmp.get('v.privateCustomFields').filter(function(el) { return !el.hasOwnProperty('salesforce') })),
-            groups: JSON.stringify(cmp.get('v.privateGroups').filter(function(el) { return !el.hasOwnProperty('salesforce') }).map(function(el) { return [el.id, 'false'] })),
+            groups: JSON.stringify(cmp.get('v.privateGroups').filter(function(el) { return !el.hasOwnProperty('salesforce') }).map(function(el) { return [el.id.toString(), 'false'] })),
             users: JSON.stringify(cmp.get('v.privateUsers').filter(function(el) { return !el.hasOwnProperty('salesforce') }))
         };
 
