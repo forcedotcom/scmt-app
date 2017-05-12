@@ -28,7 +28,6 @@
         <apexClass>Test_DeskMigrationWizardController</apexClass>
         <enabled>false</enabled>
     </classAccesses>
-    <description>This permission set must be assigned to the user running the Service Cloud Migration Tool.</description>
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.DeskCreatedAt__c</field>
