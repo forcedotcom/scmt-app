@@ -228,9 +228,6 @@
         <field>User.DeskId__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <hasActivationRequired>false</hasActivationRequired>
-    <label>SCMT Audit</label>
-    <license>Salesforce</license>
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>
