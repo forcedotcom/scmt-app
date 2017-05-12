@@ -11,7 +11,7 @@
     <protected>false</protected>
     <values>
         <field>Active__c</field>
-        <value xsi:type="xsd:boolean">false</value>
+        <value xsi:type="xsd:boolean">true</value>
     </values>
     <values>
         <field>ConsumerKey__c</field>
