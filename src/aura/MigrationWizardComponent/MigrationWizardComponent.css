@@ -9,32 +9,8 @@
     fill: rgb(4, 132, 75);
 }
 
-.THIS .uiMessage.error {
-    color: #fff;
-    background-color: rgba(194,57,52,.95);
-    border-radius: .25rem;
-    margin: .5rem;
-    padding: .75rem 1.5rem;
-    min-width: 40rem;
-    display: inline-block;
-    text-align: left;
-    position: relative;
-    font-weight: 300;
-}
-
-.THIS .uiMessage .close {
-    color: #fff;
-    text-decoration: none;
-    text-shadow: none;
-    opacity: 1;
-}
-
-.THIS .uiMessage.hide {
-    display: none;
-}
-
-.THIS.migration-messages-container {
-    position: fixed;
+.THIS.slds-notify_container {
+    position: absolute;
     width: 100%;
     left: 0;
     top: 0;

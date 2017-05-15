@@ -121,6 +121,8 @@
             type: 'POST',
             url: this.resolveUrl(cmp, url),
             data: params
+        }).fail(function(data, status, err) {
+            cmp.alert(err.message);
         }).always(function(data, status) {
             cmp.loading();
             if (status === 'success') {

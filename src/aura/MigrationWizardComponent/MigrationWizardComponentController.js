@@ -69,6 +69,7 @@
     },
 
     toggleLoading: function(cmp, evt, helper) {
+        console.log('loading');
         var background = (evt.getParam('arguments') || {}).background
           , loadingId  = background ? 'background-loading' : 'loading';
 

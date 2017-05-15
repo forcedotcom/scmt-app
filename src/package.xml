@@ -89,6 +89,7 @@
     <types>
         <members>DeskMigrationWizard</members>
         <members>Desk_Migration__c</members>
+        <members>MigrationWizard</members>
         <name>CustomTab</name>
     </types>
     <types>
@@ -124,7 +125,12 @@
         <members>wizardStep</members>
         <members>wizard</members>
         <members>lookup</members>
+        <members>MigrationWizardComponent</members>
         <name>AuraDefinitionBundle</name>
+    </types>
+    <types>
+        <members>SCMT</members>
+        <name>CspTrustedSite</name>
     </types>
     <version>38.0</version>
 </Package>

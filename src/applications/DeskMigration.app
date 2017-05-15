@@ -7,10 +7,11 @@
   -->
 
 <CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
-    <defaultLandingTab>DeskMigrationWizard</defaultLandingTab>
+    <defaultLandingTab>MigrationWizard</defaultLandingTab>
     <description>This custom app is used to migrate your data from Desk.com to Salesforce Service Cloud.</description>
     <formFactors>Large</formFactors>
     <label>Desk.com Migration</label>
+    <tab>MigrationWizard</tab>
     <tab>DeskMigrationWizard</tab>
     <tab>Desk_Migration__c</tab>
 </CustomApplication>
