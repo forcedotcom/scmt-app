@@ -24,9 +24,19 @@
     <aura:attribute name="privateUsers" type="Object[]" access="private" />
     <aura:attribute name="privateCustomFields" type="Object[]" access="private" />
 
-    <aura:attribute name="privateObjects" type="Object[]" access="private" />
+    <aura:attribute name="privateUserObjects" type="Object[]" access="private" />
+    <aura:attribute name="privateGroupMemberObjects" type="Object[]" access="private" />
+    <aura:attribute name="privateAccountObjects" type="Object[]" access="private" />
+    <aura:attribute name="privateContactObjects" type="Object[]" access="private" />
+    <aura:attribute name="privateCaseObjects" type="Object[]" access="private" />
+    <aura:attribute name="privateNoteObjects" type="Object[]" access="private" />
+    <aura:attribute name="privateInteractionObjects" type="Object[]" access="private" />
+    <aura:attribute name="privateAttachmentObjects" type="Object[]" access="private" />
+    <aura:attribute name="privateArticleObjects" type="Object[]" access="private" />
+    <aura:attribute name="privateActiveObject" type="String" access="private" default="Users" />
     <aura:attribute name="privateProfiles" type="Profile[]" access="private" />
     <aura:attribute name="privateRecordTypes" type="RecordType[]" access="private" />
+    <aura:attribute name="privateMigrationButtonDisabled" type="Boolean" access="private" default="false" />
 
     <aura:attribute name="privateUserProfile" type="String" access="private" />
     <aura:attribute name="privateUserTimestamp" type="Boolean" access="private" />
@@ -319,213 +329,144 @@
         <c:wizardStep label="Review Desk.com Data Set" onactive="{!c.fetchObjects}">
             <div class="slds-grid slds-wrap slds-grid--pull-padded">
                 <div class="slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--4-of-6 slds-large-size--9-of-12 slds-order--1 slds-medium-order--2 slds-large-order--2">
-                    <aura:iteration items="{!v.privateObjects}" var="item">
-                        <div class="{!'slds-text-longform ' + (item.isActive ? 'slds-show' : 'slds-hide')}">
-                            <h1 class="slds-text-heading--large slds-border--bottom">{!item.label}</h1>
-                            <form class="slds-form--stacked slds-m-bottom--large">
-                                <aura:renderIf isTrue="{!item.name == 'User'}">
-                                    <lightning:select name="userProfile" label="Profile" value="{!v.privateUserProfile}" required="true">
-                                        <option value="">-- Please Select --</option>
-                                        <aura:iteration items="{!v.privateProfiles}" var="item">
-                                            <option value="{!item.Id}">{!item.Name}</option>
-                                        </aura:iteration>
-                                    </lightning:select>
+                    <c:migrationStep label="Users" class="{!v.privateActiveObject == 'Users' ? 'slds-show' : 'slds-hide'}" onsubmit="{!c.createMigration}" migrations="{!v.privateUserObjects}" disabled="{!v.privateMigrationButtonDisabled}">
+                        <lightning:select name="userProfile" label="Profile" value="{!v.privateUserProfile}" required="true">
+                            <option value="">-- Please Select --</option>
+                            <aura:iteration items="{!v.privateProfiles}" var="item">
+                                <option value="{!item.Id}">{!item.Name}</option>
+                            </aura:iteration>
+                        </lightning:select>
 
 
-                                    <div class="slds-form-element">
-                                        <label class="slds-form-element__legend slds-form-element__label">User Settings</label>
-                                        <div class="slds-form-element__control">
-                                            <lightning:input aura:id="user" type="checkbox" label="Append Timestamp to Username and Email" name="userTimestamp" checked="{!v.privateUserTimestamp}" />
-                                        </div>
-                                    </div>
-                                </aura:renderIf>
-
-                                <aura:renderIf isTrue="{!item.name == 'Group Member'}">
-                                </aura:renderIf>
-
-                                <aura:renderIf isTrue="{!item.name == 'Account'}">
-                                    <lightning:select name="accountDataSet" label="Data Set" value="{!v.privateAccountDataSet}" required="true">
-                                        <option value="">-- Please Select --</option>
-                                        <option value="0">Migrate All Data</option>
-                                        <option value="1">Migrate Data Range</option>
-                                    </lightning:select>
-
-                                    <aura:renderIf isTrue="{!v.privateAccountDataSet == '1'}">
-                                        <fieldset class="slds-form-element">
-                                            <legend class="slds-form-element__legend slds-form-element__label">Data Set Selection</legend>
-                                            <div class="slds-form--inline">
-                                                <lightning:input type="date" name="accountStartDate" label="Start Date" value="{!v.privateAccountStartDate}" disabled="{!v.privateAccountStartId}" />
-                                                <lightning:input type="number" name="accountStartId" label="Start Id" value="{!v.privateAccountStartId}" disabled="{!v.privateAccountStartDate}" />
-                                            </div>
-                                        </fieldset>
-                                    </aura:renderIf>
-
-                                    <lightning:select name="accountRecordTypeId" label="Record Type" value="{!v.privateAccountRecordType}">
-                                        <option value="">-- Please Select --</option>
-                                        <aura:iteration items="{!v.privateRecordTypes}" var="item">
-                                            <aura:if isTrue="{!item.SobjectType == 'Account'}">
-                                                <option value="{!item.Id}">{!item.Name}</option>
-                                            </aura:if>
-                                        </aura:iteration>
-                                    </lightning:select>
-                                </aura:renderIf>
-
-                                <aura:renderIf isTrue="{!item.name == 'Contact'}">
-                                    <lightning:select name="contactDataSet" label="Data Set" value="{!v.privateContactDataSet}" required="true">
-                                        <option value="">-- Please Select --</option>
-                                        <option value="0">Migrate All Data</option>
-                                        <option value="1">Migrate Data Range</option>
-                                    </lightning:select>
-
-                                    <aura:renderIf isTrue="{!v.privateContactDataSet == '1'}">
-                                        <fieldset class="slds-form-element">
-                                            <legend class="slds-form-element__legend slds-form-element__label">Data Set Selection</legend>
-                                            <div class="slds-form--inline">
-                                                <lightning:input type="date" name="accountStartDate" label="Start Date" value="{!v.privateContactStartDate}" disabled="{!v.privateContactStartId}" />
-                                                <lightning:input type="number" name="accountStartId" label="Start Id" value="{!v.privateContactStartId}" disabled="{!v.privateContactStartDate}" />
-                                            </div>
-                                        </fieldset>
-                                    </aura:renderIf>
-
-                                    <lightning:select name="contactRecordTypeId" label="Record Type" value="{!v.privateContactRecordType}">
-                                        <option value="">-- Please Select --</option>
-                                        <aura:iteration items="{!v.privateRecordTypes}" var="item">
-                                            <aura:if isTrue="{!item.SobjectType == 'Contact'}">
-                                                <option value="{!item.Id}">{!item.Name}</option>
-                                            </aura:if>
-                                        </aura:iteration>
-                                    </lightning:select>
-                                </aura:renderIf>
-
-                                <aura:renderIf isTrue="{!item.name == 'Case'}">
-                                    <lightning:select name="caseDataSet" label="Data Set" value="{!v.privateCaseDataSet}" required="true">
-                                        <option value="">-- Please Select --</option>
-                                        <option value="0">Migrate All Data</option>
-                                        <option value="1">Migrate Data Range</option>
-                                    </lightning:select>
-
-                                    <aura:renderIf isTrue="{!v.privateCaseDataSet == '1'}">
-                                        <fieldset class="slds-form-element">
-                                            <legend class="slds-form-element__legend slds-form-element__label">Data Set Selection</legend>
-                                            <div class="slds-form--inline">
-                                                <lightning:input type="date" name="caseStartDate" label="Start Date" value="{!v.privateCaseStartDate}" disabled="{!v.privateCaseStartId}" />
-                                                <lightning:input type="number" name="caseStartId" label="Start Id" value="{!v.privateCaseStartId}" disabled="{!v.privateCaseStartDate}" />
-                                            </div>
-                                        </fieldset>
-                                    </aura:renderIf>
-
-                                    <lightning:select name="caseRecordTypeId" label="Record Type" value="{!v.privateCaseRecordType}">
-                                        <option value="">-- Please Select --</option>
-                                        <aura:iteration items="{!v.privateRecordTypes}" var="item">
-                                            <aura:if isTrue="{!item.SobjectType == 'Case'}">
-                                                <option value="{!item.Id}">{!item.Name}</option>
-                                            </aura:if>
-                                        </aura:iteration>
-                                    </lightning:select>
-                                </aura:renderIf>
-
-                                <aura:renderIf isTrue="{!item.name == 'Note'}">
-                                    <lightning:select name="noteDataSet" label="Data Set" value="{!v.privateNoteDataSet}" required="true">
-                                        <option value="">-- Please Select --</option>
-                                        <option value="0">Migrate All Data</option>
-                                        <option value="1">Migrate Data Range</option>
-                                    </lightning:select>
-
-                                    <aura:renderIf isTrue="{!v.privateNoteDataSet == '1'}">
-                                        <fieldset class="slds-form-element">
-                                            <legend class="slds-form-element__legend slds-form-element__label">Data Set Selection</legend>
-                                            <div class="slds-form--inline">
-                                                <lightning:input type="number" name="noteStartPage" label="Start Page" value="{!v.privateNoteStartId}" />
-                                            </div>
-                                        </fieldset>
-                                    </aura:renderIf>
-                                </aura:renderIf>
-
-                                <aura:renderIf isTrue="{!item.name == 'Interaction'}">
-                                    <lightning:select name="interactionDataSet" label="Data Set" value="{!v.privateInteractionDataSet}" required="true">
-                                        <option value="">-- Please Select --</option>
-                                        <option value="0">Migrate All Data</option>
-                                        <option value="1">Migrate Data Range</option>
-                                    </lightning:select>
-
-                                    <aura:renderIf isTrue="{!v.privateInteractionDataSet == '1'}">
-                                        <fieldset class="slds-form-element">
-                                            <legend class="slds-form-element__legend slds-form-element__label">Data Set Selection</legend>
-                                            <div class="slds-form--inline">
-                                                <lightning:input type="number" name="interactionStartPage" label="Start Id" value="{!v.privateInteractionStartId}" />
-                                            </div>
-                                        </fieldset>
-                                    </aura:renderIf>
-                                </aura:renderIf>
-
-                                <aura:renderIf isTrue="{!item.name == 'Attachment'}">
-                                </aura:renderIf>
-
-                                <aura:renderIf isTrue="{!item.name == 'Article'}">
-                                </aura:renderIf>
-
-                                <div class="slds-form-element slds-clearfix">
-                                    <lightning:button aura:id="startMigration" label="Start Migration" variant="brand" class="slds-float--right" onclick="{!c.createMigration}" />
-                                </div>
-                            </form>
-
-                            <aura:renderIf isTrue="{!item.migrations.length > 0}">
-                                <h2 class="slds-text-heading--medium slds-border--bottom">Migration Records</h2>
-                                <!--Name, StartDate__c, Status__c, RecordsTotal__c, RecordsFailed__c, Object__c-->
-                                <table class="slds-table slds-table--bordered slds-table--cell-buffer">
-                                    <thead>
-                                    <tr class="slds-text-title--caps">
-                                        <th scope="col">
-                                            <div class="slds-truncate" title="Name">Name</div>
-                                        </th>
-                                        <th scope="col">
-                                            <div class="slds-truncate" title="Start Date">Start Date</div>
-                                        </th>
-                                        <th scope="col">
-                                            <div class="slds-truncate" title="Status">Status</div>
-                                        </th>
-                                        <th scope="col">
-                                            <div class="slds-truncate" title="Records Total">Records Total</div>
-                                        </th>
-                                        <th scope="col">
-                                            <div class="slds-truncate" title="Records Failed">Records Failed</div>
-                                        </th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <aura:iteration items="{!item.migrations}" var="i">
-                                        <tr>
-                                            <td data-label="Name">
-                                                <div class="slds-truncate" title="{!i.Id}">{!i.Name}</div>
-                                            </td>
-                                            <td data-label="Start Date">
-                                                <div class="slds-truncate"><lightning:formattedDateTime value="{!i.StartDate__c}" year="numeric" month="numeric" day="numeric"  hour="2-digit" minute="2-digit" timeZoneName="short" /></div>
-                                            </td>
-                                            <td data-label="Status">
-                                                <div class="slds-truncate">{!i.Status__c}</div>
-                                            </td>
-                                            <td data-label="Records Total">
-                                                <div class="slds-truncate">{!i.RecordsTotal__c}</div>
-                                            </td>
-                                            <td data-label="Records Failed">
-                                                <div class="slds-truncate">{!i.RecordsFailed__c}</div>
-                                            </td>
-                                        </tr>
-                                    </aura:iteration>
-                                    </tbody>
-                                </table>
-                            </aura:renderIf>
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__legend slds-form-element__label">User Settings</label>
+                            <div class="slds-form-element__control">
+                                <lightning:input aura:id="user" type="checkbox" label="Append Timestamp to Username and Email" name="userTimestamp" checked="{!v.privateUserTimestamp}" />
+                            </div>
                         </div>
-                    </aura:iteration>
+                    </c:migrationStep>
+                    <c:migrationStep label="Group Members" class="{!v.privateActiveObject == 'Group Members' ? 'slds-show' : 'slds-hide'}" onsubmit="{!c.createMigration}" migrations="{!v.privateGroupMemberObjects}" disabled="{!v.privateMigrationButtonDisabled}" />
+                    <c:migrationStep label="Accounts" class="{!v.privateActiveObject == 'Accounts' ? 'slds-show' : 'slds-hide'}" onsubmit="{!c.createMigration}" migrations="{!v.privateAccountObjects}" disabled="{!v.privateMigrationButtonDisabled}">
+                        <lightning:select name="accountDataSet" label="Data Set" value="{!v.privateAccountDataSet}" required="true">
+                            <option value="">-- Please Select --</option>
+                            <option value="0">Migrate All Data</option>
+                            <option value="1">Migrate Data Range</option>
+                        </lightning:select>
+
+                        <aura:renderIf isTrue="{!v.privateAccountDataSet == '1'}">
+                            <fieldset class="slds-form-element">
+                                <legend class="slds-form-element__legend slds-form-element__label">Data Set Selection</legend>
+                                <div class="slds-form--inline">
+                                    <lightning:input type="date" name="accountStartDate" label="Start Date" value="{!v.privateAccountStartDate}" disabled="{!v.privateAccountStartId}" />
+                                    <lightning:input type="number" name="accountStartId" label="Start Id" value="{!v.privateAccountStartId}" disabled="{!v.privateAccountStartDate}" />
+                                </div>
+                            </fieldset>
+                        </aura:renderIf>
+
+                        <lightning:select name="accountRecordTypeId" label="Record Type" value="{!v.privateAccountRecordType}">
+                            <option value="">-- Please Select --</option>
+                            <aura:iteration items="{!v.privateRecordTypes}" var="item">
+                                <aura:if isTrue="{!item.SobjectType == 'Account'}">
+                                    <option value="{!item.Id}">{!item.Name}</option>
+                                </aura:if>
+                            </aura:iteration>
+                        </lightning:select>
+                    </c:migrationStep>
+                    <c:migrationStep label="Contacts" class="{!v.privateActiveObject == 'Contacts' ? 'slds-show' : 'slds-hide'}" onsubmit="{!c.createMigration}" migrations="{!v.privateContactObjects}" disabled="{!v.privateMigrationButtonDisabled}">
+                        <lightning:select name="contactDataSet" label="Data Set" value="{!v.privateContactDataSet}" required="true">
+                            <option value="">-- Please Select --</option>
+                            <option value="0">Migrate All Data</option>
+                            <option value="1">Migrate Data Range</option>
+                        </lightning:select>
+
+                        <aura:renderIf isTrue="{!v.privateContactDataSet == '1'}">
+                            <fieldset class="slds-form-element">
+                                <legend class="slds-form-element__legend slds-form-element__label">Data Set Selection</legend>
+                                <div class="slds-form--inline">
+                                    <lightning:input type="date" name="accountStartDate" label="Start Date" value="{!v.privateContactStartDate}" disabled="{!v.privateContactStartId}" />
+                                    <lightning:input type="number" name="accountStartId" label="Start Id" value="{!v.privateContactStartId}" disabled="{!v.privateContactStartDate}" />
+                                </div>
+                            </fieldset>
+                        </aura:renderIf>
+
+                        <lightning:select name="contactRecordTypeId" label="Record Type" value="{!v.privateContactRecordType}">
+                            <option value="">-- Please Select --</option>
+                            <aura:iteration items="{!v.privateRecordTypes}" var="item">
+                                <aura:if isTrue="{!item.SobjectType == 'Contact'}">
+                                    <option value="{!item.Id}">{!item.Name}</option>
+                                </aura:if>
+                            </aura:iteration>
+                        </lightning:select>
+                    </c:migrationStep>
+                    <c:migrationStep label="Cases" class="{!v.privateActiveObject == 'Cases' ? 'slds-show' : 'slds-hide'}" onsubmit="{!c.createMigration}" migrations="{!v.privateCaseObjects}" disabled="{!v.privateMigrationButtonDisabled}">
+                        <lightning:select name="caseDataSet" label="Data Set" value="{!v.privateCaseDataSet}" required="true">
+                            <option value="">-- Please Select --</option>
+                            <option value="0">Migrate All Data</option>
+                            <option value="1">Migrate Data Range</option>
+                        </lightning:select>
+
+                        <aura:renderIf isTrue="{!v.privateCaseDataSet == '1'}">
+                            <fieldset class="slds-form-element">
+                                <legend class="slds-form-element__legend slds-form-element__label">Data Set Selection</legend>
+                                <div class="slds-form--inline">
+                                    <lightning:input type="date" name="caseStartDate" label="Start Date" value="{!v.privateCaseStartDate}" disabled="{!v.privateCaseStartId}" />
+                                    <lightning:input type="number" name="caseStartId" label="Start Id" value="{!v.privateCaseStartId}" disabled="{!v.privateCaseStartDate}" />
+                                </div>
+                            </fieldset>
+                        </aura:renderIf>
+
+                        <lightning:select name="caseRecordTypeId" label="Record Type" value="{!v.privateCaseRecordType}">
+                            <option value="">-- Please Select --</option>
+                            <aura:iteration items="{!v.privateRecordTypes}" var="item">
+                                <aura:if isTrue="{!item.SobjectType == 'Case'}">
+                                    <option value="{!item.Id}">{!item.Name}</option>
+                                </aura:if>
+                            </aura:iteration>
+                        </lightning:select>
+                    </c:migrationStep>
+                    <c:migrationStep label="Notes" class="{!v.privateActiveObject == 'Notes' ? 'slds-show' : 'slds-hide'}" onsubmit="{!c.createMigration}" migrations="{!v.privateNoteObjects}" disabled="{!v.privateMigrationButtonDisabled}">
+                        <lightning:select name="noteDataSet" label="Data Set" value="{!v.privateNoteDataSet}" required="true">
+                            <option value="">-- Please Select --</option>
+                            <option value="0">Migrate All Data</option>
+                            <option value="1">Migrate Data Range</option>
+                        </lightning:select>
+
+                        <aura:renderIf isTrue="{!v.privateNoteDataSet == '1'}">
+                            <fieldset class="slds-form-element">
+                                <legend class="slds-form-element__legend slds-form-element__label">Data Set Selection</legend>
+                                <div class="slds-form--inline">
+                                    <lightning:input type="number" name="noteStartPage" label="Start Page" value="{!v.privateNoteStartId}" />
+                                </div>
+                            </fieldset>
+                        </aura:renderIf>
+                    </c:migrationStep>
+                    <c:migrationStep label="Interactions" class="{!v.privateActiveObject == 'Interactions' ? 'slds-show' : 'slds-hide'}" onsubmit="{!c.createMigration}" migrations="{!v.privateInteractionObjects}" disabled="{!v.privateMigrationButtonDisabled}">
+                        <lightning:select name="interactionDataSet" label="Data Set" value="{!v.privateInteractionDataSet}" required="true">
+                            <option value="">-- Please Select --</option>
+                            <option value="0">Migrate All Data</option>
+                            <option value="1">Migrate Data Range</option>
+                        </lightning:select>
+
+                        <aura:renderIf isTrue="{!v.privateInteractionDataSet == '1'}">
+                            <fieldset class="slds-form-element">
+                                <legend class="slds-form-element__legend slds-form-element__label">Data Set Selection</legend>
+                                <div class="slds-form--inline">
+                                    <lightning:input type="number" name="interactionStartPage" label="Start Id" value="{!v.privateInteractionStartId}" />
+                                </div>
+                            </fieldset>
+                        </aura:renderIf>
+                    </c:migrationStep>
+                    <c:migrationStep label="Attachments" class="{!v.privateActiveObject == 'Attachments' ? 'slds-show' : 'slds-hide'}" onsubmit="{!c.createMigration}" migrations="{!v.privateAttachmentObjects}" disabled="{!v.privateMigrationButtonDisabled}" />
+                    <c:migrationStep label="Articles" class="{!v.privateActiveObject == 'Articles' ? 'slds-show' : 'slds-hide'}" onsubmit="{!c.createMigration}" migrations="{!v.privateArticleObjects}" disabled="{!v.privateMigrationButtonDisabled}" />
                 </div>
                 <div style="background-color:#FAFAFB;" class="slds-p-horizontal--small slds-p-bottom--small slds-size--1-of-1 slds-medium-size--2-of-6 slds-large-size--3-of-12 slds-order--2 slds-medium-order--1 slds-large-order--1">
                     <div class="slds-grid slds-grid--vertical slds-navigation-list--vertical slds-navigation-list--vertical-inverse">
                         <h2 class="slds-text-title--caps slds-p-around--medium">Migration Objects</h2>
                         <ul>
-                            <aura:iteration items="{!v.privateObjects}" var="item">
-                                <li class="{!item.isActive ? 'slds-is-active' : ''}">
-                                    <a href="javascript:void(0);" data-name="{!item.name}" onclick="{!c.changeObject}" class="slds-navigation-list--vertical__action slds-text-link--reset slds-clearfix" aria-describedby="migration-object">
-                                            {!item.label}
+                            <aura:iteration items="Users,Group Members,Accounts,Contacts,Cases,Notes,Interactions,Attachments,Articles" var="item">
+                                <li class="{!item == v.privateActiveObject ? 'slds-is-active' : ''}">
+                                    <a href="javascript:void(0);" data-name="{!item}" onclick="{!c.changeObject}" class="slds-navigation-list--vertical__action slds-text-link--reset slds-clearfix" aria-describedby="migration-object">
+                                        {!item}
                                     </a>
                                 </li>
                             </aura:iteration>

@@ -35,13 +35,9 @@ public class MigrationWizardController {
     }
 
     @AuraEnabled
-    public static List<MigrationObject> fetchMigrationObjects(String active) {
-        List<MigrationObject> l = new List<MigrationObject>();
-        for (Schema.PicklistEntry n : Desk_Migration__c.Object__c.getDescribe().getPicklistValues()) {
-            if (n.isActive())
-                l.add(new MigrationObject(n.getValue(), n.getValue() == active));
-        }
-        return l;
+    public static List<Desk_Migration__c> fetchMigrationObjects() {
+        List<Desk_Migration__c> migs = [SELECT Name, StartDate__c, Status__c, RecordsTotal__c, RecordsFailed__c, Object__c FROM Desk_Migration__c ORDER BY CreatedDate DESC];
+        return migs;
     }
 
     @AuraEnabled
@@ -216,38 +212,6 @@ public class MigrationWizardController {
             return 'string';
         }
 
-    }
-
-    public class MigrationObject {
-        @AuraEnabled
-        public String name { get; set; }
-        @AuraEnabled
-        public String label { get; set; }
-        @AuraEnabled
-        public Boolean isActive { get; set; }
-        @AuraEnabled
-        public String status { get; set; }
-        @AuraEnabled
-        public String iconName { get; set; }
-        @AuraEnabled
-        public List<Desk_Migration__c> migrations { get; set; }
-
-        public MigrationObject(String name, Boolean active) {
-            this.name       = name;
-            this.label      = name + 's';
-            this.migrations = [SELECT Name, StartDate__c, Status__c, RecordsTotal__c, RecordsFailed__c, Object__c FROM Desk_Migration__c WHERE Object__c = :name ORDER BY CreatedDate DESC];
-            this.isActive   = active;
-
-            try {
-                Desk_Migration__c mostRecent = this.migrations.get(0);
-                status = mostRecent.Status__c.toLowerCase();
-                if (status == 'new') this.iconName = 'utility:new';
-                if (status == 'queued') this.iconName = 'utility:redo';
-                if (status == 'running') this.iconName = 'utility:sync';
-                if (status == 'completed') this.iconName = 'utility:success';
-                if (status == 'failed') this.iconName = 'utility:error';
-            } catch(System.ListException ex) {}
-        }
     }
 
 }

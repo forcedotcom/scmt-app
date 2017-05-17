@@ -69,29 +69,25 @@
     },
 
     toggleLoading: function(cmp, evt, helper) {
-        console.log('loading');
         var background = (evt.getParam('arguments') || {}).background
           , loadingId  = background ? 'background-loading' : 'loading';
 
+        cmp.set('v.privateMigrationButtonDisabled', !cmp.get('v.privateMigrationButtonDisabled'));
         $A.util.toggleClass(cmp.find(loadingId), 'slds-hide');
     },
 
     reloadObjects: function(cmp, evt, helper) {
-        var objects = cmp.get('v.privateObjects')
-          , name    = objects.find(function(el) { return el.isActive }).name;
-
-        helper.fetchMigrationObjects(cmp, name, true);
+        helper.fetchMigrationObjects(cmp, true);
     },
 
     fetchObjects: function(cmp, evt, helper) {
-        helper.fetchMigrationObjects(cmp, 'User');
+        helper.fetchMigrationObjects(cmp);
         setInterval(cmp.reloadObjects, 15000);
     },
 
     createMigration: function(cmp, evt, helper) {
         // create migration in apex
-        var objects = cmp.get('v.privateObjects')
-          , name    = objects.find(function(el) { return el.isActive }).name;
+        var name = cmp.get('v.privateActiveObject').slice(0, -1);
 
         helper.callApex(cmp, 'c.createMigrationRecord', { name: name }, function(rsp) {
             var data = {
@@ -126,14 +122,8 @@
         try {
             var objects = cmp.get('v.privateObjects')
               , name    = evt.target.dataset.name
-              , actIdx  = objects.findIndex(function(el) { return el.isActive })
-              , newIdx  = objects.findIndex(function(el) { return el.name === evt.target.dataset.name })
 
-            if (Number.isInteger(actIdx) && Number.isInteger(newIdx)) {
-                objects[actIdx].isActive = false;
-                objects[newIdx].isActive = true;
-                cmp.set('v.privateObjects', objects);
-            }
+            if (name) cmp.set('v.privateActiveObject', name);
         } catch(err) {}
     },
 

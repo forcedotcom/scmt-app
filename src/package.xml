@@ -126,6 +126,7 @@
         <members>wizard</members>
         <members>lookup</members>
         <members>MigrationWizardComponent</members>
+        <members>migrationStep</members>
         <name>AuraDefinitionBundle</name>
     </types>
     <types>

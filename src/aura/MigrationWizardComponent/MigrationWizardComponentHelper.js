@@ -13,13 +13,14 @@
     },
 
     callApex: function(cmp, name, params, callback, background) {
+        if (typeof params === 'function') {
+            background = callback;
+            callback   = params;
+            params     = {};
+        }
+
         cmp.loading(background);
         var action = cmp.get(name);
-
-        if (typeof params === 'function') {
-            callback = params;
-            params = {};
-        }
 
         action.setParams(params);
         action.setCallback(this, function(res) {
@@ -35,6 +36,7 @@
                     cmp.set('v.privateMessage', errors[0].message);
                 } else {
                     console.log('Unknown error');
+                    console.log(res, res.getError());
                     cmp.set('v.privateMessage', 'Unknown error');
                 }
             }
@@ -56,20 +58,24 @@
 
     convertTimestamp: function(migrations) {
         return migrations.map(function(el) {
-            if (el.migrations.length !== 0) {
-                el.migrations.map(function(e) {
-                    e.StartDate__c = new Date(e.StartDate__c);
-                    return e;
-                });
-            }
+            el.StartDate__c = new Date(el.StartDate__c);
             return el;
         });
     },
 
-    fetchMigrationObjects: function(cmp, active, background) {
+    fetchMigrationObjects: function(cmp, background) {
         var helper = this;
-        helper.callApex(cmp, 'c.fetchMigrationObjects', { active: active }, function(rsp) {
-            cmp.set('v.privateObjects', helper.convertTimestamp(rsp.getReturnValue()));
+        helper.callApex(cmp, 'c.fetchMigrationObjects', function(rsp) {
+            var objects = {};
+
+            Array.from(rsp.getReturnValue()).forEach(function(el) {
+                objects[el.Object__c] = objects[el.Object__c] || [];
+                objects[el.Object__c].push(el);
+            });
+
+            for (var key in objects) {
+                cmp.set('v.private' + key.replace(/\s/g,'') + 'Objects', helper.convertTimestamp(objects[key]));
+            }
         }, background);
     },
 
