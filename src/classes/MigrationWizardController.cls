@@ -19,7 +19,7 @@ public class MigrationWizardController {
 
         c.put('privateSessionId', getSessionId());
         c.put('privateUserEmail', UserInfo.getUserEmail());
-        c.put('privateApiUrl', URL.getSalesforceBaseUrl().toExternalForm() + '/services/Soap/u/37.0/' + UserInfo.getOrganizationId());
+        c.put('privateApiUrl', URL.getSalesforceBaseUrl().toExternalForm() + '/services/Soap/u/36.0/' + UserInfo.getOrganizationId());
 
         c.put('privateAuditEnabled', Schema.sObjectType.Case.fields.CreatedDate.isCreateable());
         c.put('privateProfiles', [SELECT Id, Name FROM Profile WHERE UserLicense.Name LIKE 'Salesforce' ORDER BY Name]);
