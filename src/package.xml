@@ -20,10 +20,12 @@
         <members>SCMT_Utils</members>
         <members>SCMT_Utils_Test</members>
         <members>Test_DeskMigrationWizardController</members>
+        <members>MigrationWizardController</members>
         <name>ApexClass</name>
     </types>
     <types>
         <members>DeskMigrationWizard</members>
+        <members>SessionId</members>
         <name>ApexPage</name>
     </types>
     <types>
@@ -87,6 +89,7 @@
     <types>
         <members>DeskMigrationWizard</members>
         <members>Desk_Migration__c</members>
+        <members>MigrationWizard</members>
         <name>CustomTab</name>
     </types>
     <types>
@@ -113,7 +116,22 @@
         <members>JSCalendar</members>
         <members>SLDS0122</members>
         <members>aljs</members>
+        <members>MigrationWizard</members>
         <name>StaticResource</name>
+    </types>
+    <types>
+        <members>MigrationWizard</members>
+        <members>progress</members>
+        <members>wizardStep</members>
+        <members>wizard</members>
+        <members>lookup</members>
+        <members>MigrationWizardComponent</members>
+        <members>migrationStep</members>
+        <name>AuraDefinitionBundle</name>
+    </types>
+    <types>
+        <members>SCMT</members>
+        <name>CspTrustedSite</name>
     </types>
     <version>38.0</version>
 </Package>
