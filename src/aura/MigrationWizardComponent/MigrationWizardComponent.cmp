@@ -113,7 +113,7 @@
 
         <c:wizardStep label="Connect to Desk.com" onnext="{!c.handleConnect}" onactive="{!c.handleBlur}">
             <h1 class="slds-text-heading--large">Connect to Desk.com</h1>
-            <p>Great! Now that you're fully prepped, let's connect to your Desk.com Environment. In order to provide authenticated access to Desk.com, please input your Desk.com Authentication Tokens below. You can find instructions for generating tokens in the <i>Authentication Tokens</i> section of the <a href="">Embedding the Mobile SDK</a> article or <i>Figure 5: Desk.com Settings screen</i> section of the <a href="">Hipmob - Desk.com Integration</a> article.</p>
+            <p>Great! Now that you're fully prepped, let's connect to your Desk.com Environment. In order to provide authenticated access to Desk.com, please input your Desk.com Authentication Tokens below. You can find instructions for generating tokens in the <i>Authentication Tokens</i> section of the <a href="https://support.desk.com/customer/portal/articles/2050103--embedding-the-mobile-sdk" target="_blank">Embedding the Mobile SDK</a> article or <i>Figure 5: Desk.com Settings screen</i> section of the <a href="https://www.hipmob.com/documentation/integrations/desk" target="_blank">Hipmob - Desk.com Integration</a> article.</p>
             <div class="slds-form--horizontal slds-p-vertical--medium">
                 <lightning:input aura:id="auth" type="url" label="Desk.com Endpoint" name="endpoint" value="{!v.privateDeskEndpoint}" placeholder="https://example.desk.com" required="true" onchange="{!c.handleBlur}" />
                 <lightning:input aura:id="auth" label="OAuth Consumer Key" name="consumer_key" value="{!v.privateDeskConsumerKey}" required="true" pattern="^[a-zA-Z0-9]*$" onchange="{!c.handleBlur}" />
@@ -165,47 +165,6 @@
                         </tbody>
                     </table>
                 </lightning:tab>
-                <!--
-                    FIXME: We currently can't migrate users during metadata migration because the metadata enpdoint
-                    needs to be revised for this.
-                -->
-                <!--<lightning:tab label="Users">-->
-                <!--<table class="slds-table slds-table&#45;&#45;bordered slds-table&#45;&#45;cell-buffer">-->
-                <!--<thead>-->
-                <!--<tr class="slds-text-title&#45;&#45;caps">-->
-                <!--<th scope="col">-->
-                <!--<div class="slds-truncate" title="Desk.com User">Desk.com User</div>-->
-                <!--</th>-->
-                <!--<th scope="col">-->
-                <!--<div class="slds-truncate" title="Salesforce User">Salesforce User</div>-->
-                <!--</th>-->
-                <!--</tr>-->
-                <!--</thead>-->
-                <!--<tbody>-->
-                <!--<aura:iteration items="{!v.privateUsers}" var="item">-->
-                <!--<tr>-->
-                <!--<td data-label="Desk.com User">-->
-                <!--<div class="slds-truncate" title="{!item.name}">{!item.name}</div>-->
-                <!--</td>-->
-                <!--<td data-label="Salesforce User">-->
-                <!--<aura:if isTrue="{!item.salesforce}">-->
-                <!--<c:lookup iconName="standard:user" value="{!item.salesforce}" isRemovable="false" />-->
-                <!--<aura:set attribute="else">-->
-                <!--<c:lookup>-->
-                <!--<aura:set attribute="noValueBody">-->
-                <!--<lightning:icon iconName="utility:add" class="slds-pill__icon_container" />-->
-                <!--<span class="slds-pill__label" title="New User">New User</span>-->
-                <!--<span class="slds-pill__remove"></span>-->
-                <!--</aura:set>-->
-                <!--</c:lookup>-->
-                <!--</aura:set>-->
-                <!--</aura:if>-->
-                <!--</td>-->
-                <!--</tr>-->
-                <!--</aura:iteration>-->
-                <!--</tbody>-->
-                <!--</table>-->
-                <!--</lightning:tab>-->
                 <lightning:tab label="Account">
                     <table class="slds-table slds-table--bordered slds-table--cell-buffer">
                         <thead>
@@ -330,6 +289,7 @@
             <div class="slds-grid slds-wrap slds-grid--pull-padded">
                 <div class="slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--4-of-6 slds-large-size--9-of-12 slds-order--1 slds-medium-order--2 slds-large-order--2">
                     <c:migrationStep label="Users" class="{!v.privateActiveObject == 'Users' ? 'slds-show' : 'slds-hide'}" onsubmit="{!c.createMigration}" migrations="{!v.privateUserObjects}" disabled="{!v.privateMigrationButtonDisabled}">
+                        <p>In this step, you will be able to migrate all your users from Desk.com to Service Cloud. Please select an appropriate profile for the migrated users before click “Start Migration”.</p>
                         <lightning:select name="userProfile" label="Profile" value="{!v.privateUserProfile}" required="true">
                             <option value="">-- Please Select --</option>
                             <aura:iteration items="{!v.privateProfiles}" var="item">
@@ -345,8 +305,11 @@
                             </div>
                         </div>
                     </c:migrationStep>
-                    <c:migrationStep label="Group Members" class="{!v.privateActiveObject == 'Group Members' ? 'slds-show' : 'slds-hide'}" onsubmit="{!c.createMigration}" migrations="{!v.privateGroupMemberObjects}" disabled="{!v.privateMigrationButtonDisabled}" />
+                    <c:migrationStep label="Group Members" class="{!v.privateActiveObject == 'Group Members' ? 'slds-show' : 'slds-hide'}" onsubmit="{!c.createMigration}" migrations="{!v.privateGroupMemberObjects}" disabled="{!v.privateMigrationButtonDisabled}">
+                        <p>In this step, you will be able to migrate the user/group assignment from Desk.com to Service Cloud. The users will be assigned to the corresponding queues in Salesforce.</p>
+                    </c:migrationStep>
                     <c:migrationStep label="Accounts" class="{!v.privateActiveObject == 'Accounts' ? 'slds-show' : 'slds-hide'}" onsubmit="{!c.createMigration}" migrations="{!v.privateAccountObjects}" disabled="{!v.privateMigrationButtonDisabled}">
+                        <p>In this step, you will be able to migrate accounts from Desk.com to Service Cloud. You can either select to migrate all data or select data range for the migration. Please select the “SCMT” record type before clicking “Start Migration” button.</p>
                         <lightning:select name="accountDataSet" label="Data Set" value="{!v.privateAccountDataSet}" required="true">
                             <option value="">-- Please Select --</option>
                             <option value="0">Migrate All Data</option>
@@ -373,6 +336,7 @@
                         </lightning:select>
                     </c:migrationStep>
                     <c:migrationStep label="Contacts" class="{!v.privateActiveObject == 'Contacts' ? 'slds-show' : 'slds-hide'}" onsubmit="{!c.createMigration}" migrations="{!v.privateContactObjects}" disabled="{!v.privateMigrationButtonDisabled}">
+                        <p>In this step, you will be able to migrate contacts from Desk.com to Service Cloud. You can either select to migrate all data or select data range for the migration. Please select the “SCMT” record type before clicking “Start Migration” button.</p>
                         <lightning:select name="contactDataSet" label="Data Set" value="{!v.privateContactDataSet}" required="true">
                             <option value="">-- Please Select --</option>
                             <option value="0">Migrate All Data</option>
@@ -399,6 +363,7 @@
                         </lightning:select>
                     </c:migrationStep>
                     <c:migrationStep label="Cases" class="{!v.privateActiveObject == 'Cases' ? 'slds-show' : 'slds-hide'}" onsubmit="{!c.createMigration}" migrations="{!v.privateCaseObjects}" disabled="{!v.privateMigrationButtonDisabled}">
+                        <p>In this step, you will be able to migrate cases from Desk.com to Service Cloud. You can either select to migrate all data or select data range for the migration. Please select the “SCMT” record type before clicking “Start Migration” button.</p>
                         <lightning:select name="caseDataSet" label="Data Set" value="{!v.privateCaseDataSet}" required="true">
                             <option value="">-- Please Select --</option>
                             <option value="0">Migrate All Data</option>
@@ -425,6 +390,7 @@
                         </lightning:select>
                     </c:migrationStep>
                     <c:migrationStep label="Notes" class="{!v.privateActiveObject == 'Notes' ? 'slds-show' : 'slds-hide'}" onsubmit="{!c.createMigration}" migrations="{!v.privateNoteObjects}" disabled="{!v.privateMigrationButtonDisabled}">
+                        <p>In this step, you will be able to migrate cases note from Desk.com to Service Cloud. You can either select to migrate all data or select data range for the migration.</p>
                         <lightning:select name="noteDataSet" label="Data Set" value="{!v.privateNoteDataSet}" required="true">
                             <option value="">-- Please Select --</option>
                             <option value="0">Migrate All Data</option>
@@ -441,6 +407,7 @@
                         </aura:renderIf>
                     </c:migrationStep>
                     <c:migrationStep label="Interactions" class="{!v.privateActiveObject == 'Interactions' ? 'slds-show' : 'slds-hide'}" onsubmit="{!c.createMigration}" migrations="{!v.privateInteractionObjects}" disabled="{!v.privateMigrationButtonDisabled}">
+                        <p>In this step, you will be able to migrate cases interactions from Desk.com to Service Cloud. You can either select to migrate all data or select data range for the migration.</p>
                         <lightning:select name="interactionDataSet" label="Data Set" value="{!v.privateInteractionDataSet}" required="true">
                             <option value="">-- Please Select --</option>
                             <option value="0">Migrate All Data</option>
@@ -456,8 +423,12 @@
                             </fieldset>
                         </aura:renderIf>
                     </c:migrationStep>
-                    <c:migrationStep label="Attachments" class="{!v.privateActiveObject == 'Attachments' ? 'slds-show' : 'slds-hide'}" onsubmit="{!c.createMigration}" migrations="{!v.privateAttachmentObjects}" disabled="{!v.privateMigrationButtonDisabled}" />
-                    <c:migrationStep label="Articles" class="{!v.privateActiveObject == 'Articles' ? 'slds-show' : 'slds-hide'}" onsubmit="{!c.createMigration}" migrations="{!v.privateArticleObjects}" disabled="{!v.privateMigrationButtonDisabled}" />
+                    <c:migrationStep label="Attachments" class="{!v.privateActiveObject == 'Attachments' ? 'slds-show' : 'slds-hide'}" onsubmit="{!c.createMigration}" migrations="{!v.privateAttachmentObjects}" disabled="{!v.privateMigrationButtonDisabled}">
+                        <p>In this step, you will be able to migrate cases attachments from Desk.com to Service Cloud. These attachments will exist in Salesforce on the case level.</p>
+                    </c:migrationStep>
+                    <c:migrationStep label="Articles" class="{!v.privateActiveObject == 'Articles' ? 'slds-show' : 'slds-hide'}" onsubmit="{!c.createMigration}" migrations="{!v.privateArticleObjects}" disabled="{!v.privateMigrationButtonDisabled}">
+                        <p>In this step, you will be able to migrate article content from Desk.com to Service Cloud. </p>
+                    </c:migrationStep>
                 </div>
                 <div style="background-color:#FAFAFB;" class="slds-p-horizontal--small slds-p-bottom--small slds-size--1-of-1 slds-medium-size--2-of-6 slds-large-size--3-of-12 slds-order--2 slds-medium-order--1 slds-large-order--1">
                     <div class="slds-grid slds-grid--vertical slds-navigation-list--vertical slds-navigation-list--vertical-inverse">
