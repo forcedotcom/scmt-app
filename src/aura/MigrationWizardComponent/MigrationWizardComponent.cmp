@@ -290,7 +290,7 @@
                 <div class="slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--4-of-6 slds-large-size--9-of-12 slds-order--1 slds-medium-order--2 slds-large-order--2">
                     <c:migrationStep label="Users" class="{!v.privateActiveObject == 'Users' ? 'slds-show' : 'slds-hide'}" onsubmit="{!c.createMigration}" migrations="{!v.privateUserObjects}" disabled="{!v.privateMigrationButtonDisabled}">
                         <p>In this step, you will be able to migrate all your users from Desk.com to Service Cloud. Please select an appropriate profile for the migrated users before click “Start Migration”.</p>
-                        <lightning:select name="userProfile" label="Profile" value="{!v.privateUserProfile}" required="true">
+                        <lightning:select aura:id="UsersInput" name="userProfile" label="Profile" value="{!v.privateUserProfile}" required="true">
                             <option value="">-- Please Select --</option>
                             <aura:iteration items="{!v.privateProfiles}" var="item">
                                 <option value="{!item.Id}">{!item.Name}</option>
@@ -301,7 +301,7 @@
                         <div class="slds-form-element">
                             <label class="slds-form-element__legend slds-form-element__label">User Settings</label>
                             <div class="slds-form-element__control">
-                                <lightning:input aura:id="user" type="checkbox" label="Append Timestamp to Username and Email" name="userTimestamp" checked="{!v.privateUserTimestamp}" />
+                                <lightning:input aura:id="UsersInput" type="checkbox" label="Append Timestamp to Username and Email" name="userTimestamp" checked="{!v.privateUserTimestamp}" />
                             </div>
                         </div>
                     </c:migrationStep>
@@ -310,7 +310,7 @@
                     </c:migrationStep>
                     <c:migrationStep label="Accounts" class="{!v.privateActiveObject == 'Accounts' ? 'slds-show' : 'slds-hide'}" onsubmit="{!c.createMigration}" migrations="{!v.privateAccountObjects}" disabled="{!v.privateMigrationButtonDisabled}">
                         <p>In this step, you will be able to migrate accounts from Desk.com to Service Cloud. You can either select to migrate all data or select data range for the migration. Please select the “SCMT” record type before clicking “Start Migration” button.</p>
-                        <lightning:select name="accountDataSet" label="Data Set" value="{!v.privateAccountDataSet}" required="true">
+                        <lightning:select aura:id="AccountsInput" name="accountDataSet" label="Data Set" value="{!v.privateAccountDataSet}" required="true">
                             <option value="">-- Please Select --</option>
                             <option value="0">Migrate All Data</option>
                             <option value="1">Migrate Data Range</option>
@@ -320,13 +320,13 @@
                             <fieldset class="slds-form-element">
                                 <legend class="slds-form-element__legend slds-form-element__label">Data Set Selection</legend>
                                 <div class="slds-form--inline">
-                                    <lightning:input type="date" name="accountStartDate" label="Start Date" value="{!v.privateAccountStartDate}" disabled="{!v.privateAccountStartId}" />
-                                    <lightning:input type="number" name="accountStartId" label="Start Id" value="{!v.privateAccountStartId}" disabled="{!v.privateAccountStartDate}" />
+                                    <lightning:input aura:id="AccountsInput" type="date" name="accountStartDate" label="Start Date" value="{!v.privateAccountStartDate}" disabled="{!v.privateAccountStartId}" />
+                                    <lightning:input aura:id="AccountsInput" type="number" name="accountStartId" label="Start Id" value="{!v.privateAccountStartId}" disabled="{!v.privateAccountStartDate}" />
                                 </div>
                             </fieldset>
                         </aura:renderIf>
 
-                        <lightning:select name="accountRecordTypeId" label="Record Type" value="{!v.privateAccountRecordType}">
+                        <lightning:select aura:id="AccountsInput" name="accountRecordTypeId" label="Record Type" value="{!v.privateAccountRecordType}" required="true">
                             <option value="">-- Please Select --</option>
                             <aura:iteration items="{!v.privateRecordTypes}" var="item">
                                 <aura:if isTrue="{!item.SobjectType == 'Account'}">
@@ -337,7 +337,7 @@
                     </c:migrationStep>
                     <c:migrationStep label="Contacts" class="{!v.privateActiveObject == 'Contacts' ? 'slds-show' : 'slds-hide'}" onsubmit="{!c.createMigration}" migrations="{!v.privateContactObjects}" disabled="{!v.privateMigrationButtonDisabled}">
                         <p>In this step, you will be able to migrate contacts from Desk.com to Service Cloud. You can either select to migrate all data or select data range for the migration. Please select the “SCMT” record type before clicking “Start Migration” button.</p>
-                        <lightning:select name="contactDataSet" label="Data Set" value="{!v.privateContactDataSet}" required="true">
+                        <lightning:select aura:id="ContactsInput" name="contactDataSet" label="Data Set" value="{!v.privateContactDataSet}" required="true">
                             <option value="">-- Please Select --</option>
                             <option value="0">Migrate All Data</option>
                             <option value="1">Migrate Data Range</option>
@@ -347,13 +347,13 @@
                             <fieldset class="slds-form-element">
                                 <legend class="slds-form-element__legend slds-form-element__label">Data Set Selection</legend>
                                 <div class="slds-form--inline">
-                                    <lightning:input type="date" name="accountStartDate" label="Start Date" value="{!v.privateContactStartDate}" disabled="{!v.privateContactStartId}" />
-                                    <lightning:input type="number" name="accountStartId" label="Start Id" value="{!v.privateContactStartId}" disabled="{!v.privateContactStartDate}" />
+                                    <lightning:input aura:id="ContactsInput" type="date" name="accountStartDate" label="Start Date" value="{!v.privateContactStartDate}" disabled="{!v.privateContactStartId}" />
+                                    <lightning:input aura:id="ContactsInput" type="number" name="accountStartId" label="Start Id" value="{!v.privateContactStartId}" disabled="{!v.privateContactStartDate}" />
                                 </div>
                             </fieldset>
                         </aura:renderIf>
 
-                        <lightning:select name="contactRecordTypeId" label="Record Type" value="{!v.privateContactRecordType}">
+                        <lightning:select aura:id="ContactsInput" name="contactRecordTypeId" label="Record Type" value="{!v.privateContactRecordType}" required="true">
                             <option value="">-- Please Select --</option>
                             <aura:iteration items="{!v.privateRecordTypes}" var="item">
                                 <aura:if isTrue="{!item.SobjectType == 'Contact'}">
@@ -364,7 +364,7 @@
                     </c:migrationStep>
                     <c:migrationStep label="Cases" class="{!v.privateActiveObject == 'Cases' ? 'slds-show' : 'slds-hide'}" onsubmit="{!c.createMigration}" migrations="{!v.privateCaseObjects}" disabled="{!v.privateMigrationButtonDisabled}">
                         <p>In this step, you will be able to migrate cases from Desk.com to Service Cloud. You can either select to migrate all data or select data range for the migration. Please select the “SCMT” record type before clicking “Start Migration” button.</p>
-                        <lightning:select name="caseDataSet" label="Data Set" value="{!v.privateCaseDataSet}" required="true">
+                        <lightning:select aura:id="CasesInput" name="caseDataSet" label="Data Set" value="{!v.privateCaseDataSet}" required="true">
                             <option value="">-- Please Select --</option>
                             <option value="0">Migrate All Data</option>
                             <option value="1">Migrate Data Range</option>
@@ -374,13 +374,13 @@
                             <fieldset class="slds-form-element">
                                 <legend class="slds-form-element__legend slds-form-element__label">Data Set Selection</legend>
                                 <div class="slds-form--inline">
-                                    <lightning:input type="date" name="caseStartDate" label="Start Date" value="{!v.privateCaseStartDate}" disabled="{!v.privateCaseStartId}" />
-                                    <lightning:input type="number" name="caseStartId" label="Start Id" value="{!v.privateCaseStartId}" disabled="{!v.privateCaseStartDate}" />
+                                    <lightning:input aura:id="CasesInput" type="date" name="caseStartDate" label="Start Date" value="{!v.privateCaseStartDate}" disabled="{!v.privateCaseStartId}" />
+                                    <lightning:input aura:id="CasesInput" type="number" name="caseStartId" label="Start Id" value="{!v.privateCaseStartId}" disabled="{!v.privateCaseStartDate}" />
                                 </div>
                             </fieldset>
                         </aura:renderIf>
 
-                        <lightning:select name="caseRecordTypeId" label="Record Type" value="{!v.privateCaseRecordType}">
+                        <lightning:select aura:id="CasesInput" name="caseRecordTypeId" label="Record Type" value="{!v.privateCaseRecordType}" required="true">
                             <option value="">-- Please Select --</option>
                             <aura:iteration items="{!v.privateRecordTypes}" var="item">
                                 <aura:if isTrue="{!item.SobjectType == 'Case'}">
@@ -391,7 +391,7 @@
                     </c:migrationStep>
                     <c:migrationStep label="Notes" class="{!v.privateActiveObject == 'Notes' ? 'slds-show' : 'slds-hide'}" onsubmit="{!c.createMigration}" migrations="{!v.privateNoteObjects}" disabled="{!v.privateMigrationButtonDisabled}">
                         <p>In this step, you will be able to migrate cases note from Desk.com to Service Cloud. You can either select to migrate all data or select data range for the migration.</p>
-                        <lightning:select name="noteDataSet" label="Data Set" value="{!v.privateNoteDataSet}" required="true">
+                        <lightning:select aura:id="NotesInput" name="noteDataSet" label="Data Set" value="{!v.privateNoteDataSet}" required="true">
                             <option value="">-- Please Select --</option>
                             <option value="0">Migrate All Data</option>
                             <option value="1">Migrate Data Range</option>
@@ -401,14 +401,14 @@
                             <fieldset class="slds-form-element">
                                 <legend class="slds-form-element__legend slds-form-element__label">Data Set Selection</legend>
                                 <div class="slds-form--inline">
-                                    <lightning:input type="number" name="noteStartPage" label="Start Page" value="{!v.privateNoteStartId}" />
+                                    <lightning:input aura:id="NotesInput" type="number" name="noteStartPage" label="Start Page" value="{!v.privateNoteStartId}" />
                                 </div>
                             </fieldset>
                         </aura:renderIf>
                     </c:migrationStep>
                     <c:migrationStep label="Interactions" class="{!v.privateActiveObject == 'Interactions' ? 'slds-show' : 'slds-hide'}" onsubmit="{!c.createMigration}" migrations="{!v.privateInteractionObjects}" disabled="{!v.privateMigrationButtonDisabled}">
                         <p>In this step, you will be able to migrate cases interactions from Desk.com to Service Cloud. You can either select to migrate all data or select data range for the migration.</p>
-                        <lightning:select name="interactionDataSet" label="Data Set" value="{!v.privateInteractionDataSet}" required="true">
+                        <lightning:select aura:id="InteractionsInput" name="interactionDataSet" label="Data Set" value="{!v.privateInteractionDataSet}" required="true">
                             <option value="">-- Please Select --</option>
                             <option value="0">Migrate All Data</option>
                             <option value="1">Migrate Data Range</option>
@@ -418,7 +418,7 @@
                             <fieldset class="slds-form-element">
                                 <legend class="slds-form-element__legend slds-form-element__label">Data Set Selection</legend>
                                 <div class="slds-form--inline">
-                                    <lightning:input type="number" name="interactionStartPage" label="Start Id" value="{!v.privateInteractionStartId}" />
+                                    <lightning:input aura:id="InteractionsInput" type="number" name="interactionStartPage" label="Start Id" value="{!v.privateInteractionStartId}" />
                                 </div>
                             </fieldset>
                         </aura:renderIf>
