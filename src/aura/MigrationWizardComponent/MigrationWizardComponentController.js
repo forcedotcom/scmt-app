@@ -86,15 +86,14 @@
     },
 
     createMigration: function(cmp, evt, helper) {
-        console.log(cmp.find('AccountsInput'));
         var name  = cmp.get('v.privateActiveObject')
-          , valid = cmp.find(name + 'Input').reduce(function(v, i) {
+          , valid = cmp.find(name + 'Input') && cmp.find(name + 'Input').reduce(function(v, i) {
               if (i.get('v.validity'))
                   return v && i.get('v.validity').valid;
               return v;
           }, true);
 
-        if (!valid)
+        if (valid === false)
             return cmp.alert('Please update the invalid form entries and try again.');
 
         // create migration in apex
