@@ -31,14 +31,18 @@
                 callback(res);
             } else if (cmp.isValid() && state === 'ERROR') {
                 var errors = res.getError();
-                if (errors && errors[0] && errors[0].message) {
-                    console.log('Error message: ' + errors[0].message);
-                    cmp.set('v.privateMessage', errors[0].message);
-                } else {
-                    console.log('Unknown error');
-                    console.log(res, res.getError());
-                    cmp.set('v.privateMessage', 'Unknown error');
+
+                if (errors && errors[0]) {
+                    errors = errors[0];
+                    if (errors['pageErrors'] && errors['pageErrors'][0]) {
+                        console.log('Error message: ' + errors['pageErrors'][0].message);
+                        return cmp.alert(errors['pageErrors'][0].message);
+                    }
                 }
+
+                console.log('Unknown error');
+                console.log(res, res.getError());
+                cmp.alert('Unknown Error');
             }
         });
         $A.enqueueAction(action);

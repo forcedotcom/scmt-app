@@ -133,5 +133,5 @@
         <members>SCMT</members>
         <name>CspTrustedSite</name>
     </types>
-    <version>38.0</version>
+    <version>39.0</version>
 </Package>

@@ -301,6 +301,10 @@
         <visible>true</visible>
     </recordTypeVisibilities>
     <tabSettings>
+        <tab>MigrationWizard</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
         <tab>DeskMigrationWizard</tab>
         <visibility>Visible</visibility>
     </tabSettings>
