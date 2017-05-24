@@ -85,7 +85,7 @@
 
     getUpdatedAt: function(name, cmp) {
         if ((cmp.get('v.private' + name + 'DataSet') === '1') && cmp.get('v.private' + name + 'StartDate')) {
-            return new Date(cmp.get('v.private' + name + 'StartDate')).getTime();
+            return Math.round(new Date(cmp.get('v.private' + name + 'StartDate')).getTime() / 1000);
         }
         return null;
     },
