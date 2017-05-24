@@ -40,7 +40,7 @@
                         <div class="slds-truncate" title="Records Total">Records Total</div>
                     </th>
                     <th scope="col">
-                        <div class="slds-truncate" title="Records Failed">Records Failed</div>
+                        <div class="slds-truncate" title="Bulk Job">Bulk Job</div>
                     </th>
                 </tr>
                 </thead>
@@ -56,11 +56,15 @@
                         <td data-label="Status">
                             <div class="slds-truncate">{!i.Status__c}</div>
                         </td>
-                        <td data-label="Records Total">
+                        <td data-label="Records">
                             <div class="slds-truncate">{!i.RecordsTotal__c}</div>
                         </td>
-                        <td data-label="Records Failed">
-                            <div class="slds-truncate">{!i.RecordsFailed__c}</div>
+                        <td data-label="Bulk Job Link">
+                            <div class="slds-truncate">
+                                <aura:renderIf isTrue="{!i.JobId__c.length > 0}">
+                                    <a href="{!'/' + i.JobId__c}">Bulk Job</a>
+                                </aura:renderIf>
+                            </div>
                         </td>
                     </tr>
                 </aura:iteration>
