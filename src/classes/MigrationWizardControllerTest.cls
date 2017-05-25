@@ -1,7 +1,16 @@
-/**
- * Created by tstachl on 5/25/17.
+/*
+ * Copyright (c) 2017, Salesforce.com, inc.
+ * All rights reserved.
+ * Licensed under the BSD 3-Clause license.
+ * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-public with sharing class MigrationWizardControllerTest {
+@isTest
+public class MigrationWizardControllerTest {
+
+    static testMethod void testConfig() {
+        Map<String, Object> config = MigrationWizardController.config();
+        System.assert(config.containsKey('privateServerUrl'));
+    }
 
 }

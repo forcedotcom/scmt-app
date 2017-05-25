@@ -150,7 +150,15 @@ public class MigrationWizardController {
     }
 
     public static String getSessionId() {
-        Map<String, Object> m = (Map<String, Object>) JSON.deserializeUntyped(Page.SessionId.getContent().toString());
+        String jString = '';
+
+        if (Test.IsRunningTest()) {
+            jString = '{"sessionId":""}';
+        } else {
+            jString = Page.SessionId.getContent().toString();
+        }
+
+        Map<String, Object> m = (Map<String, Object>) JSON.deserializeUntyped(jString);
         return (String) m.get('sessionId');
     }
 
