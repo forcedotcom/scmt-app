@@ -232,6 +232,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Desk_Migration__c.JobId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>User.DeskId__c</field>
         <readable>true</readable>
     </fieldPermissions>

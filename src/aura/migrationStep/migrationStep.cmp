@@ -11,6 +11,7 @@
     <aura:attribute name="onsubmit" type="Aura.Action" access="public" />
     <aura:attribute name="migrations" type="List" access="public" />
     <aura:attribute name="disabled" type="Boolean" access="public" />
+    <aura:attribute name="showBulk" type="Boolean" access="public" default="true" />
 
     <div class="{!'slds-text-longform ' + v.class}">
         <h1 class="slds-text-heading--large slds-border--bottom">{!v.label}</h1>
@@ -39,16 +40,18 @@
                     <th scope="col">
                         <div class="slds-truncate" title="Records Total">Records Total</div>
                     </th>
-                    <th scope="col">
-                        <div class="slds-truncate" title="Records Failed">Records Failed</div>
-                    </th>
+                    <aura:renderIf isTrue="{!v.showBulk}">
+                        <th scope="col">
+                            <div class="slds-truncate" title="Bulk Job">Bulk Job</div>
+                        </th>
+                    </aura:renderIf>
                 </tr>
                 </thead>
                 <tbody>
                 <aura:iteration items="{!v.migrations}" var="i">
                     <tr>
                         <td data-label="Name">
-                            <div class="slds-truncate" title="{!i.Id}"><a href="{!'/' + i.Id}">{!i.Name}</a></div>
+                            <div class="slds-truncate" title="{!i.Id}"><a href="{!'/' + i.Id}" target="_blank">{!i.Name}</a></div>
                         </td>
                         <td data-label="Start Date">
                             <div class="slds-truncate"><lightning:formattedDateTime value="{!i.StartDate__c}" year="numeric" month="numeric" day="numeric"  hour="2-digit" minute="2-digit" timeZoneName="short" /></div>
@@ -56,12 +59,18 @@
                         <td data-label="Status">
                             <div class="slds-truncate">{!i.Status__c}</div>
                         </td>
-                        <td data-label="Records Total">
+                        <td data-label="Records">
                             <div class="slds-truncate">{!i.RecordsTotal__c}</div>
                         </td>
-                        <td data-label="Records Failed">
-                            <div class="slds-truncate">{!i.RecordsFailed__c}</div>
-                        </td>
+                        <aura:renderIf isTrue="{!v.showBulk}">
+                            <td data-label="Bulk Job Link">
+                                <div class="slds-truncate">
+                                    <aura:renderIf isTrue="{!i.JobId__c.length > 0}">
+                                        <a href="{!'/' + i.JobId__c}" target="_blank">Bulk Job</a>
+                                    </aura:renderIf>
+                                </div>
+                            </td>
+                        </aura:renderIf>
                     </tr>
                 </aura:iteration>
                 </tbody>

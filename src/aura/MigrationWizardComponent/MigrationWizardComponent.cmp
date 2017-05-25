@@ -321,7 +321,7 @@
                                 <legend class="slds-form-element__legend slds-form-element__label">Data Set Selection</legend>
                                 <div class="slds-form--inline">
                                     <lightning:input aura:id="AccountsInput" type="date" name="accountStartDate" label="Start Date" value="{!v.privateAccountStartDate}" disabled="{!v.privateAccountStartId}" />
-                                    <lightning:input aura:id="AccountsInput" type="number" name="accountStartId" label="Start Id" value="{!v.privateAccountStartId}" disabled="{!v.privateAccountStartDate}" />
+                                    <!--<lightning:input aura:id="AccountsInput" type="number" name="accountStartId" label="Start Id" value="{!v.privateAccountStartId}" disabled="{!v.privateAccountStartDate}" /> -->
                                 </div>
                             </fieldset>
                         </aura:renderIf>
@@ -423,7 +423,7 @@
                             </fieldset>
                         </aura:renderIf>
                     </c:migrationStep>
-                    <c:migrationStep label="Attachments" class="{!v.privateActiveObject == 'Attachments' ? 'slds-show' : 'slds-hide'}" onsubmit="{!c.createMigration}" migrations="{!v.privateAttachmentObjects}" disabled="{!v.privateMigrationButtonDisabled}">
+                    <c:migrationStep label="Attachments" class="{!v.privateActiveObject == 'Attachments' ? 'slds-show' : 'slds-hide'}" onsubmit="{!c.createMigration}" migrations="{!v.privateAttachmentObjects}" disabled="{!v.privateMigrationButtonDisabled}" showBulk="false">
                         <p>In this step, you will be able to migrate cases attachments from Desk.com to Service Cloud. These attachments will exist in Salesforce on the case level.</p>
                     </c:migrationStep>
                     <c:migrationStep label="Articles" class="{!v.privateActiveObject == 'Articles' ? 'slds-show' : 'slds-hide'}" onsubmit="{!c.createMigration}" migrations="{!v.privateArticleObjects}" disabled="{!v.privateMigrationButtonDisabled}">
