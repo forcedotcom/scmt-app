@@ -406,7 +406,7 @@
                             </fieldset>
                         </aura:renderIf>
                     </c:migrationStep>
-                    <c:migrationStep label="Interactions" class="{!v.privateActiveObject == 'Interactions' ? 'slds-show' : 'slds-hide'}" onsubmit="{!c.createMigration}" migrations="{!v.privateInteractionObjects}" disabled="{!v.privateMigrationButtonDisabled}" showBulk="false">
+                    <c:migrationStep label="Interactions" class="{!v.privateActiveObject == 'Interactions' ? 'slds-show' : 'slds-hide'}" onsubmit="{!c.createMigration}" migrations="{!v.privateInteractionObjects}" disabled="{!v.privateMigrationButtonDisabled}">
                         <p>In this step, you will be able to migrate cases interactions from Desk.com to Service Cloud. You can either select to migrate all data or select data range for the migration.</p>
                         <lightning:select aura:id="InteractionsInput" name="interactionDataSet" label="Data Set" value="{!v.privateInteractionDataSet}" required="true">
                             <option value="">-- Please Select --</option>
