@@ -81,6 +81,7 @@
     },
 
     fetchObjects: function(cmp, evt, helper) {
+        console.log('here');
         helper.fetchMigrationObjects(cmp);
         setInterval(cmp.reloadObjects, 15000);
     },
@@ -130,9 +131,7 @@
 
     changeObject: function(cmp, evt, helper) {
         try {
-            var objects = cmp.get('v.privateObjects')
-              , name    = evt.target.dataset.name
-
+            var name    = evt.target.dataset.name
             if (name) cmp.set('v.privateActiveObject', name);
         } catch(err) {}
     },

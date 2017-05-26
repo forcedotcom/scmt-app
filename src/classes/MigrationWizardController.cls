@@ -10,6 +10,7 @@ public class MigrationWizardController {
     private static final User CURRENT_USER = [Select UserPermissionsKnowledgeUser, UserPermissionsSupportUser FROM User WHERE Id =: UserInfo.getUserId()];
     private static final Profile CURRENT_PROFILE = [SELECT Name FROM Profile WHERE Id =: UserInfo.getProfileId()];
     private static final Desk_Config__mdt CONFIG = [SELECT ID, Host__c, Endpoint__c, ConsumerKey__c, ConsumerSecret__c, Token__c, TokenSecret__c FROM Desk_Config__mdt WHERE Active__c = true LIMIT 1];
+    private static final String PREFIX = [SELECT NamespacePrefix FROM Organization].NamespacePrefix;
 
     @AuraEnabled
     public static Map<String, Object> config() {
@@ -25,6 +26,8 @@ public class MigrationWizardController {
         c.put('privateProfiles', [SELECT Id, Name FROM Profile WHERE UserLicense.Name LIKE 'Salesforce' ORDER BY Name]);
         c.put('privateRecordTypes', [SELECT Id, Name, SObjectType FROM RecordType WHERE SObjectType IN ('Account', 'Contact', 'Case')]);
 
+        c.put('privateNamespace', getNamespace());
+
         c.put('privateDeskEndpoint', CONFIG.Endpoint__c);
         c.put('privateDeskConsumerKey', CONFIG.ConsumerKey__c);
         c.put('privateDeskConsumerSecret', CONFIG.ConsumerSecret__c);
@@ -35,8 +38,13 @@ public class MigrationWizardController {
     }
 
     @AuraEnabled
-    public static List<Desk_Migration__c> fetchMigrationObjects() {
-        List<Desk_Migration__c> migs = [SELECT Name, StartDate__c, Status__c, RecordsTotal__c, RecordsFailed__c, JobId__c, Object__c FROM Desk_Migration__c ORDER BY CreatedDate DESC];
+    public static List<Migration> fetchMigrationObjects() {
+        List<Migration> migs = new List<Migration>();
+
+        for (Desk_Migration__c mig : [SELECT Name, StartDate__c, Status__c, RecordsTotal__c, RecordsFailed__c, JobId__c, Object__c FROM Desk_Migration__c ORDER BY CreatedDate DESC]) {
+            migs.add(new Migration(mig));
+        }
+
         return migs;
     }
 
@@ -71,7 +79,7 @@ public class MigrationWizardController {
         Map<String, Map<String, Schema.DescribeFieldResult>> sfdcCustomFields = customFields();
         for (Object c : deskCustomFields) {
             Map<Object, Object> cr = (Map<Object, Object>) c;
-            String key = 'Desk_' + String.valueOf(cr.get('name')) + '__c';
+            String key = getNamespace() + 'Desk_' + String.valueOf(cr.get('name')) + '__c';
             String type = String.valueOf(cr.get('type'));
 
             if (sfdcCustomFields.containsKey(type) && sfdcCustomFields.get(type).containsKey(key.toLowerCase())) {
@@ -162,6 +170,11 @@ public class MigrationWizardController {
         return (String) m.get('sessionId');
     }
 
+    public static String getNamespace() {
+        if (String.isNotBlank(PREFIX)) return PREFIX + '__';
+        return '';
+    }
+
     public class CheckItem {
         @AuraEnabled
         public String variant { get; private set; }
@@ -220,6 +233,33 @@ public class MigrationWizardController {
             return 'string';
         }
 
+    }
+
+    public class Migration {
+        @AuraEnabled
+        public String Id { get; private set; }
+        @AuraEnabled
+        public String Name { get; private set; }
+        @AuraEnabled
+        public DateTime StartDate { get; private set; }
+        @AuraEnabled
+        public String Status { get; private set; }
+        @AuraEnabled
+        public Decimal RecordsTotal { get; private set; }
+        @AuraEnabled
+        public String JobId { get; private set; }
+        @AuraEnabled
+        public String Obj { get; private set; }
+
+        public Migration(Desk_Migration__c dm) {
+            this.Id = dm.Id;
+            this.Name = dm.Name;
+            this.StartDate = dm.StartDate__c;
+            this.Status = dm.Status__c;
+            this.RecordsTotal = dm.RecordsTotal__c;
+            this.JobId = dm.JobId__c;
+            this.Obj = dm.Object__c;
+        }
     }
 
 }
