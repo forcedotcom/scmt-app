@@ -81,7 +81,6 @@
     },
 
     fetchObjects: function(cmp, evt, helper) {
-        console.log('here');
         helper.fetchMigrationObjects(cmp);
         setInterval(cmp.reloadObjects, 15000);
     },
