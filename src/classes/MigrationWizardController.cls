@@ -79,7 +79,7 @@ public class MigrationWizardController {
         Map<String, Map<String, Schema.DescribeFieldResult>> sfdcCustomFields = customFields();
         for (Object c : deskCustomFields) {
             Map<Object, Object> cr = (Map<Object, Object>) c;
-            String key = getNamespace() + 'Desk_' + String.valueOf(cr.get('name')) + '__c';
+            String key = 'Desk_' + String.valueOf(cr.get('name')) + '__c';
             String type = String.valueOf(cr.get('type'));
 
             if (sfdcCustomFields.containsKey(type) && sfdcCustomFields.get(type).containsKey(key.toLowerCase())) {
