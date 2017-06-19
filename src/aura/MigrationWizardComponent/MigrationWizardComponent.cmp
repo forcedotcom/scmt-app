@@ -14,6 +14,7 @@
     <aura:attribute name="privateSessionId" type="String" access="private" />
     <aura:attribute name="privateApiUrl" type="String" access="private" />
     <aura:attribute name="privateServerUrl" type="String" access="private" />
+    <aura:attribute name="privateNamespace" type="String" access="private" />
     <aura:attribute name="privateDeskEndpoint" type="String" access="private" />
     <aura:attribute name="privateDeskConsumerKey" type="String" access="private" />
     <aura:attribute name="privateDeskConsumerSecret" type="String" access="private" />
