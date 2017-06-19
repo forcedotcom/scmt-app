@@ -286,10 +286,6 @@
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <pageAccesses>
-        <apexPage>DeskMigrationWizard</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
         <apexPage>SessionId</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
@@ -307,10 +303,6 @@
     </recordTypeVisibilities>
     <tabSettings>
         <tab>MigrationWizard</tab>
-        <visibility>Visible</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>DeskMigrationWizard</tab>
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>

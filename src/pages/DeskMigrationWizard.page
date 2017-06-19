@@ -5,7 +5,7 @@
   ~ For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
   -->
 
-<apex:page setup="true" showHeader="true" standardStylesheets="false" sidebar="true" docType="html-5.0" tabStyle="DeskMigrationWizard__tab" controller="DeskMigrationWizardController">
+<apex:page setup="true" showHeader="true" standardStylesheets="false" sidebar="true" docType="html-5.0"  controller="DeskMigrationWizardController">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <apex:includeScript value="{!URLFOR($Resource.JSCalendar,'calendar/calendar.js')}"/>
     <apex:stylesheet value="{!URLFOR($Resource.JSCalendar,'calendar/LightningStyle.css')}" />
