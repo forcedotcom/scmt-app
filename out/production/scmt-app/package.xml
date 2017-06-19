@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2017, Salesforce.com, Inc.
+  ~ All rights reserved.
+  ~
+  ~ Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+  ~
+  ~ * Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+  ~
+  ~ * Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+  ~
+  ~ * Neither the name of Salesforce.com nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+  ~
+  ~ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  -->
+
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>DeskMigrationWizardController</members>
+        <members>SCMT_Utils</members>
+        <members>SCMT_Utils_Test</members>
+        <members>Test_DeskMigrationWizardController</members>
+        <members>MigrationWizardController</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>DeskMigrationWizard</members>
+        <members>SessionId</members>
+        <name>ApexPage</name>
+    </types>
+    <types>
+        <members>SCMT_AuditFieldsAccount</members>
+        <members>SCMT_AuditFieldsCase</members>
+        <members>SCMT_AuditFieldsContact</members>
+        <name>ApexTrigger</name>
+    </types>
+    <types>
+        <members>Case.SCMT</members>
+        <name>BusinessProcess</name>
+    </types>
+    <types>
+        <members>https_scmt_beta_herokuapp_com</members>
+        <name>CorsWhitelistOrigin</name>
+    </types>
+    <types>
+        <members>DeskMigration</members>
+        <name>CustomApplication</name>
+    </types>
+    <types>
+        <members>Account.DeskCreatedAt__c</members>
+        <members>Account.DeskId__c</members>
+        <members>Account.DeskUpdatedAt__c</members>
+        <members>Account.Domains__c</members>
+        <members>Case.DeskActiveDate__c</members>
+        <members>Case.DeskAssignedGroup__c</members>
+        <members>Case.DeskChangedDate__c</members>
+        <members>Case.DeskCreatedAt__c</members>
+        <members>Case.DeskExternalId__c</members>
+        <members>Case.DeskFirstOpenedDate__c</members>
+        <members>Case.DeskFirstResolvedDate__c</members>
+        <members>Case.DeskId__c</members>
+        <members>Case.DeskLabels__c</members>
+        <members>Case.DeskOpenedDate__c</members>
+        <members>Case.DeskReceivedDate__c</members>
+        <members>Case.DeskResolvedAt__c</members>
+        <members>Case.DeskThreadId__c</members>
+        <members>Case.DeskUpdatedAt__c</members>
+        <members>Case.Language__c</members>
+        <members>Contact.DeskCreatedAt__c</members>
+        <members>Contact.DeskExternalId__c</members>
+        <members>Contact.DeskId__c</members>
+        <members>Contact.DeskUpdatedAt__c</members>
+        <members>Contact.HomeAddress__c</members>
+        <members>Contact.Language__c</members>
+        <members>Contact.WorkAddress__c</members>
+        <members>User.DeskId__c</members>
+        <name>CustomField</name>
+    </types>
+    <types>
+        <members>Desk_Config.Beta</members>
+        <name>CustomMetadata</name>
+    </types>
+    <types>
+        <members>Desk_Config__mdt</members>
+        <members>Desk_Message__c</members>
+        <members>Desk_Migration__c</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>DeskMigrationWizard</members>
+        <members>Desk_Migration__c</members>
+        <members>MigrationWizard</members>
+        <name>CustomTab</name>
+    </types>
+    <types>
+        <members>Desk_Config__mdt-Desk Config Layout</members>
+        <members>Desk_Message__c-Desk Message Layout</members>
+        <members>Desk_Migration__c-Desk Migration Layout</members>
+        <name>Layout</name>
+    </types>
+    <types>
+        <members>Desk_Migration__c.All</members>
+        <name>ListView</name>
+    </types>
+    <types>
+        <members>SCMT_Audit</members>
+        <name>PermissionSet</name>
+    </types>
+    <types>
+        <members>Account.SCMT</members>
+        <members>Contact.SCMT</members>
+        <members>Case.SCMT</members>
+        <name>RecordType</name>
+    </types>
+    <types>
+        <members>JSCalendar</members>
+        <members>SLDS0122</members>
+        <members>aljs</members>
+        <members>MigrationWizard</members>
+        <name>StaticResource</name>
+    </types>
+    <types>
+        <members>MigrationWizard</members>
+        <members>progress</members>
+        <members>wizardStep</members>
+        <members>wizard</members>
+        <members>lookup</members>
+        <members>MigrationWizardComponent</members>
+        <members>migrationStep</members>
+        <name>AuraDefinitionBundle</name>
+    </types>
+    <types>
+        <members>SCMT</members>
+        <name>CspTrustedSite</name>
+    </types>
+    <version>38.0</version>
+</Package>

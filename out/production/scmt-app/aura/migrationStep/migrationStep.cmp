@@ -1,0 +1,71 @@
+<!--
+  ~ Copyright (c) 2017, Salesforce.com, Inc.
+  ~ All rights reserved.
+  ~ Licensed under the BSD 3-Clause license.
+  ~ For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
+  -->
+
+<aura:component description="migrationStep">
+    <aura:attribute name="label" type="String" access="public" />
+    <aura:attribute name="class" type="String" access="public" />
+    <aura:attribute name="onsubmit" type="Aura.Action" access="public" />
+    <aura:attribute name="migrations" type="List" access="public" />
+    <aura:attribute name="disabled" type="Boolean" access="public" />
+
+    <div class="{!'slds-text-longform ' + v.class}">
+        <h1 class="slds-text-heading--large slds-border--bottom">{!v.label}</h1>
+        <form class="slds-form--stacked slds-m-bottom--large">
+            {!v.body}
+            <div class="slds-form-element slds-clearfix">
+                <lightning:button aura:id="startMigration" label="Start Migration" disabled="{!v.disabled}" variant="brand" class="slds-float--right" onclick="{!v.onsubmit}" />
+            </div>
+        </form>
+
+        <aura:renderIf isTrue="{!v.migrations.length > 0}">
+            <h2 class="slds-text-heading--medium slds-border--bottom">Migration Records</h2>
+            <!--Name, StartDate__c, Status__c, RecordsTotal__c, RecordsFailed__c, Object__c-->
+            <table class="slds-table slds-table--bordered slds-table--cell-buffer">
+                <thead>
+                <tr class="slds-text-title--caps">
+                    <th scope="col">
+                        <div class="slds-truncate" title="Name">Name</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Start Date">Start Date</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Status">Status</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Records Total">Records Total</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Records Failed">Records Failed</div>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <aura:iteration items="{!v.migrations}" var="i">
+                    <tr>
+                        <td data-label="Name">
+                            <div class="slds-truncate" title="{!i.Id}">{!i.Name}</div>
+                        </td>
+                        <td data-label="Start Date">
+                            <div class="slds-truncate"><lightning:formattedDateTime value="{!i.StartDate__c}" year="numeric" month="numeric" day="numeric"  hour="2-digit" minute="2-digit" timeZoneName="short" /></div>
+                        </td>
+                        <td data-label="Status">
+                            <div class="slds-truncate">{!i.Status__c}</div>
+                        </td>
+                        <td data-label="Records Total">
+                            <div class="slds-truncate">{!i.RecordsTotal__c}</div>
+                        </td>
+                        <td data-label="Records Failed">
+                            <div class="slds-truncate">{!i.RecordsFailed__c}</div>
+                        </td>
+                    </tr>
+                </aura:iteration>
+                </tbody>
+            </table>
+        </aura:renderIf>
+    </div>
+</aura:component>

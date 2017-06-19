@@ -1,0 +1,38 @@
+/*
+ * Copyright (c) 2017, Salesforce.com, inc.
+ * All rights reserved.
+ * Licensed under the BSD 3-Clause license.
+ * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
+ */
+
+.THIS .slds-icon-text-success svg {
+    fill: rgb(4, 132, 75);
+}
+
+.THIS.slds-notify_container {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 10000;
+    text-align: center;
+}
+
+.THIS .slds-notify__content .slds-icon-utility-warning .slds-icon-text-default {
+    fill: #fff;
+}
+
+.THIS.background-spinner {
+    position: absolute;
+    top: 35px;
+    right: 35px;
+}
+
+.THIS.background-spinner .slds-spinner--brand.slds-spinner:before,
+.THIS.background-spinner .slds-spinner--brand.slds-spinner:after,
+.THIS.background-spinner .slds-spinner--brand .slds-spinner__dot-a:before,
+.THIS.background-spinner .slds-spinner--brand .slds-spinner__dot-b:before,
+.THIS.background-spinner .slds-spinner--brand .slds-spinner__dot-a:after,
+.THIS.background-spinner .slds-spinner--brand .slds-spinner__dot-b:after {
+    background-color: rgba(4,132,75,.95);
+}
