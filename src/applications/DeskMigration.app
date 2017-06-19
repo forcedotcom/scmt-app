@@ -12,6 +12,5 @@
     <formFactors>Large</formFactors>
     <label>Desk.com Migration</label>
     <tab>MigrationWizard</tab>
-    <tab>DeskMigrationWizard</tab>
     <tab>Desk_Migration__c</tab>
 </CustomApplication>
