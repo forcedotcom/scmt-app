@@ -16,10 +16,6 @@
         <visible>true</visible>
     </applicationVisibilities>
     <classAccesses>
-        <apexClass>DeskMigrationWizardController</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>MigrationWizardController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -29,10 +25,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>SCMT_Utils_Test</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>Test_DeskMigrationWizardController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <fieldPermissions>
@@ -286,12 +278,8 @@
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <pageAccesses>
-        <apexPage>DeskMigrationWizard</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
         <apexPage>SessionId</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <recordTypeVisibilities>
         <recordType>Account.SCMT</recordType>
@@ -307,10 +295,6 @@
     </recordTypeVisibilities>
     <tabSettings>
         <tab>MigrationWizard</tab>
-        <visibility>Visible</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>DeskMigrationWizard</tab>
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>

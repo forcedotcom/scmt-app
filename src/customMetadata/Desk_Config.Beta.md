@@ -27,7 +27,7 @@
     </values>
     <values>
         <field>Host__c</field>
-        <value xsi:type="xsd:string">https://scmt-beta.herokuapp.com</value>
+        <value xsi:type="xsd:string">https://scmt.herokuapp.com</value>
     </values>
     <values>
         <field>TokenSecret__c</field>
@@ -39,6 +39,6 @@
     </values>
     <values>
         <field>URL__c</field>
-        <value xsi:type="xsd:string">scmt-beta.herokuapp.com</value>
+        <value xsi:type="xsd:string">scmt.herokuapp.com</value>
     </values>
 </CustomMetadata>
