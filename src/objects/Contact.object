@@ -9,6 +9,7 @@
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <fields>
         <fullName>DeskCreatedAt__c</fullName>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Desk Created At</label>
         <required>false</required>
@@ -17,6 +18,7 @@
     </fields>
     <fields>
         <fullName>DeskExternalId__c</fullName>
+        <deprecated>false</deprecated>
         <description>This custom field contains the External Id of this record from Desk.com for historical purposes.</description>
         <externalId>true</externalId>
         <label>Desk External Id</label>
@@ -28,6 +30,7 @@
     </fields>
     <fields>
         <fullName>DeskId__c</fullName>
+        <deprecated>false</deprecated>
         <description>This custom field contains the Id of this record from Desk.com for historical purposes. This field should be read-only and phased out over time and removed.</description>
         <externalId>true</externalId>
         <label>Desk Id</label>
@@ -40,6 +43,7 @@
     </fields>
     <fields>
         <fullName>DeskUpdatedAt__c</fullName>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Desk Updated At</label>
         <required>false</required>
@@ -48,6 +52,7 @@
     </fields>
     <fields>
         <fullName>HomeAddress__c</fullName>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Home Address</label>
         <required>false</required>
@@ -56,6 +61,7 @@
     </fields>
     <fields>
         <fullName>Language__c</fullName>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Language</label>
         <required>false</required>
@@ -219,6 +225,7 @@
     </fields>
     <fields>
         <fullName>WorkAddress__c</fullName>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Work Address</label>
         <required>false</required>

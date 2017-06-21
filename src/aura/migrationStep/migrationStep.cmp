@@ -54,19 +54,19 @@
                             <div class="slds-truncate" title="{!i.Id}"><a href="{!'/' + i.Id}" target="_blank">{!i.Name}</a></div>
                         </td>
                         <td data-label="Start Date">
-                            <div class="slds-truncate"><lightning:formattedDateTime value="{!i.StartDate__c}" year="numeric" month="numeric" day="numeric"  hour="2-digit" minute="2-digit" timeZoneName="short" /></div>
+                            <div class="slds-truncate"><lightning:formattedDateTime value="{!i.StartDate}" year="numeric" month="numeric" day="numeric"  hour="2-digit" minute="2-digit" timeZoneName="short" /></div>
                         </td>
                         <td data-label="Status">
-                            <div class="slds-truncate">{!i.Status__c}</div>
+                            <div class="slds-truncate">{!i.Status}</div>
                         </td>
                         <td data-label="Records">
-                            <div class="slds-truncate">{!i.RecordsTotal__c}</div>
+                            <div class="slds-truncate">{!i.RecordsTotal}</div>
                         </td>
                         <aura:renderIf isTrue="{!v.showBulk}">
                             <td data-label="Bulk Job Link">
                                 <div class="slds-truncate">
-                                    <aura:renderIf isTrue="{!i.JobId__c.length > 0}">
-                                        <a href="{!'/' + i.JobId__c}" target="_blank">Bulk Job</a>
+                                    <aura:renderIf isTrue="{!i.JobId.length > 0}">
+                                        <a href="{!'/' + i.JobId}" target="_blank">Bulk Job</a>
                                     </aura:renderIf>
                                 </div>
                             </td>

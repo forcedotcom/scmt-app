@@ -48,6 +48,7 @@
     </fields>
     <fields>
         <fullName>Host__c</fullName>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <fieldManageability>DeveloperControlled</fieldManageability>
         <label>Host</label>
@@ -78,6 +79,7 @@
     </fields>
     <fields>
         <fullName>URL__c</fullName>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <fieldManageability>DeveloperControlled</fieldManageability>
         <label>URL</label>
