@@ -19,6 +19,7 @@
         <members>SCMT_Utils</members>
         <members>SCMT_Utils_Test</members>
         <members>MigrationWizardController</members>
+        <members>MigrationWizardControllerTest</members>
         <name>ApexClass</name>
     </types>
     <types>

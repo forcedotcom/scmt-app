@@ -20,6 +20,10 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>MigrationWizardControllerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>SCMT_Utils</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -175,6 +179,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Desk_Migration__c.EndDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Desk_Migration__c.JobId__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
