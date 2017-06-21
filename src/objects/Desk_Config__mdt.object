@@ -49,7 +49,7 @@
     <fields>
         <fullName>Host__c</fullName>
         <externalId>false</externalId>
-        <fieldManageability>SubscriberControlled</fieldManageability>
+        <fieldManageability>DeveloperControlled</fieldManageability>
         <label>Host</label>
         <required>true</required>
         <type>Url</type>
