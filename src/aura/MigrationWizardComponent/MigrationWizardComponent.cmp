@@ -23,6 +23,8 @@
     <aura:attribute name="privateGroups" type="Object[]" access="private" />
     <aura:attribute name="privateUsers" type="Object[]" access="private" />
     <aura:attribute name="privateCustomFields" type="Object[]" access="private" />
+    <aura:attribute name="privateSelectGroups" type="Group[]" access="private" />
+    <aura:attribute name="privateSelectUsers" type="User[]" access="private" />
 
     <aura:attribute name="privateUserObjects" type="Object[]" access="private" />
     <aura:attribute name="privateGroupMemberObjects" type="Object[]" access="private" />
@@ -147,18 +149,11 @@
                                     <div class="slds-truncate" title="{!item.name}">{!item.name}</div>
                                 </td>
                                 <td data-label="Salesforce Queue">
-                                    <aura:if isTrue="{!item.salesforce}">
-                                        <c:lookup iconName="standard:groups" value="{!item.salesforce}" isRemovable="false" />
-                                        <aura:set attribute="else">
-                                            <c:lookup >
-                                                <aura:set attribute="noValueBody">
-                                                    <lightning:icon iconName="utility:add" class="slds-pill__icon_container" />
-                                                    <span class="slds-pill__label" title="New Group">New Group</span>
-                                                    <span class="slds-pill__remove"></span>
-                                                </aura:set>
-                                            </c:lookup>
-                                        </aura:set>
-                                    </aura:if>
+                                    <lightning:select name="select" label="Select a Group" required="true">
+                                        <aura:iteration items="{!v.privateSelectGroups}" var="group">
+                                            <option value="{!group.Id}">{!group.Name}</option>
+                                        </aura:iteration>
+                                    </lightning:select>
                                 </td>
                             </tr>
                         </aura:iteration>
