@@ -36,7 +36,7 @@ public class MigrationWizardController {
 
     @AuraEnabled
     public static List<Desk_Migration__c> fetchMigrationObjects() {
-        List<Desk_Migration__c> migs = [SELECT Name, StartDate__c, Status__c, RecordsTotal__c, RecordsFailed__c, JobId__c, Object__c FROM Desk_Migration__c ORDER BY CreatedDate DESC];
+        List<Desk_Migration__c> migs = [SELECT Name, StartDate__c, Status__c, RecordsMigrated__c, RecordsFailed__c, JobId__c, Object__c FROM Desk_Migration__c ORDER BY CreatedDate DESC];
         return migs;
     }
 
@@ -81,9 +81,9 @@ public class MigrationWizardController {
 
 
         Map<String, Object> metadata = new Map<String, Object>();
-        metadata.put('groups', deskGroups);
-        metadata.put('users', deskUsers);
-        metadata.put('custom_fields', deskCustomFields);
+        metadata.put('desk_groups', deskGroups);
+        metadata.put('desk_users', deskUsers);
+        metadata.put('desk_custom_fields', deskCustomFields);
 
         return metadata;
     }

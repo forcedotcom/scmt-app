@@ -15,14 +15,15 @@
 
     <div class="{!'slds-text-longform ' + v.class}">
         <h1 class="slds-text-heading--large slds-border--bottom">{!v.label}</h1>
-        <form class="slds-form--stacked slds-m-bottom--large">
+          <form class="slds-form--stacked slds-m-bottom--large">
             {!v.body}
             <div class="slds-form-element slds-clearfix">
                 <lightning:button aura:id="startMigration" label="Start Migration" disabled="{!v.disabled}" variant="brand" class="slds-float--right" onclick="{!v.onsubmit}" />
             </div>
-        </form>
+          </form>
 
         <aura:renderIf isTrue="{!v.migrations.length > 0}">
+
             <h2 class="slds-text-heading--medium slds-border--bottom">Migration Records</h2>
             <!--Name, StartDate__c, Status__c, RecordsTotal__c, RecordsFailed__c, Object__c-->
             <table class="slds-table slds-table--bordered slds-table--cell-buffer">
@@ -38,7 +39,10 @@
                         <div class="slds-truncate" title="Status">Status</div>
                     </th>
                     <th scope="col">
-                        <div class="slds-truncate" title="Records Total">Records Total</div>
+                        <div class="slds-truncate" title="Records Migrated">Records Attempted</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Records Failed">Records Failed</div>
                     </th>
                     <aura:renderIf isTrue="{!v.showBulk}">
                         <th scope="col">
@@ -59,8 +63,11 @@
                         <td data-label="Status">
                             <div class="slds-truncate">{!i.Status__c}</div>
                         </td>
-                        <td data-label="Records">
-                            <div class="slds-truncate">{!i.RecordsTotal__c}</div>
+                        <td data-label="Records Attempted">
+                            <div class="slds-truncate">{!i.RecordsMigrated__c}</div>
+                        </td>
+                        <td data-label="Records Failed">
+                            <div class="slds-truncate">Check Bulk Job</div>
                         </td>
                         <aura:renderIf isTrue="{!v.showBulk}">
                             <td data-label="Bulk Job Link">
