@@ -58,11 +58,6 @@ public class MigrationWizardController {
             }
         }
 
-        List<Group> groupsList = new list<Group>();
-        for (Group g : sfdcGroups.values()) {
-            groupsList.add(g);
-        }
-
         List<Object> deskUsers = (List<Object>) deskData.get('users');
         Map<String, User> sfdcUsers = users();
         for (Object u : deskUsers) {
@@ -70,11 +65,6 @@ public class MigrationWizardController {
             if (sfdcUsers.containsKey(String.valueOf(ur.get('email')))) {
                 ur.put('salesforce', sfdcUsers.get(String.valueOf(ur.get('email'))));
             }
-        }
-
-        List<User> usersList = new list<User>();
-        for (User u : sfdcUsers.values()) {
-            usersList.add(u);
         }
 
         List<Object> deskCustomFields = (List<Object>) deskData.get('custom_fields');
@@ -94,8 +84,6 @@ public class MigrationWizardController {
         metadata.put('desk_groups', deskGroups);
         metadata.put('desk_users', deskUsers);
         metadata.put('desk_custom_fields', deskCustomFields);
-        metadata.put('sfdc_groups', groupsList);
-        metadata.put('sfdc_users', usersList);
 
         return metadata;
     }

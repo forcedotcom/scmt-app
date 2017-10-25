@@ -59,8 +59,6 @@
             cmp.set('v.privateGroups', sfdc.desk_groups);
             cmp.set('v.privateUsers', sfdc.desk_users);
             cmp.set('v.privateCustomFields', sfdc.desk_custom_fields);
-            cmp.set('v.privateSelectGroups', sfdc.sfdc_groups);
-            cmp.set('v.privateSelectUsers', sfdc.sfdc_users);
         });
     },
 

@@ -23,8 +23,6 @@
     <aura:attribute name="privateGroups" type="Object[]" access="private" />
     <aura:attribute name="privateUsers" type="Object[]" access="private" />
     <aura:attribute name="privateCustomFields" type="Object[]" access="private" />
-    <aura:attribute name="privateSelectGroups" type="Group[]" access="private" />
-    <aura:attribute name="privateSelectUsers" type="User[]" access="private" />
 
     <aura:attribute name="privateUserObjects" type="Object[]" access="private" />
     <aura:attribute name="privateGroupMemberObjects" type="Object[]" access="private" />
@@ -151,11 +149,18 @@
                                     <div class="slds-truncate" title="{!item.name}">{!item.name}</div>
                                 </td>
                                 <td data-label="Salesforce Queue">
-                                    <lightning:select name="select" label="Select a Group" required="true">
-                                        <aura:iteration items="{!v.privateSelectGroups}" var="group">
-                                            <option value="{!group.Id}">{!group.Name}</option>
-                                        </aura:iteration>
-                                    </lightning:select>
+                                    <aura:if isTrue="{!item.salesforce}">
+                                      <c:lookup iconName="standard:groups" value="{!item.salesforce}" isRemovable="false" />
+                                        <aura:set attribute="else">
+                                          <c:lookup >
+                                            <aura:set attribute="noValueBody">
+                                              <lightning:icon iconName="utility:add" class="slds-pill__icon_container" />
+                                                <span class="slds-pill__label" title="New Group">New Group</span>
+                                                <span class="slds-pill__remove"></span>
+                                            </aura:set>
+                                          </c:lookup>
+                                        </aura:set>
+                                    </aura:if>
                                 </td>
                             </tr>
                         </aura:iteration>
@@ -434,7 +439,7 @@
                     <div class="slds-grid slds-grid--vertical slds-navigation-list--vertical slds-navigation-list--vertical-inverse">
                         <h2 class="slds-text-title--caps slds-p-around--medium">Migration Objects</h2>
                         <ul>
-                            <aura:iteration items="Users,Group Members,Accounts,Contacts,Cases,Notes,Interactions,Attachments,Articles, Blah" var="item">
+                            <aura:iteration items="Users,Group Members,Accounts,Contacts,Cases,Notes,Interactions,Attachments,Articles" var="item">
                                 <li class="{!item == v.privateActiveObject ? 'slds-is-active' : ''}">
                                     <a href="javascript:void(0);" data-name="{!item}" onclick="{!c.changeObject}" class="slds-navigation-list--vertical__action slds-text-link--reset slds-clearfix" aria-describedby="migration-object">
                                         {!item}
