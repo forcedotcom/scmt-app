@@ -19,7 +19,7 @@
     <aura:handler name="change" action="{!c.handleWizardStepClassNameChange}" value="{!v.class}" />
     <aura:handler name="change" action="{!c.handleWizardStepActiveChange}" value="{!v.active}" />
 
-    <section class="{!v.privateWizardStepClassNames}" aria-expanded="{!v.active ? 'true' : 'false'}">
+    <section class="{!v.privateWizardStepClassNames} slds-panel" aria-expanded="{!v.active ? 'true' : 'false'}">
         {!v.body}
     </section>
 </aura:component>

@@ -36,7 +36,7 @@ public class MigrationWizardController {
 
     @AuraEnabled
     public static List<Desk_Migration__c> fetchMigrationObjects() {
-        List<Desk_Migration__c> migs = [SELECT Name, StartDate__c, Status__c, RecordsTotal__c, RecordsFailed__c, JobId__c, Object__c FROM Desk_Migration__c ORDER BY CreatedDate DESC];
+        List<Desk_Migration__c> migs = [SELECT Name, StartDate__c, Status__c, RecordsMigrated__c, RecordsFailed__c, JobId__c, Object__c FROM Desk_Migration__c ORDER BY CreatedDate DESC];
         return migs;
     }
 

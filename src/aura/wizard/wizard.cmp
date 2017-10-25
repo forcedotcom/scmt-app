@@ -31,6 +31,7 @@
     <aura:dependency resource="markup://c:wizardStep" />
 
     <section class="{!v.privateWizardClassNames}">
+
         <header class="slds-page-header slds-wizard-header" role="banner">
             <div class="slds-grid">
                 <div class="slds-grid slds-col slds-has-flexi-truncate slds-media--center">
@@ -47,7 +48,7 @@
             </div>
         </header>
 
-        <section class="slds-wizard-content slds-p-vertical--medium slds-p-horizontal--large slds-p-bottom--xx-large">{!v.body}</section>
+        <section class="slds-wizard-content slds-p-vertical--medium slds-p-horizontal--large slds-p-bottom--xx-large slds-panel">{!v.body}</section>
 
         <footer class="slds-wizard-footer slds-docked-form-footer slds-grid slds-grid--align-spread slds-p-around--x-small">
             <lightning:button aura:id="backButton" class="slds-order--1" variant="neutral" label="{!v.backText}" onclick="{!c.previous}" iconName="utility:left" iconPosition="left" disabled="{!v.privateHasBackButton == false}" />
