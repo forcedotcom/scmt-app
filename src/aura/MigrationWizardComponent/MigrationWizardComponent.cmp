@@ -14,6 +14,7 @@
     <aura:attribute name="privateSessionId" type="String" access="private" />
     <aura:attribute name="privateApiUrl" type="String" access="private" />
     <aura:attribute name="privateServerUrl" type="String" access="private" />
+    <aura:attribute name="privateNamespace" type="String" access="private" />
     <aura:attribute name="privateDeskEndpoint" type="String" access="private" />
     <aura:attribute name="privateDeskConsumerKey" type="String" access="private" />
     <aura:attribute name="privateDeskConsumerSecret" type="String" access="private" />
@@ -82,8 +83,10 @@
     <c:wizard label="Desk.com to Service Cloud Migration" aura:id="migrationwizard">
         <c:wizardStep label="Welcome and Pre-Flight Check">
             <div class="slds-text-longform">
-                <h1 class="slds-text-heading--large">Welcome to the Desk.com Migration Wizard!</h1>
+                <h1 class="slds-text-heading--large">Welcome to the Desk to Service Cloud Data Migration Wizard!</h1>
                 <p>The Desk.com to Service Cloud Migration provides a seamless migration path from Desk.com to Service Cloud. The app makes it easy to move foundational Desk.com data and metadata into Service Cloud, so that you can focus on improving your customer’s support experience! The wizard will take you through the migration process, step by step and will provide you access to additional support information and resources.</p>
+                <h2 class="slds-text-heading--medium">Documentation</h2>
+                <p>Please review the <a href="https://salesforce.quip.com/0xb9AMDhwHJn" target="_blank">full setup guide</a> before proceeding. This wizard requires several configuration steps before it can be used properly.</p>
                 <h2 class="slds-text-heading--medium">Pre-Flight Check</h2>
                 <p>Before we get into the nitty gritty, the Pre-Flight Check ensures that you are prepared for the migration.</p>
                 <p>You now have an opportunity to re-imagine your processes. Think about how your company interacts with the data through your processes, and move only the data set that provides value. We also recommend that you review your Desk.com data and metadata beforehand, to ensure that you limit any incorrect, incomplete, improperly formatted, duplicated or outdated information.</p>
@@ -113,13 +116,13 @@
 
         <c:wizardStep label="Connect to Desk.com" onnext="{!c.handleConnect}" onactive="{!c.handleBlur}">
             <h1 class="slds-text-heading--large">Connect to Desk.com</h1>
-            <p>Great! Now that you're fully prepped, let's connect to your Desk.com Environment. In order to provide authenticated access to Desk.com, please input your Desk.com Authentication Tokens below. You can find instructions for generating tokens in the <i>Authentication Tokens</i> section of the <a href="https://support.desk.com/customer/portal/articles/2050103--embedding-the-mobile-sdk" target="_blank">Embedding the Mobile SDK</a> article or <i>Figure 5: Desk.com Settings screen</i> section of the <a href="https://www.hipmob.com/documentation/integrations/desk" target="_blank">Hipmob - Desk.com Integration</a> article.</p>
+            <p>Great! Now that you're fully prepped, let's connect to your Desk.com Environment. In order to provide authenticated access to Desk.com, please input your Desk.com Authentication Tokens below. You can find instructions for generating tokens in this <a href="https://support.desk.com/customer/portal/articles/2852367?b_id=7112" target="_blank">help article</a>.</p>
             <div class="slds-form--horizontal slds-p-vertical--medium">
                 <lightning:input aura:id="auth" type="url" label="Desk.com Endpoint" name="endpoint" value="{!v.privateDeskEndpoint}" placeholder="https://example.desk.com" required="true" onchange="{!c.handleBlur}" />
-                <lightning:input aura:id="auth" label="OAuth Consumer Key" name="consumer_key" value="{!v.privateDeskConsumerKey}" required="true" pattern="^[a-zA-Z0-9]*$" onchange="{!c.handleBlur}" />
-                <lightning:input aura:id="auth" label="OAuth Consumer Secret" name="consumer_secret" value="{!v.privateDeskConsumerSecret}" required="true" pattern="^[a-zA-Z0-9]*$" onchange="{!c.handleBlur}" />
-                <lightning:input aura:id="auth" label="OAuth Access Token" name="token" value="{!v.privateDeskToken}" required="true" pattern="^[a-zA-Z0-9]*$" onchange="{!c.handleBlur}" />
-                <lightning:input aura:id="auth" label="OAuth Access Token Secret" name="token_secret" value="{!v.privateDeskTokenSecret}" required="true" pattern="^[a-zA-Z0-9]*$" onchange="{!c.handleBlur}" onblur="{!c.handleBlur}" />
+                <lightning:input aura:id="auth" type="password" label="OAuth Consumer Key" name="consumer_key" value="{!v.privateDeskConsumerKey}" required="true" pattern="^[a-zA-Z0-9]*$" onchange="{!c.handleBlur}" />
+                <lightning:input aura:id="auth" type="password" label="OAuth Consumer Secret" name="consumer_secret" value="{!v.privateDeskConsumerSecret}" required="true" pattern="^[a-zA-Z0-9]*$" onchange="{!c.handleBlur}" />
+                <lightning:input aura:id="auth" type="password" label="OAuth Access Token" name="token" value="{!v.privateDeskToken}" required="true" pattern="^[a-zA-Z0-9]*$" onchange="{!c.handleBlur}" />
+                <lightning:input aura:id="auth" type="password" label="OAuth Access Token Secret" name="token_secret" value="{!v.privateDeskTokenSecret}" required="true" pattern="^[a-zA-Z0-9]*$" onchange="{!c.handleBlur}" onblur="{!c.handleBlur}" />            
             </div>
         </c:wizardStep>
 
@@ -286,6 +289,9 @@
         </c:wizardStep>
 
         <c:wizardStep label="Review Desk.com Data Set" onactive="{!c.fetchObjects}">
+          <h1 class="slds-text-heading--large">Migrate Your Data</h1>
+            <p>Please migrate the objects in order shown on the left, starting at the top. Most of the objects require that the parent object is migrated first so that the relationship can be established. For example, Contacts require Accounts to be imported successfully. Articles are optional.</p>
+            <p></p>
             <div class="slds-grid slds-wrap slds-grid--pull-padded">
                 <div class="slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--4-of-6 slds-large-size--9-of-12 slds-order--1 slds-medium-order--2 slds-large-order--2">
                     <c:migrationStep label="Users" class="{!v.privateActiveObject == 'Users' ? 'slds-show' : 'slds-hide'}" onsubmit="{!c.createMigration}" migrations="{!v.privateUserObjects}" disabled="{!v.privateMigrationButtonDisabled}">

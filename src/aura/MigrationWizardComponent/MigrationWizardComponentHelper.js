@@ -62,28 +62,31 @@
 
     convertTimestamp: function(migrations) {
         return migrations.map(function(el) {
-            el.StartDate__c = new Date(el.StartDate__c);
+            el.StartDate = new Date(el.StartDate);
             return el;
         });
     },
 
     fetchMigrationObjects: function(cmp, background) {
         var helper = this;
+
         helper.callApex(cmp, 'c.fetchMigrationObjects', function(rsp) {
             var objects = {};
 
             Array.from(rsp.getReturnValue()).forEach(function(el) {
-                objects[el.Object__c] = objects[el.Object__c] || [];
-                objects[el.Object__c].push(el);
+                objects[el.Obj] = objects[el.Obj] || [];
+                objects[el.Obj].push(el);
             });
 
             for (var key in objects) {
-                cmp.set('v.private' + key.replace(/\s/g,'') + 'Objects', helper.convertTimestamp(objects[key]));
+                if (key && key !== 'undefined' && key !== '')
+                    cmp.set('v.private' + key.replace(/\s/g,'') + 'Objects', helper.convertTimestamp(objects[key]));
             }
         }, background);
     },
 
     getUpdatedAt: function(name, cmp) {
+        if (name !== 'Account' && name !== 'Contact' && name !== 'Case') return null;
         if ((cmp.get('v.private' + name + 'DataSet') === '1') && cmp.get('v.private' + name + 'StartDate')) {
             return Math.round(new Date(cmp.get('v.private' + name + 'StartDate')).getTime() / 1000);
         }
@@ -91,6 +94,7 @@
     },
 
     getStartId: function(name, cmp) {
+        if (name !== 'Contact' && name !== 'Case' && name !== 'Interaction' && name !== 'Note') return null;
         if ((cmp.get('v.private' + name + 'DataSet') === '1') && cmp.get('v.private' + name + 'StartId')) {
             return cmp.get('v.private' + name + 'StartId');
         }

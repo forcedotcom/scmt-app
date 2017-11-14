@@ -96,8 +96,22 @@
         if (valid === false)
             return cmp.alert('Please update the invalid form entries and try again.');
 
-        // create migration in apex
+        // single name
         name = name.slice(0, -1);
+        
+        //prevent migration if parent migration is not present
+        if (name === "Contact" && cmp.get('v.privateAccountObjects').length === 0) {
+            return cmp.alert('Please run an Account migration first.');
+         }   else if (name === "Case" && cmp.get('v.privateContactObjects').length === 0) {
+            return cmp.alert('Please run a Contact migration first.');
+         }   else if (cmp.get('v.privateCaseObjects').length === 0 && (name === "Note" || name === "Interaction" || name === "Attachment")) {
+            return cmp.alert('Please run a Case migration first.');
+         }   else if (cmp.get('v.privateUserObjects').length === 0 && name === "Group Member") {
+            return cmp.alert('Please run a User migration first.');
+         }
+
+
+        // create migration in apex
 
         helper.callApex(cmp, 'c.createMigrationRecord', { name: name }, function(rsp) {
             var data = {
@@ -130,9 +144,7 @@
 
     changeObject: function(cmp, evt, helper) {
         try {
-            var objects = cmp.get('v.privateObjects')
-              , name    = evt.target.dataset.name
-
+            var name    = evt.target.dataset.name
             if (name) cmp.set('v.privateActiveObject', name);
         } catch(err) {}
     },
