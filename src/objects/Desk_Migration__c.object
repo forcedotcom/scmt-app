@@ -50,11 +50,9 @@
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
-    <deprecated>false</deprecated>
     <description>This custom object is used to view the status of a Desk.com to Salesforce Service Cloud migration.</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
-    <enableChangeDataCapture>false</enableChangeDataCapture>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
     <enableReports>false</enableReports>
@@ -63,7 +61,6 @@
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
         <fullName>EndDate__c</fullName>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>End Date</label>
         <required>false</required>
@@ -71,19 +68,7 @@
         <type>DateTime</type>
     </fields>
     <fields>
-        <fullName>JobId__c</fullName>
-        <deprecated>false</deprecated>
-        <externalId>false</externalId>
-        <label>Bulk Job</label>
-        <length>255</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Log__c</fullName>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Log</label>
         <length>131072</length>
@@ -93,7 +78,6 @@
     </fields>
     <fields>
         <fullName>Object__c</fullName>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Migration Object</label>
         <required>false</required>
@@ -154,7 +138,6 @@
     <fields>
         <fullName>RecordsFailed__c</fullName>
         <defaultValue>0</defaultValue>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Records Failed</label>
         <precision>18</precision>
@@ -167,7 +150,6 @@
     <fields>
         <fullName>RecordsMigrated__c</fullName>
         <defaultValue>0</defaultValue>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Records Migrated</label>
         <precision>18</precision>
@@ -180,7 +162,6 @@
     <fields>
         <fullName>RecordsTotal__c</fullName>
         <defaultValue>0</defaultValue>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Records Total</label>
         <precision>18</precision>
@@ -192,7 +173,6 @@
     </fields>
     <fields>
         <fullName>RestartLink__c</fullName>
-        <deprecated>false</deprecated>
         <description>Stores JSON for restarting the current job</description>
         <externalId>false</externalId>
         <label>RestartLink</label>
@@ -203,7 +183,6 @@
     </fields>
     <fields>
         <fullName>Stage__c</fullName>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Stage</label>
         <length>255</length>
@@ -214,7 +193,6 @@
     </fields>
     <fields>
         <fullName>StartDate__c</fullName>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Start Date</label>
         <required>false</required>
@@ -223,7 +201,6 @@
     </fields>
     <fields>
         <fullName>Status__c</fullName>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Status</label>
         <required>false</required>
