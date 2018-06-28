@@ -10,7 +10,6 @@
     <fields>
         <fullName>Active__c</fullName>
         <defaultValue>false</defaultValue>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <fieldManageability>SubscriberControlled</fieldManageability>
         <label>Active</label>
@@ -18,7 +17,6 @@
     </fields>
     <fields>
         <fullName>ConsumerKey__c</fullName>
-        <deprecated>false</deprecated>
         <description>Desk.com Consumer Key</description>
         <externalId>false</externalId>
         <fieldManageability>SubscriberControlled</fieldManageability>
@@ -30,7 +28,6 @@
     </fields>
     <fields>
         <fullName>ConsumerSecret__c</fullName>
-        <deprecated>false</deprecated>
         <description>Desk.com Consumer Secret</description>
         <externalId>false</externalId>
         <fieldManageability>SubscriberControlled</fieldManageability>
@@ -42,7 +39,6 @@
     </fields>
     <fields>
         <fullName>Endpoint__c</fullName>
-        <deprecated>false</deprecated>
         <description>Desk.com Endpoint</description>
         <externalId>false</externalId>
         <fieldManageability>SubscriberControlled</fieldManageability>
@@ -52,7 +48,6 @@
     </fields>
     <fields>
         <fullName>Host__c</fullName>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <fieldManageability>DeveloperControlled</fieldManageability>
         <label>Host</label>
@@ -61,7 +56,6 @@
     </fields>
     <fields>
         <fullName>TokenSecret__c</fullName>
-        <deprecated>false</deprecated>
         <description>Desk.com Token Secret</description>
         <externalId>false</externalId>
         <fieldManageability>SubscriberControlled</fieldManageability>
@@ -73,7 +67,6 @@
     </fields>
     <fields>
         <fullName>Token__c</fullName>
-        <deprecated>false</deprecated>
         <description>Desk.com Token</description>
         <externalId>false</externalId>
         <fieldManageability>SubscriberControlled</fieldManageability>
@@ -85,7 +78,6 @@
     </fields>
     <fields>
         <fullName>URL__c</fullName>
-        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <fieldManageability>DeveloperControlled</fieldManageability>
         <label>URL</label>
